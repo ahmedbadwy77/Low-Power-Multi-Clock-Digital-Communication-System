@@ -10,4 +10,6 @@ vlog -reportprogress 300 +acc \
 
 vsim -voptargs="+acc" work.SYSTEM_TOP_tb
 
+do wave.do
+
 run -all

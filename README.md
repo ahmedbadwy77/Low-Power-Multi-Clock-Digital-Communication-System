@@ -830,10 +830,12 @@ Final_System/
 │
 ├── docs/                               # System specifications and PDF documentation
 │   ├── Final_System.pdf                # Architectural specifications
-│   └── simulation_waveform.pdf         # Simulation printout
+│   ├── simulation_waveform.pdf         # Simulation printout
+│   └── simulation_waveform_last.pdf    # Full formatted simulation waveform printout
 │
 ├── do_files/                           # Multi-simulator automation & compilation scripts
 │   ├── run.do                          # ModelSim / QuestaSim DO script
+│   ├── wave.do                         # ModelSim waveform signal configuration & grouping
 │   ├── run_iverilog.sh                 # Open-source Icarus Verilog script (Linux/macOS/CI)
 │   └── run_iverilog.bat                # Open-source Icarus Verilog script (Windows)
 │
