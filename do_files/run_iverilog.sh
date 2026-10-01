@@ -10,35 +10,36 @@ cd "$SCRIPT_DIR"
 echo "Compiling RTL and Testbench with Icarus Verilog..."
 iverilog -g2012 -DIVERILOG -DDUMP_VCD -o sim.vvp \
     -I .. \
-    ../CLK_GATING/CLK_GATE.v \
-    ../CLK_DIV/Clk_Div.v \
-    ../CLK_DIV_RX_MUX/prescale_mux.v \
-    ../RST_SYNC/RST_SYNC.v \
-    ../UART/data_sampling.v \
-    ../UART/strt_checker.v \
-    ../UART/stop_checker.v \
-    ../UART/parity_checker.v \
-    ../UART/edge_bit_counter.v \
-    ../UART/deserializer.v \
-    ../UART/FSM_RX.v \
-    ../UART/UART_RX.v \
-    ../UART/Serializer.v \
-    ../UART/Parity_Calc.v \
-    ../UART/MUX.v \
-    ../UART/FSM_TX.sv \
-    ../UART/UART_TX.v \
-    ../UART/UART.v \
-    ../Pulse_Gen/Pulse_Gen.v \
-    ../DATA_SYNC/DATA_SYNC.v \
-    ../ASYNC_FIFO/DF_SYNC.v \
-    ../ASYNC_FIFO/FIFO_RD.v \
-    ../ASYNC_FIFO/FIFO_WR.v \
-    ../ASYNC_FIFO/FIFO_MEM_CNTRL.v \
-    ../ASYNC_FIFO/ASYNC_FIFO.v \
-    ../Reg_File/regfile.v \
-    ../ALU/ALU.v \
-    ../SYS_CTRL/SYS_CTRL.v \
-    ../SYS_TOP/SYSTEM_TOP.v \
+    -I ../rtl \
+    ../rtl/CLK_GATING/CLK_GATE.v \
+    ../rtl/CLK_DIV/Clk_Div.v \
+    ../rtl/CLK_DIV_RX_MUX/prescale_mux.v \
+    ../rtl/RST_SYNC/RST_SYNC.v \
+    ../rtl/UART/data_sampling.v \
+    ../rtl/UART/strt_checker.v \
+    ../rtl/UART/stop_checker.v \
+    ../rtl/UART/parity_checker.v \
+    ../rtl/UART/edge_bit_counter.v \
+    ../rtl/UART/deserializer.v \
+    ../rtl/UART/FSM_RX.v \
+    ../rtl/UART/UART_RX.v \
+    ../rtl/UART/Serializer.v \
+    ../rtl/UART/Parity_Calc.v \
+    ../rtl/UART/MUX.v \
+    ../rtl/UART/FSM_TX.sv \
+    ../rtl/UART/UART_TX.v \
+    ../rtl/UART/UART.v \
+    ../rtl/Pulse_Gen/Pulse_Gen.v \
+    ../rtl/DATA_SYNC/DATA_SYNC.v \
+    ../rtl/ASYNC_FIFO/DF_SYNC.v \
+    ../rtl/ASYNC_FIFO/FIFO_RD.v \
+    ../rtl/ASYNC_FIFO/FIFO_WR.v \
+    ../rtl/ASYNC_FIFO/FIFO_MEM_CNTRL.v \
+    ../rtl/ASYNC_FIFO/ASYNC_FIFO.v \
+    ../rtl/Reg_File/regfile.v \
+    ../rtl/ALU/ALU.v \
+    ../rtl/SYS_CTRL/SYS_CTRL.v \
+    ../rtl/SYS_TOP/SYSTEM_TOP.v \
     ../Test_bench/SYSTEM_TOP_tb.v
 
 echo "Running Simulation..."

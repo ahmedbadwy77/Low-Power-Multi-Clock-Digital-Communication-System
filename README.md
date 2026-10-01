@@ -1,7 +1,7 @@
 # Low-Power Multi-Clock Digital Communication System & ASIC Implementation Flow
 
 [![CI](https://github.com/ahmedbadwy77/Low-Power-Multi-Clock-Digital-Communication-System/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ahmedbadwy77/Low-Power-Multi-Clock-Digital-Communication-System/actions/workflows/ci.yml)
-[![HDL](https://img.shields.io/badge/HDL-Verilog%20%7C%20SystemVerilog-blue.svg)](SYS_TOP/)
+[![HDL](https://img.shields.io/badge/HDL-Verilog%20%7C%20SystemVerilog-blue.svg)](rtl/)
 [![PDK](https://img.shields.io/badge/PDK-TSMC%20130nm-orange.svg)](IC/Projects/System/std_cells/)
 [![Synthesis](https://img.shields.io/badge/Synthesis-Synopsys%20Design%20Compiler-red.svg)](IC/Projects/System/Synthesis/)
 [![DFT Coverage](https://img.shields.io/badge/DFT%20Coverage-99.66%25-brightgreen.svg)](IC/Projects/System/DFT/)
@@ -828,36 +828,14 @@ Final_System/
 │   └── workflows/
 │       └── ci.yml                      # Automated GitHub Actions RTL CI verification
 │
-├── ALU/                                # 16-bit Arithmetic Logic Unit
-│   └── ALU.v
-│
-├── ASYNC_FIFO/                         # Dual-Clock Asynchronous FIFO
-│   ├── ASYNC_FIFO.v
-│   ├── DF_SYNC.v
-│   ├── FIFO_MEM_CNTRL.v
-│   ├── FIFO_RD.v
-│   └── FIFO_WR.v
-│
-├── CLK_DIV/                            # Parameterized Clock Divider
-│   └── Clk_Div.v
-│
-├── CLK_DIV_RX_MUX/                     # RX Oversampling Clock Prescale Multiplexer
-│   └── prescale_mux.v
-│
-├── CLK_GATING/                         # Integrated Clock Gating Cell (TLATNCA / Simulation)
-│   └── CLK_GATE.v
-│
-├── DATA_SYNC/                          # Multi-Bit Enable-Handshake Data Synchronizer
-│   └── DATA_SYNC.v
+├── docs/                               # System specifications and PDF documentation
+│   ├── Final_System.pdf                # Architectural specifications
+│   └── simulation_waveform.pdf         # Simulation printout
 │
 ├── do_files/                           # Multi-simulator automation & compilation scripts
 │   ├── run.do                          # ModelSim / QuestaSim DO script
 │   ├── run_iverilog.sh                 # Open-source Icarus Verilog script (Linux/macOS/CI)
 │   └── run_iverilog.bat                # Open-source Icarus Verilog script (Windows)
-│
-├── docs/                               # System specifications and PDF documentation
-│   ├── Final_System.pdf                # Architectural specifications
-│   └── simulation_waveform.pdf         # Simulation printout
 │
 ├── IC/                                 # ASIC Implementation Flow (VM Environment)
 │   └── Projects/
@@ -869,14 +847,48 @@ Final_System/
 │           ├── DFT/                    # Synopsys DFT scan insertion, scan netlists & reports
 │           └── Formality/              # Formal Equivalence Verification (post-syn, post-dft, post-pnr)
 │
-├── Pulse_Gen/                          # Single-Cycle Pulse Generator
-│   └── Pulse_Gen.v
-│
-├── Reg_File/                           # 16x8 Dual-Port Register File
-│   └── regfile.v
-│
-├── RST_SYNC/                           # 2-Stage Reset Synchronizer
-│   └── RST_SYNC.v
+├── rtl/                                # Golden synthesizable RTL source modules
+│   ├── ALU/                            # 16-bit Arithmetic Logic Unit
+│   │   └── ALU.v
+│   ├── ASYNC_FIFO/                     # Dual-Clock Asynchronous FIFO
+│   │   ├── ASYNC_FIFO.v
+│   │   ├── DF_SYNC.v
+│   │   ├── FIFO_MEM_CNTRL.v
+│   │   ├── FIFO_RD.v
+│   │   └── FIFO_WR.v
+│   ├── CLK_DIV/                        # Parameterized Clock Divider
+│   │   └── Clk_Div.v
+│   ├── CLK_DIV_RX_MUX/                 # RX Oversampling Clock Prescale Multiplexer
+│   │   └── prescale_mux.v
+│   ├── CLK_GATING/                     # Integrated Clock Gating Cell (TLATNCA / Simulation)
+│   │   └── CLK_GATE.v
+│   ├── DATA_SYNC/                      # Multi-Bit Enable-Handshake Data Synchronizer
+│   │   └── DATA_SYNC.v
+│   ├── Pulse_Gen/                      # Single-Cycle Pulse Generator
+│   │   └── Pulse_Gen.v
+│   ├── Reg_File/                       # 16x8 Dual-Port Register File
+│   │   └── regfile.v
+│   ├── RST_SYNC/                       # 2-Stage Reset Synchronizer
+│   │   └── RST_SYNC.v
+│   ├── SYS_CTRL/                       # Master System Controller FSM
+│   │   └── SYS_CTRL.v
+│   ├── SYS_TOP/                        # Top-Level SoC Integration
+│   │   └── SYSTEM_TOP.v
+│   └── UART/                           # Full-Duplex Configurable UART Subsystem
+│       ├── UART.v
+│       ├── UART_TX.v
+│       ├── UART_RX.v
+│       ├── Serializer.v
+│       ├── Parity_Calc.v
+│       ├── MUX.v
+│       ├── FSM_TX.sv
+│       ├── FSM_RX.v
+│       ├── data_sampling.v
+│       ├── strt_checker.v
+│       ├── stop_checker.v
+│       ├── parity_checker.v
+│       ├── edge_bit_counter.v
+│       └── deserializer.v
 │
 ├── Screenshots/                        # Logic simulation waveform captures
 │   ├── modelsim_waveform_1.png
@@ -885,30 +897,8 @@ Final_System/
 ├── scripts/                            # Host communication software & verification
 │   └── uart_driver.py                  # Python UART host driver & protocol regression suite
 │
-├── SYS_CTRL/                           # Master System Controller FSM
-│   └── SYS_CTRL.v
-│
-├── SYS_TOP/                            # Top-Level SoC Integration
-│   └── SYSTEM_TOP.v
-│
 ├── Test_bench/                         # Exhaustive self-checking testbench
 │   └── SYSTEM_TOP_tb.v
-│
-├── UART/                               # Full-Duplex Configurable UART Subsystem
-│   ├── UART.v
-│   ├── UART_TX.v
-│   ├── UART_RX.v
-│   ├── Serializer.v
-│   ├── Parity_Calc.v
-│   ├── MUX.v
-│   ├── FSM_TX.sv
-│   ├── FSM_RX.v
-│   ├── data_sampling.v
-│   ├── strt_checker.v
-│   ├── stop_checker.v
-│   ├── parity_checker.v
-│   ├── edge_bit_counter.v
-│   └── deserializer.v
 │
 ├── .gitignore                          # EDA & simulation cache filter
 └── README.md                           # Master project documentation
