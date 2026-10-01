@@ -1,0 +1,39 @@
+name: RTL Verification & CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  iverilog-simulation:
+    name: Icarus Verilog RTL Simulation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Icarus Verilog
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog
+
+      - name: Display Tool Versions
+        run: |
+          iverilog -v
+
+      - name: Run Self-Checking Simulation
+        run: |
+          chmod +x sim/run_iverilog.sh
+          ./sim/run_iverilog.sh
+
+      - name: Upload VCD Simulation Waveform
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: simulation-waveform-vcd
+          path: sim/system_waveform.vcd
+          if-no-files-found: warn

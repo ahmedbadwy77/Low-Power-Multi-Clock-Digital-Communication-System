@@ -26,6 +26,18 @@ SYSTEM_TOP DUT(
 
 
 /*====================================================
+  WAVEFORM DUMP (VCD)
+====================================================*/
+
+`ifdef DUMP_VCD
+initial begin
+    $dumpfile("system_waveform.vcd");
+    $dumpvars(0, SYSTEM_TOP_tb);
+end
+`endif
+
+
+/*====================================================
   CLOCKS
 ====================================================*/
 
@@ -348,7 +360,17 @@ initial begin
     $display("==============================================");
 
     #5000;
-    $stop;
+    `ifdef IVERILOG
+        if(errors == 0) begin
+            $display("[SIMULATION SUCCESSFUL]");
+            $finish(0);
+        end else begin
+            $display("[SIMULATION FAILED WITH %0d ERRORS]", errors);
+            $finish(1);
+        end
+    `else
+        $stop;
+    `endif
 
 end
 

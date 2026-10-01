@@ -1,5 +1,6 @@
 # Low-Power Multi-Clock Digital Communication System & ASIC Implementation Flow
 
+[![CI](https://github.com/ahmedbadwy77/Low-Power-Multi-Clock-Digital-Communication-System/actions/workflows/ci.yml/badge.svg)](https://github.com/ahmedbadwy77/Low-Power-Multi-Clock-Digital-Communication-System/actions)
 [![HDL](https://img.shields.io/badge/HDL-Verilog%20%7C%20SystemVerilog-blue.svg)](rtl/)
 [![PDK](https://img.shields.io/badge/PDK-TSMC%20130nm-orange.svg)](IC/Projects/System/std_cells/)
 [![Synthesis](https://img.shields.io/badge/Synthesis-Synopsys%20Design%20Compiler-red.svg)](IC/Projects/System/Synthesis/)
@@ -36,7 +37,7 @@ The system features full-duplex configurable **UART communication**, **dual-cloc
   - [6.3 Formal Verification (Synopsys Formality)](#63-formal-verification-synopsys-formality)
   - [6.4 Lint & CDC Sign-off (SpyGlass)](#64-lint--cdc-sign-off-spyglass)
 - [7. Directory Structure](#7-directory-structure)
-- [8. How to Run Simulation](#8-how-to-run-simulation)
+- [8. How to Run Simulation & Verification](#8-how-to-run-simulation--verification)
 
 ---
 
@@ -823,6 +824,10 @@ SYSTEM_TOP                27225.31                 100.0%
 ```
 Final_System/
 │
+├── .github/
+│   └── workflows/
+│       └── ci.yml                      # Automated GitHub Actions RTL CI verification
+│
 ├── assets/                             # Logic simulation waveform captures
 │   ├── modelsim_waveform_1.png
 │   └── modelsim_waveform_2.png
@@ -862,11 +867,16 @@ Final_System/
 │   ├── stop_checker.v
 │   └── strt_checker.v
 │
+├── scripts/                            # Host communication software & verification
+│   └── uart_driver.py                  # Python UART host driver & protocol regression suite
+│
+├── sim/                                # Multi-simulator automation scripts
+│   ├── run.do                          # ModelSim / QuestaSim DO script
+│   ├── run_iverilog.sh                 # Open-source Icarus Verilog script (Linux/macOS/CI)
+│   └── run_iverilog.bat                # Open-source Icarus Verilog script (Windows)
+│
 ├── tb/                                 # Verification testbench
 │   └── SYSTEM_TOP_tb.v
-│
-├── sim/                                # Simulation DO script
-│   └── run.do
 │
 ├── IC/                                 # ASIC Implementation Flow (VM Environment)
 │   └── Projects/
@@ -884,8 +894,11 @@ Final_System/
 
 ---
 
-## 8. How to Run Simulation
+## 8. How to Run Simulation & Verification
 
+The testbench can be verified using proprietary EDA tools (ModelSim/QuestaSim), free open-source tools (Icarus Verilog + GTKWave), or interactively validated via the Python UART host driver:
+
+### 8.1 ModelSim / QuestaSim (GUI Simulation)
 1. Open **ModelSim / QuestaSim**.
 2. Navigate to the `sim` directory:
    ```tcl
@@ -895,6 +908,33 @@ Final_System/
    ```tcl
    do run.do
    ```
+
+### 8.2 Open-Source Simulation (Icarus Verilog & GTKWave)
+The testbench can be compiled and executed with 100% open-source tools on Linux, macOS, or Windows:
+* **Linux / macOS**:
+  ```bash
+  chmod +x sim/run_iverilog.sh
+  ./sim/run_iverilog.sh
+  ```
+* **Windows (Command Prompt / PowerShell)**:
+  ```bat
+  sim\run_iverilog.bat
+  ```
+* **View Simulation Waveforms in GTKWave**:
+  ```bash
+  gtkwave sim/system_waveform.vcd
+  ```
+
+### 8.3 Host Python UART Driver & Interactive Verification
+A Python driver is provided in `scripts/uart_driver.py` to interact with the SoC over a physical serial port or through the built-in mock hardware simulator:
+* **Run the automated protocol regression suite**:
+  ```bash
+  python scripts/uart_driver.py --demo
+  ```
+* **Connect to a physical hardware UART / COM port**:
+  ```bash
+  python scripts/uart_driver.py --port COM3 --baud 115200
+  ```
 
 ---
 
