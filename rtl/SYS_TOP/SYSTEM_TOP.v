@@ -8,49 +8,12 @@ module SYSTEM_TOP(
     output wire framing_error
 );
 
-// 16-bit Signals
 wire [15:0] ALU_OUT;
-
-// 8-bit Signals
-wire [7:0]  RX_OUT_P;
-wire [7:0]  sync_bus;
-wire [7:0]  Wr_D;
-wire [7:0]  WR_DATA;
-wire [7:0]  Rd_D;
-wire [7:0]  REG0;
-wire [7:0]  REG1;
-wire [7:0]  REG2;
-wire [7:0]  REG3;
-wire [7:0]  FIFO_RDATA;
-
-// 4-bit Signals
-wire [3:0]  Addr;
-wire [3:0]  FUN;
-
-// 3-bit Signals
-wire [2:0]  rx_div_ratio;
-
-// 1-bit Signals
-wire        REF_RST;
-wire        UART_RST;
-wire        TX_CLK;
-wire        RX_CLK;
-wire        gated_clk;
-wire        RX_OUT_V;
-wire        enable_pulse;
-wire        en;
-wire        WrEn;
-wire        RdEn;
-wire        Gate_EN;
-wire        WR_INC;
-wire        clk_div_en;
-wire        Rd_D_Vld;
-wire        ALU_OUT_V;
-wire        FIFO_EMPTY;
-wire        FIFO_FULL;
-wire        FIFO_RINC;
-wire        UART_TX_BUSY;
-wire        TX_IN_V;
+wire [7:0] RX_OUT_P , sync_bus , Wr_D , WR_DATA , Rd_D , REG0 , REG1 , REG2 , REG3 , FIFO_RDATA;
+wire [3:0] Addr , FUN;
+wire [2:0] rx_div_ratio;
+wire REF_RST , UART_RST , TX_CLK , RX_CLK , gated_clk , RX_OUT_V , enable_pulse , en , WrEn , 
+			RdEn , Gate_EN , WR_INC , clk_div_en , Rd_D_Vld , ALU_OUT_V , FIFO_EMPTY , FIFO_FULL , FIFO_RINC , UART_TX_BUSY , TX_IN_V;
 
 prescale_mux U0_prescale_mux(
     .prescale(REG2[7:2]),

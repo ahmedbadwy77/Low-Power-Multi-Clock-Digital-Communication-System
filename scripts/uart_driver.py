@@ -1,23 +1,3 @@
-#!/usr/bin/env python3
-"""
-================================================================================
-Host UART Driver & Communication Protocol Client
-Project: Low-Power Multi-Clock Digital Communication System
-Author: Ahmed Badawy
-================================================================================
-This script acts as the external host controller communicating with the SoC
-over UART. It implements frame assembly, serial transmission, and response
-decoding for all supported commands:
-  - Command 0xAA: Register File Write (3 frames)
-  - Command 0xBB: Register File Read (2 frames TX, 1 frame RX)
-  - Command 0xCC: ALU Operation with Operands (4 frames TX, 2 frames RX)
-  - Command 0xDD: ALU Operation without Operands (2 frames TX, 2 frames RX)
-
-Supports both real physical COM ports (via PySerial) and built-in Mock/Simulation
-mode to demonstrate protocol compliance offline.
-================================================================================
-"""
-
 import sys
 import time
 import argparse

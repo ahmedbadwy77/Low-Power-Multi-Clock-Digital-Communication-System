@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# ==============================================================================
-# Open-Source Icarus Verilog Simulation Script for SYSTEM_TOP
-# ==============================================================================
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

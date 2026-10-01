@@ -8,7 +8,6 @@ module CLK_GATE #(
 
 generate
     if (SYNTHESIS) begin : GEN_SYNTHESIS
-        // Standard cell integrated clock gating latch from TSMC 130nm library
         TLATNCAX2M U0 (
             .CK(clk),
             .E(clk_en),
@@ -16,7 +15,6 @@ generate
         );
     end
     else begin : GEN_SIMULATION
-        // Behavioral clock gating latch model for functional simulation
         reg latch;
 
         always @(clk or clk_en) begin

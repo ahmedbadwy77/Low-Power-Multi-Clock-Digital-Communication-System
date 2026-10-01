@@ -9,11 +9,6 @@ integer i, errors;
 
 reg [7:0] received_byte, received_parity;
 
-
-/*====================================================
-  DUT
-====================================================*/
-
 SYSTEM_TOP DUT(
     .REF_CLK(REF_CLK),
     .UART_CLK(UART_CLK),
@@ -27,10 +22,6 @@ SYSTEM_TOP DUT(
 wire [7:0] tb_DUT_REG2 = DUT.REG2;
 
 
-/*====================================================
-  WAVEFORM DUMP (VCD)
-====================================================*/
-
 `ifdef DUMP_VCD
 initial begin
     $dumpfile("system_waveform.vcd");
@@ -38,10 +29,6 @@ initial begin
 end
 `endif
 
-
-/*====================================================
-  CLOCKS
-====================================================*/
 
 initial begin
     REF_CLK = 1'b0;
@@ -53,11 +40,6 @@ initial begin
     forever #135.63368 UART_CLK = ~UART_CLK;
 end
 
-
-/*====================================================
-  SEND ONE BIT
-====================================================*/
-
 task send_bit;
 input bit_value;
 integer cycles;
@@ -67,11 +49,6 @@ begin
     repeat(cycles) @(posedge DUT.RX_CLK);
 end
 endtask
-
-
-/*====================================================
-  SEND BYTE
-====================================================*/
 
 task send_byte;
 input [7:0] data;
@@ -95,11 +72,6 @@ begin
 end
 endtask
 
-
-/*====================================================
-  WRITE REGISTER
-====================================================*/
-
 task write_reg;
 input [3:0] addr;
 input [7:0] data;
@@ -111,11 +83,6 @@ begin
     repeat(50) @(posedge REF_CLK);
 end
 endtask
-
-
-/*====================================================
-  CHECK VALUE
-====================================================*/
 
 task check_value;
 input [8*32-1:0] label;
@@ -130,11 +97,6 @@ begin
     end
 end
 endtask
-
-
-/*====================================================
-  CHECK TX FRAME
-====================================================*/
 
 task check_tx_frame;
 input [7:0] expected_data;
@@ -237,11 +199,6 @@ begin
 end
 endtask
 
-
-/*====================================================
-  READ REGISTER
-====================================================*/
-
 task read_reg_and_check;
 input [3:0] addr;
 input [7:0] expected_data;
@@ -251,11 +208,6 @@ begin
     check_tx_frame(expected_data);
 end
 endtask
-
-
-/*====================================================
-  MAIN TEST
-====================================================*/
 
 initial begin
 

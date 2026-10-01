@@ -1,14 +1,3 @@
-"""
-generate_diagrams.py
-Generates professional, high-resolution hardware schematics with true digital logic shapes:
-- IEEE Standard Logic Gates (AND, OR, INV with bubble)
-- Multiplexers (Trapezoid symbol)
-- Flip-Flops (D-FF with clock chevron `<` and reset bubble)
-- ALU (Iconic V-notch IEEE symbol)
-- Integrated Timing Waveforms illustrating signal transitions
-- Professional modern color palette (Clean white background, sharp vector borders)
-"""
-
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.path import Path
