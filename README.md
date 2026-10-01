@@ -764,11 +764,14 @@ The design was fully verified using an exhaustive self-checking testbench ([`SYS
 6. Parity error detection and framing error reporting.
 7. Asynchronous FIFO continuous buffering under rate mismatch.
 
-### Simulation Waveform 1: System Initialization & Configuration
+### Simulation Waveform 1: Clocks, UART, Synchronization & Control
 ![ModelSim Waveform 1](Screenshots/modelsim_waveform_1.png)
 
-### Simulation Waveform 2: ALU Execution & UART Serialization
+### Simulation Waveform 2: Register File & ALU Execution
 ![ModelSim Waveform 2](Screenshots/modelsim_waveform_2.png)
+
+### Simulation Waveform 3: Asynchronous FIFO Buffering
+![ModelSim Waveform 3](Screenshots/modelsim_waveform_3.png)
 
 ---
 
@@ -830,7 +833,6 @@ Final_System/
 │
 ├── docs/                               # System specifications and PDF documentation
 │   ├── Final_System.pdf                # Architectural specifications
-│   ├── simulation_waveform.pdf         # Simulation printout
 │   └── simulation_waveform_last.pdf    # Full formatted simulation waveform printout
 │
 ├── do_files/                           # Multi-simulator automation & compilation scripts
@@ -894,7 +896,8 @@ Final_System/
 │
 ├── Screenshots/                        # Logic simulation waveform captures
 │   ├── modelsim_waveform_1.png
-│   └── modelsim_waveform_2.png
+│   ├── modelsim_waveform_2.png
+│   └── modelsim_waveform_3.png
 │
 ├── scripts/                            # Host communication software & verification
 │   └── uart_driver.py                  # Python UART host driver & protocol regression suite
