@@ -1,0 +1,16 @@
+##Header_Start
+##Spyglass_Version:SpyGlass_vL-2016.06
+##Header_End
+
+##File_ID::1
+
+##File_Name::SYSTEM_TOP.sgdc@@Design_Unit::SYSTEM_TOP
+##Pattern::RST@@Line_no::16@@Delim::%@@%SYSTEM_TOP.RST%
+##Line_no::16@@port@@SYSTEM_TOP.RST
+##Pattern::RST@@Line_no::24@@Delim::%@@%SYSTEM_TOP.RST%
+##Line_no::24@@port@@SYSTEM_TOP.RST
+##Pattern::SYSTEM_TOP.U0_TX_CLK_DIV.i_div_ratio@@Line_no::37@@Delim::%@@%SYSTEM_TOP.U0_TX_CLK_DIV.i_div_ratio[7:0]%
+##Line_no::37@@pin@@SYSTEM_TOP.U0_TX_CLK_DIV.i_div_ratio[7:0]
+##Pattern::SYSTEM_TOP.U1_RX_CLK_DIV.i_div_ratio@@Line_no::39@@Delim::%@@%SYSTEM_TOP.U1_RX_CLK_DIV.i_div_ratio[7:0]%
+##Line_no::39@@pin@@SYSTEM_TOP.U1_RX_CLK_DIV.i_div_ratio[7:0]
+

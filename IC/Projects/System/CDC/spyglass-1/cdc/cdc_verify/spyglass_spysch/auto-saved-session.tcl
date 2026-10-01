@@ -1,0 +1,1 @@
+gui_select_message -rule Ac_datahold01a -msg {Synchronized crossing: destination flop 'SYSTEM_TOP.U0_UART.U0_UART_TX.U1.par_bit', clocked by 'SYSTEM_TOP.UART_CLK', source flop 'SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7:0][7:0]', clocked by 'SYSTEM_TOP.REF_CLK'. Data-enable sequencing check: Partially-Proved}

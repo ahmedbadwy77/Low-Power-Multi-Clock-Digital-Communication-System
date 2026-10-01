@@ -1,0 +1,217 @@
+Enabled Sync-Enable
+Enabled Clock_Gate-Sync
+Enabled Recirculation
+BEGIN::INFO
+SGDC current_design = SYSTEM_TOP
+clock =
+REF_CLK
+UART_CLK
+END::INFO
+BEGIN::INFO
+SGDC current_design = SYSTEM_TOP
+reset =
+RST
+END::INFO
+BEGIN INFO::CASE-ANALYSIS-SETTING
+node name=in1[0] and value=0
+node name=in1[1] and value=0
+node name=in1[2] and value=0
+node name=in1[3] and value=0
+node name=in1[4] and value=0
+node name=in1[5] and value=0
+node name=in1[6] and value=0
+node name=in2[0] and value=0
+node name=in2[1] and value=0
+node name=in2[2] and value=0
+node name=in2[3] and value=0
+node name=in2[4] and value=0
+node name=in2[5] and value=0
+node name=in2[6] and value=0
+node name=in1[0] and value=0
+node name=in1[1] and value=0
+node name=in1[2] and value=0
+node name=in1[3] and value=0
+node name=in1[4] and value=0
+node name=in1[5] and value=0
+node name=in1[6] and value=0
+node name=in1[7] and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=in1[0] and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=in1[0] and value=0
+node name=in1[1] and value=0
+node name=in1[2] and value=0
+node name=in1[3] and value=0
+node name=in1[4] and value=0
+node name=in1[5] and value=0
+node name=in1[6] and value=0
+node name=in2[0] and value=0
+node name=in2[1] and value=0
+node name=in2[2] and value=0
+node name=in2[3] and value=0
+node name=in2[4] and value=0
+node name=in2[5] and value=0
+node name=in2[6] and value=0
+node name=in1[0] and value=0
+node name=in1[1] and value=0
+node name=in1[2] and value=0
+node name=in1[3] and value=0
+node name=in1[4] and value=0
+node name=in1[5] and value=0
+node name=in1[6] and value=0
+node name=in1[7] and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=in1[0] and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+END INFO::CASE-ANALYSIS-SETTING
+BEGIN INFO :: CLOCKS INFORMATION
+Clk-Name=SYSTEM_TOP.REF_CLK::Pos-Flop=262::Neg-Flop=0::UnKnown-Flop=0::Gating=Yes
+Clk-Name=SYSTEM_TOP.UART_CLK::Pos-Flop=77::Neg-Flop=0::UnKnown-Flop=0::Gating=Yes
+END CLOCKS INFORMATION
+Enabled Sync_cell-Sync
+RULE: Clock_Reset_info01 INFORMATION START
+Matrix for module: SYSTEM_TOP
+
+==============================================
+  Resets -->           SYSTEM_TOP.RST         
+==============================================
+ |
+ | Domains
+ V
+==============================================
+d0                      SYSTEM_TOP.REF_CLK    
+----------------------------------------------
+d1                      SYSTEM_TOP.UART_CLK   
+----------------------------------------------
+
+
+
+
+
+
+
+
+
+RULE: Clock_Reset_info01 INFORMATION END
+
+RULE: Reset_check04 INFORMATION START
+Flops reset asynchronously by reset signal "SYSTEM_TOP.RST" are:
+SYSTEM_TOP.U0_UART.U0_UART_TX.par_bit (being cleared) in module: Parity_Calc
+SYSTEM_TOP.U0_UART.U0_UART_TX.ser_data (being cleared) in module: Serializer
+SYSTEM_TOP.U0_UART.U0_UART_TX.ser_done (being cleared) in module: Serializer
+SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[0:7] (being cleared) in module: Serializer
+SYSTEM_TOP.U0_UART.U0_UART_TX.U2.count[0:2] (being cleared) in module: Serializer
+SYSTEM_TOP.U0_UART.U0_UART_TX.U3.current_state[0:2] (being cleared) in module: FSM_TX
+SYSTEM_TOP.parity_error (being cleared) in module: parity_checker
+SYSTEM_TOP.U0_UART.U0_UART_RX.strt_glitch (being cleared) in module: strt_checker
+SYSTEM_TOP.framing_error (being cleared) in module: stop_checker
+SYSTEM_TOP.U0_UART.U0_UART_RX.U3.first_sample (being cleared) in module: data_sampling
+SYSTEM_TOP.U0_UART.U0_UART_RX.U3.second_sample (being cleared) in module: data_sampling
+SYSTEM_TOP.U0_UART.U0_UART_RX.U3.third_sample (being cleared) in module: data_sampling
+SYSTEM_TOP.RX_OUT_P[0:7] (being cleared) in module: deserializer
+SYSTEM_TOP.U0_UART.U0_UART_RX.U4.counter[0:3] (being cleared) in module: deserializer
+SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[0:7] (being cleared) in module: deserializer
+SYSTEM_TOP.U0_UART.U0_UART_RX.U5.edges_counter[0:5] (being cleared) in module: edge_bit_counter
+SYSTEM_TOP.U0_UART.U0_UART_RX.U6.current_state[0:2] (being cleared) in module: FSM_RX
+SYSTEM_TOP.U0_UART.U0_UART_RX.U6.data_counter[0:2] (being cleared) in module: FSM_RX
+SYSTEM_TOP.U0_ASYNC_FIFO.U0.rempty_reg (being set) in module: FIFO_RD
+SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[0:3] (being cleared) in module: FIFO_RD
+SYSTEM_TOP.U0_ASYNC_FIFO.U1.wcounter[0:3] (being cleared) in module: FIFO_WR
+SYSTEM_TOP.U0_ASYNC_FIFO.U1.wfull_reg (being cleared) in module: FIFO_WR
+SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][0:7] (being cleared) in module: FIFO_MEM_CNTRL
+SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][8:15] (being cleared) in module: FIFO_MEM_CNTRL
+SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][16:23] (being cleared) in module: FIFO_MEM_CNTRL
+SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][24:31] (being cleared) in module: FIFO_MEM_CNTRL
+SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][32:39] (being cleared) in module: FIFO_MEM_CNTRL
+SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][40:47] (being cleared) in module: FIFO_MEM_CNTRL
+SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][48:55] (being cleared) in module: FIFO_MEM_CNTRL
+SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][56:63] (being cleared) in module: FIFO_MEM_CNTRL
+SYSTEM_TOP.U0_ASYNC_FIFO.rq2_wptr[0:3] (being cleared) in module: DF_SYNC
+SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[0:3] (being cleared) in module: DF_SYNC
+SYSTEM_TOP.U0_ASYNC_FIFO.wq2_rptr[0:3] (being cleared) in module: DF_SYNC
+SYSTEM_TOP.U0_ASYNC_FIFO.U4.sync_reg[0:3] (being cleared) in module: DF_SYNC
+SYSTEM_TOP.U0_RST_SYNC.flops[0:2] (being cleared) in module: RST_SYNC
+SYSTEM_TOP.U1_RST_SYNC.flops[0:2] (being cleared) in module: RST_SYNC
+SYSTEM_TOP.U0_DATA_SYNC.multi_flops[0:1] (being cleared) in module: DATA_SYNC
+SYSTEM_TOP.U0_DATA_SYNC.enable_flop (being cleared) in module: DATA_SYNC
+SYSTEM_TOP.sync_bus[0:7] (being cleared) in module: DATA_SYNC
+SYSTEM_TOP.enable_pulse (being cleared) in module: DATA_SYNC
+SYSTEM_TOP.U0_SYS_CTRL.command[0:7] (being cleared) in module: SYS_CTRL
+SYSTEM_TOP.U0_SYS_CTRL.addr_reg[0:3] (being cleared) in module: SYS_CTRL
+SYSTEM_TOP.U0_SYS_CTRL.current_state[0:3] (being cleared) in module: SYS_CTRL
+SYSTEM_TOP.Rd_D_Vld (being cleared) in module: regfile
+SYSTEM_TOP.Rd_D[0:7] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[0][0:7] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[1][8:15] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[2][16] (being set) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[2][17:22] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[2][23] (being set) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[3][24:28] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[3][29] (being set) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[3][30:31] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[4][32:39] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[5][40:47] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[6][48:55] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[7][56:63] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[8][64:71] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[9][72:79] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[10][80:87] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[11][88:95] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[12][96:103] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[13][104:111] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[14][112:119] (being cleared) in module: regfile
+SYSTEM_TOP.U0_REGFILE.Registers[15][120:127] (being cleared) in module: regfile
+SYSTEM_TOP.U0_TX_CLK_DIV.clk_div_en (being cleared) in module: CLK_DIV
+SYSTEM_TOP.ALU_OUT[0:15] (being cleared) in module: ALU
+SYSTEM_TOP.ALU_OUT_V (being cleared) in module: ALU
+SYSTEM_TOP.U1_RX_CLK_DIV.clk_div_en (being cleared) in module: CLK_DIV
+SYSTEM_TOP.FIFO_RINC (being cleared) in module: Pulse_Gen
+SYSTEM_TOP.U0_Pulse_Gen.sync_reg[0:1] (being cleared) in module: Pulse_Gen
+SYSTEM_TOP.U0_Pulse_Gen.sync_d (being cleared) in module: Pulse_Gen
+RULE: Reset_check04 INFORMATION END

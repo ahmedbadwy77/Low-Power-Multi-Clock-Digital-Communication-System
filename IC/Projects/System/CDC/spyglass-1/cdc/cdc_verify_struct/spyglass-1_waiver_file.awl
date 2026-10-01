@@ -1,0 +1,2 @@
+waive -msg {4 synchronizers (SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[1:0],SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[3:2]) converge on flop 'SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[0]' (same source divergence). Gray encoding check: 'DISABLED'}  -rule {  {Ac_conv02}  }  -comment {Created by ICer on 01-Oct-2026 06:21:02}  -exact 
+waive -msg {4 synchronizers (SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[3:0]) converge on flop 'SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[0]'. Gray encoding check: 'DISABLED'}  -rule {  {Ac_conv02}  }  -comment {Created by ICer on 01-Oct-2026 06:50:44}  -exact 

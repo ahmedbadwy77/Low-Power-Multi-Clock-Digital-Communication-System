@@ -1,0 +1,3 @@
+waive -msg {Clock signal 'SYSTEM_TOP.U0_TX_CLK_DIV.divided_clk' used as a non-clock (Used with name 'SYSTEM_TOP.U0_TX_CLK_DIV.divided_clk')}  -rule {  {STARC05-1.4.3.4}  }  -disable -comment {Created by ICer on 01-Oct-2026 06:15:07}  -exact 
+waive -rule {  {STARC05-2.11.3.1}  }  -comment {Created by ICer on 01-Oct-2026 06:15:36}  -exact 
+waive -rule {  {STARC05-1.4.3.4}  }  -comment {Created by ICer on 01-Oct-2026 06:17:01}  -exact 

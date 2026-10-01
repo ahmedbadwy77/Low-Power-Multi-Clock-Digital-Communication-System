@@ -1,0 +1,76 @@
+current_design  "SYSTEM_TOP"
+
+########################################################################
+#Section 1: List of source clocks
+#These clocks have set_false_path/set_clock_groups/set_clock_uncertainty associated with them
+#./SYSTEM_TOP.sdc@@14@@
+clock  -name "REF_CLK"  -domain d0  -edge { "0.000000" "5.000000"}  -period 10 -tag ref_clk 
+#./SYSTEM_TOP.sdc@@21@@
+clock  -name "UART_CLK"  -domain d1  -edge { "0.000000" "135.634003"}  -period 271.266998 -tag uart_clk 
+
+########################################################################
+#Section 2: List of remaining source clocks
+#These clocks do not have the set_false_path/set_clock_groups/set_clock_uncertainty constraints associated with them
+
+########################################################################
+#Section 3: List of generated clocks
+#These clocks satisfy either of the following conditions
+ #a. Generated clocks have domains different than the domains of their source clocks
+ #b. Generated clocks are specified on the black-boxes
+
+########################################################################
+#Section 4: List of generated clocks which have same domain as that of their source clock 
+#./SYSTEM_TOP.sdc@@28@@
+#clock  -name "SYSTEM_TOP.U1_RX_CLK_DIV.o_div_clk"  -domain d1  -edge { "0.000000" "135.634003"}  -period 271.266998 -tag rx_clk 
+#./SYSTEM_TOP.sdc@@29@@
+#clock  -name "SYSTEM_TOP.U0_TX_CLK_DIV.o_div_clk"  -domain d1  -edge { "0.000000" "4340.271973"}  -period 8680.543945 -tag tx_clk 
+#./SYSTEM_TOP.sdc@@30@@
+#clock  -name "SYSTEM_TOP.U0_CLK_GATE.gated_clk"  -domain d0  -edge { "0.000000" "5.000000"}  -period 10 -tag alu_clk 
+
+########################################################################
+#Section 5: List of valid set_case_analyis constraint generated from set_case_analysis command.
+
+########################################################################
+#Section 6: List of valid abstract_port/input constraint generated from set_input_delay command.
+#./SYSTEM_TOP.sdc@@34@@
+abstract_port -ports "RX_IN" -clock "UART_CLK"
+
+########################################################################
+#Section 7: List of valid output constraint generated from set_output_delay command.
+#./SYSTEM_TOP.sdc@@35@@
+output  -name "TX_OUT"  -clock "UART_CLK"
+#./SYSTEM_TOP.sdc@@36@@
+output  -name "parity_error"  -clock "UART_CLK"
+#./SYSTEM_TOP.sdc@@37@@
+output  -name "framing_error"  -clock "UART_CLK"
+
+########################################################################
+#Section 8: List of valid clock_sense constraint generated from set_clock_sense command.
+#These constraint are generated only for -stop_propagtion in set_clock_sense.
+
+########################################################################
+#Section 9: List of valid cdc false path constraint generated from sdc command.
+#These constraint are generated only for real clocks.
+
+########################################################################
+#Section 10: List of disable_timing constraint generated from set_disable_timing sdc command.
+#These constraint are generated only for those sdc command which have object list as lib cells only.
+
+########################################################################
+#Section 11: List of valid false path constraint generated from sdc command.
+#These constraint are generated only for real clocks.
+#The type for constraint false_path is specified as below:
+#        - scg_logically_exclusive: When it is translated from set_clock_group -logically_exclusive
+#        - scg_physically_exclusive: When it is translated from set_clock_group -physically_exclusive
+#        - scg_asynchronous: When it is translated from set_clock_group -asynchronous
+#        - sfp: When it is translated from set_false_path
+#./SYSTEM_TOP.sdc@@38@@
+#false_path -from uart_clk rx_clk tx_clk -to alu_clk ref_clk  -type scg_asynchronous
+#./SYSTEM_TOP.sdc@@38@@
+#false_path -from alu_clk ref_clk -to uart_clk rx_clk tx_clk  -type scg_asynchronous
+
+########################################################################
+#Section 12: List of valid sg_multi_cycle constraint generated from sdc command.
+
+########################################################################
+#Section 13: List of valid set_lib_timing_mode constraint generated from set_mode sdc command.

@@ -1,0 +1,11 @@
+1
+1
+1 
+4
+31
+Data_path_tag
+Data_path_tag
+SYSTEM_TOP.UART_CLK&&d1&&1&&no
+SYSTEM_TOP.REF_CLK&&d0&&0&&no
+SYSTEM_TOP.REF_CLK&&d0&&0&&no;SYSTEM_TOP.UART_CLK&&d1&&1&&no
+RST_d0&&RST_d0&&2&&no

@@ -1,0 +1,8 @@
+
+clock@@name@@SYSTEM_TOP.REF_CLK@@domain@@d0@@period@@10@@tag@@ref_clk@@
+clock@@name@@SYSTEM_TOP.UART_CLK@@domain@@d1@@period@@271.266998@@tag@@uart_clk@@
+reset@@name@@RST@@value@@0@@async@@
+quasi_static@@SYSTEM_TOP.REG2[7:0]@@
+set_case_analysis@@SYSTEM_TOP.U0_TX_CLK_DIV.i_div_ratio[7:0]@@0@@
+set_case_analysis@@SYSTEM_TOP.U1_RX_CLK_DIV.i_div_ratio[7:0]@@0@@
+rounded_clocks@@1@@50@@

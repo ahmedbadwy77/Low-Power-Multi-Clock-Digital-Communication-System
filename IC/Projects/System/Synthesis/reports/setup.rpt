@@ -1,0 +1,131 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+        -sort_by slack
+Design : SYSTEM_TOP
+Version: O-2018.06-SP1
+Date   : Thu Oct  1 07:33:04 2026
+****************************************
+
+Operating Conditions: scmetro_tsmc_cl013g_rvt_ss_1p08v_125c   Library: scmetro_tsmc_cl013g_rvt_ss_1p08v_125c
+Wire Load Model Mode: top
+
+  Startpoint: U0_REGFILE/Registers_reg[1][1]
+              (rising edge-triggered flip-flop clocked by ref_clk)
+  Endpoint: U0_ALU/ALU_OUT_reg[0]
+            (rising edge-triggered flip-flop clocked by alu_clk)
+  Path Group: alu_clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  SYSTEM_TOP         tsmc13_wl10           scmetro_tsmc_cl013g_rvt_ss_1p08v_125c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock ref_clk (rise edge)                               0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  U0_REGFILE/Registers_reg[1][1]/CK (DFFRHQX8M)           0.00       0.00 r
+  U0_REGFILE/Registers_reg[1][1]/Q (DFFRHQX8M)            0.35       0.35 f
+  U0_REGFILE/REG1[1] (regfile)                            0.00       0.35 f
+  U0_ALU/B[1] (ALU)                                       0.00       0.35 f
+  U0_ALU/U4/Y (BUFX32M)                                   0.17       0.53 f
+  U0_ALU/div_46/b[1] (ALU_DW_div_uns_1)                   0.00       0.53 f
+  U0_ALU/div_46/U52/Y (INVX32M)                           0.17       0.69 r
+  U0_ALU/div_46/U154/Y (NAND3X12M)                        0.12       0.81 f
+  U0_ALU/div_46/U171/Y (NOR2X12M)                         0.15       0.96 r
+  U0_ALU/div_46/U54/Y (MXI2X8M)                           0.17       1.13 r
+  U0_ALU/div_46/u_div/u_fa_PartRem_0_6_1/CO (ADDFHX8M)
+                                                          0.25       1.38 r
+  U0_ALU/div_46/U169/Y (NAND2X12M)                        0.08       1.46 f
+  U0_ALU/div_46/U206/Y (MXI2X12M)                         0.16       1.62 r
+  U0_ALU/div_46/U68/Y (NAND2X12M)                         0.10       1.73 f
+  U0_ALU/div_46/U158/Y (NAND2X12M)                        0.09       1.81 r
+  U0_ALU/div_46/U94/Y (INVX12M)                           0.05       1.87 f
+  U0_ALU/div_46/U124/Y (NAND2X12M)                        0.09       1.96 r
+  U0_ALU/div_46/U162/Y (NAND2X12M)                        0.08       2.03 f
+  U0_ALU/div_46/U164/Y (NAND3X12M)                        0.14       2.18 r
+  U0_ALU/div_46/U137/Y (NAND2X12M)                        0.09       2.26 f
+  U0_ALU/div_46/U139/Y (MXI2X12M)                         0.17       2.43 f
+  U0_ALU/div_46/U130/Y (NAND2BX12M)                       0.11       2.54 r
+  U0_ALU/div_46/U183/Y (NAND3X12M)                        0.14       2.68 f
+  U0_ALU/div_46/U106/Y (NAND2X12M)                        0.10       2.78 r
+  U0_ALU/div_46/U175/Y (NAND3X12M)                        0.14       2.93 f
+  U0_ALU/div_46/u_div/u_fa_PartRem_0_4_3/CO (ADDFHX8M)
+                                                          0.26       3.19 f
+  U0_ALU/div_46/U60/Y (NAND2X12M)                         0.11       3.30 r
+  U0_ALU/div_46/U219/Y (MXI2X12M)                         0.16       3.46 r
+  U0_ALU/div_46/U58/Y (NAND2X12M)                         0.10       3.56 f
+  U0_ALU/div_46/U193/Y (NAND3X12M)                        0.14       3.70 r
+  U0_ALU/div_46/U101/Y (NAND2X6M)                         0.13       3.83 f
+  U0_ALU/div_46/U180/Y (NAND3X12M)                        0.09       3.92 r
+  U0_ALU/div_46/u_div/u_fa_PartRem_0_3_3/CO (ADDFHX8M)
+                                                          0.20       4.12 r
+  U0_ALU/div_46/u_div/u_fa_PartRem_0_3_4/CO (ADDFHX8M)
+                                                          0.20       4.32 r
+  U0_ALU/div_46/U223/Y (CLKINVX16M)                       0.08       4.40 f
+  U0_ALU/div_46/U205/Y (NOR2X12M)                         0.14       4.55 r
+  U0_ALU/div_46/U166/Y (MXI2X12M)                         0.20       4.75 r
+  U0_ALU/div_46/U69/Y (NAND2X12M)                         0.10       4.85 f
+  U0_ALU/div_46/U196/Y (NAND3X12M)                        0.15       5.00 r
+  U0_ALU/div_46/U157/Y (NAND2X8M)                         0.11       5.11 f
+  U0_ALU/div_46/U199/Y (NAND3X12M)                        0.12       5.23 r
+  U0_ALU/div_46/U13/Y (NAND2X6M)                          0.11       5.33 f
+  U0_ALU/div_46/U16/Y (NAND3X12M)                         0.09       5.42 r
+  U0_ALU/div_46/u_div/u_fa_PartRem_0_2_4/CO (ADDFHX8M)
+                                                          0.20       5.62 r
+  U0_ALU/div_46/u_div/u_fa_PartRem_0_2_5/CO (ADDFHX8M)
+                                                          0.20       5.82 r
+  U0_ALU/div_46/U143/Y (CLKINVX16M)                       0.07       5.89 f
+  U0_ALU/div_46/U7/Y (NOR2X8M)                            0.19       6.08 r
+  U0_ALU/div_46/U22/Y (MXI2X12M)                          0.14       6.22 f
+  U0_ALU/div_46/U8/Y (NAND2X8M)                           0.12       6.34 r
+  U0_ALU/div_46/U189/Y (NAND3X12M)                        0.12       6.47 f
+  U0_ALU/div_46/U173/Y (CLKNAND2X12M)                     0.10       6.57 r
+  U0_ALU/div_46/U191/Y (NAND3X12M)                        0.12       6.69 f
+  U0_ALU/div_46/u_div/u_fa_PartRem_0_1_3/CO (ADDFHX8M)
+                                                          0.25       6.94 f
+  U0_ALU/div_46/u_div/u_fa_PartRem_0_1_4/CO (ADDFHX8M)
+                                                          0.25       7.19 f
+  U0_ALU/div_46/u_div/u_fa_PartRem_0_1_5/CO (ADDFHX8M)
+                                                          0.28       7.48 f
+  U0_ALU/div_46/u_div/u_fa_PartRem_0_1_6/CO (ADDFHX8M)
+                                                          0.26       7.73 f
+  U0_ALU/div_46/U76/Y (CLKNAND2X12M)                      0.09       7.82 r
+  U0_ALU/div_46/U122/Y (INVX12M)                          0.05       7.87 f
+  U0_ALU/div_46/U203/Y (MXI2X12M)                         0.14       8.01 f
+  U0_ALU/div_46/U177/Y (NAND2X12M)                        0.10       8.11 r
+  U0_ALU/div_46/U200/Y (NAND3X12M)                        0.13       8.23 f
+  U0_ALU/div_46/U46/Y (CLKNAND2X16M)                      0.09       8.32 r
+  U0_ALU/div_46/U201/Y (NAND3X12M)                        0.14       8.46 f
+  U0_ALU/div_46/U47/Y (NAND2X8M)                          0.11       8.57 r
+  U0_ALU/div_46/U185/Y (NAND3X12M)                        0.10       8.68 f
+  U0_ALU/div_46/u_div/u_fa_PartRem_0_0_4/CO (ADDFHX8M)
+                                                          0.25       8.93 f
+  U0_ALU/div_46/u_div/u_fa_PartRem_0_0_5/CO (ADDFHX8M)
+                                                          0.25       9.18 f
+  U0_ALU/div_46/u_div/u_fa_PartRem_0_0_6/CO (ADDFHX8M)
+                                                          0.25       9.43 f
+  U0_ALU/div_46/u_div/u_fa_PartRem_0_0_7/CO (ADDFHX8M)
+                                                          0.24       9.66 f
+  U0_ALU/div_46/quotient[0] (ALU_DW_div_uns_1)            0.00       9.66 f
+  U0_ALU/U26/Y (AOI2BB1X8M)                               0.20       9.86 f
+  U0_ALU/ALU_OUT_reg[0]/D (DFFRQX1M)                      0.00       9.86 f
+  data arrival time                                                  9.86
+
+  clock alu_clk (rise edge)                              10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  U0_ALU/ALU_OUT_reg[0]/CK (DFFRQX1M)                     0.00      10.00 r
+  library setup time                                     -0.14       9.86
+  data required time                                                 9.86
+  --------------------------------------------------------------------------
+  data required time                                                 9.86
+  data arrival time                                                 -9.86
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

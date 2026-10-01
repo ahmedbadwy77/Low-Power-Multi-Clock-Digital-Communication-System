@@ -1,0 +1,26 @@
+################################################################################
+#
+# Purpose: 
+#   This file specifies the assertion details along with their run status.
+#   Functional analysis is done only for those assertions that are enabled
+#   in the property file.
+#
+# Format: 
+#   
+#   RuleName: <rule-name>
+#   <selection> <type> <status> <file-name> <line-num> <hier> [ <info> ]
+#   .....
+#   
+#   
+################################################################################
+RuleName: Ac_conv02 
+off  Assertion   PROVED              /home/ICer/IC/Projects/System/rtl/FIFO_RD.v  32  "SYSTEM_TOP.U0_ASYNC_FIFO.U0"  [SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[0]]
+
+RuleName: Ac_cdc01a 
+off  Assertion   PROVED              /home/ICer/IC/Projects/System/rtl/DF_SYNC.v  15  "SYSTEM_TOP.U0_ASYNC_FIFO.U3"  [SFlop:SYSTEM_TOP.U0_ASYNC_FIFO.U1.wptr_gray_reg[3] SClk:SYSTEM_TOP.REF_CLK DFlop:SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[3] DClk:SYSTEM_TOP.UART_CLK]
+
+RuleName: Ac_datahold01a 
+off  Assertion   PROVED              /home/ICer/IC/Projects/System/rtl/DATA_SYNC.v  40  "SYSTEM_TOP.U0_DATA_SYNC"  [Des: "SYSTEM_TOP.U0_DATA_SYNC.\sync_bus_reg[0] .Q", Src: "SYSTEM_TOP.U0_UART.U0_UART_RX.U4.\P_DATA_reg[0] .Q"]
+on   Assertion   Partially-Proved    /home/ICer/IC/Projects/System/rtl/Parity_Calc.v  26  "SYSTEM_TOP.U0_UART.U0_UART_TX.U1"  [Des: "SYSTEM_TOP.U0_UART.U0_UART_TX.U1.par_bit_reg.Q", Src: "SYSTEM_TOP.U0_ASYNC_FIFO.U2.\fifo_mem_reg[0][0] .Q"]
+on   Assertion   Partially-Proved    /home/ICer/IC/Projects/System/rtl/Serializer.v  32  "SYSTEM_TOP.U0_UART.U0_UART_TX.U2"  [Des: "SYSTEM_TOP.U0_UART.U0_UART_TX.U2.ser_data_reg.Q", Src: "SYSTEM_TOP.U0_ASYNC_FIFO.U2.\fifo_mem_reg[0][0] .Q"]
+on   Assertion   Partially-Proved    /home/ICer/IC/Projects/System/rtl/Serializer.v  25  "SYSTEM_TOP.U0_UART.U0_UART_TX.U2"  [Des: "SYSTEM_TOP.U0_UART.U0_UART_TX.U2.\Data_In_reg[0] .Q", Src: "SYSTEM_TOP.U0_ASYNC_FIFO.U2.\fifo_mem_reg[0][0] .Q"]

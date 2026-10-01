@@ -1,0 +1,35 @@
+
+BEGIN INFO
+5PORT@SYSTEM_TOP.U0_TX_CLK_DIV.i_div_ratio[7:0]@@@@0@@@@SYSTEM_TOP.sgdc:36 
+5PORT@SYSTEM_TOP.U1_RX_CLK_DIV.i_div_ratio[7:0]@@@@0@@@@SYSTEM_TOP.sgdc:38 
+1PORT@SYSTEM_TOP.REF_CLK@@@@ref_clk@@@@d0@@@@10@@@@./SYSTEM_TOP.sdc:14 
+1PORT@SYSTEM_TOP.UART_CLK@@@@uart_clk@@@@d1@@@@271.266998@@@@./SYSTEM_TOP.sdc:21 
+2PORT@SYSTEM_TOP.RST@@@@async@@@@0@@@@SYSTEM_TOP.sgdc:16 
+QuasiStatic@SYSTEM_TOP.REG2[0]@@@@SYSTEM_TOP.sgdc:30@@@@-
+QuasiStatic@SYSTEM_TOP.REG2[1]@@@@SYSTEM_TOP.sgdc:30@@@@-
+QuasiStatic@SYSTEM_TOP.REG2[2]@@@@SYSTEM_TOP.sgdc:30@@@@-
+QuasiStatic@SYSTEM_TOP.REG2[3]@@@@SYSTEM_TOP.sgdc:30@@@@-
+QuasiStatic@SYSTEM_TOP.REG2[4]@@@@SYSTEM_TOP.sgdc:30@@@@-
+QuasiStatic@SYSTEM_TOP.REG2[5]@@@@SYSTEM_TOP.sgdc:30@@@@-
+QuasiStatic@SYSTEM_TOP.REG2[6]@@@@SYSTEM_TOP.sgdc:30@@@@-
+QuasiStatic@SYSTEM_TOP.REG2[7]@@@@SYSTEM_TOP.sgdc:30@@@@-
+Sync_cell@DF_SYNC@@@@-@@@@-@@@@SYSTEM_TOP.sgdc:47
+CDC_ATTRIBUTE@@unrelated@@SYSTEM_TOP.U0_DATA_SYNC.bus_enable, SYSTEM_TOP.U0_ASYNC_FIFO.rptr_gray[3:0]@@@SYSTEM_TOP.sgdc:52@@
+QuasiStatStyle@SYSTEM_TOP@@10@@1@@false@@false@@-
+4PORT@SYSTEM_TOP.RST@@@@ 
+4PORT@SYSTEM_TOP.RX_IN@@@@ 
+6PORT@SYSTEM_TOP.TX_OUT@@@@UART_CLK@@@@./SYSTEM_TOP.sdc:35
+6PORT@SYSTEM_TOP.parity_error@@@@UART_CLK@@@@./SYSTEM_TOP.sdc:36
+6PORT@SYSTEM_TOP.framing_error@@@@UART_CLK@@@@./SYSTEM_TOP.sdc:37
+ResetSynchronizer@@@@SYSTEM_TOP.REF_RST@@@@SYSTEM_TOP.RST@@@@SYSTEM_TOP.REF_CLK@@@@0@@@@SYSTEM_TOP.sgdc:44
+ResetSynchronizer@@@@SYSTEM_TOP.UART_RST@@@@SYSTEM_TOP.RST@@@@SYSTEM_TOP.UART_CLK@@@@0@@@@SYSTEM_TOP.sgdc:45
+1N@SYSTEM_TOP.RST@@@@RST_d0,@@@@-@@@@-@@@@-@@@@-@@@@-@@@@-@@@@-@@@@-@@@@SYSTEM_TOP.sgdc:24@@@@-
+1N@SYSTEM_TOP.RX_IN@@@@UART_CLK,@@@@-@@@@-@@@@-@@@@-@@@@-@@@@-@@@@-@@@@-@@@@./SYSTEM_TOP.sdc:34@@@@-
+PRIMARYIO@@SYSTEM_TOP@@REF_CLK@@REF_CLK@@0@@1@@REF_CLK@@1@@@@
+PRIMARYIO@@SYSTEM_TOP@@UART_CLK@@UART_CLK@@0@@1@@UART_CLK@@1@@@@
+PRIMARYIO@@SYSTEM_TOP@@RST@@RST@@0@@1@@RST@@1@@@@
+PRIMARYIO@@SYSTEM_TOP@@RX_IN@@RX_IN@@0@@1@@RX_IN@@1@@@@
+PRIMARYIO@@SYSTEM_TOP@@TX_OUT@@TX_OUT@@0@@1@@TX_OUT@@2@@@@
+PRIMARYIO@@SYSTEM_TOP@@parity_error@@parity_error@@0@@1@@parity_error@@2@@@@
+PRIMARYIO@@SYSTEM_TOP@@framing_error@@framing_error@@0@@1@@framing_error@@2@@@@
+END INFO

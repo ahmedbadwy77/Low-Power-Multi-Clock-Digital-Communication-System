@@ -1,0 +1,119 @@
+Enabled AND-Sync
+Enabled Sync-Enable
+Enabled Clock_Gate-Sync
+Enabled Mux-Select
+Enabled Recirculation
+BEGIN::INFO
+SGDC current_design = SYSTEM_TOP
+clock =
+REF_CLK
+UART_CLK
+END::INFO
+BEGIN::INFO
+SGDC current_design = SYSTEM_TOP
+reset =
+RST
+END::INFO
+BEGIN INFO::CASE-ANALYSIS-SETTING
+node name=in1[0] and value=0
+node name=in1[1] and value=0
+node name=in1[2] and value=0
+node name=in1[3] and value=0
+node name=in1[4] and value=0
+node name=in1[5] and value=0
+node name=in1[6] and value=0
+node name=in2[0] and value=0
+node name=in2[1] and value=0
+node name=in2[2] and value=0
+node name=in2[3] and value=0
+node name=in2[4] and value=0
+node name=in2[5] and value=0
+node name=in2[6] and value=0
+node name=in1[0] and value=0
+node name=in1[1] and value=0
+node name=in1[2] and value=0
+node name=in1[3] and value=0
+node name=in1[4] and value=0
+node name=in1[5] and value=0
+node name=in1[6] and value=0
+node name=in1[7] and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=in1[0] and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=in1[0] and value=0
+node name=in1[1] and value=0
+node name=in1[2] and value=0
+node name=in1[3] and value=0
+node name=in1[4] and value=0
+node name=in1[5] and value=0
+node name=in1[6] and value=0
+node name=in2[0] and value=0
+node name=in2[1] and value=0
+node name=in2[2] and value=0
+node name=in2[3] and value=0
+node name=in2[4] and value=0
+node name=in2[5] and value=0
+node name=in2[6] and value=0
+node name=in1[0] and value=0
+node name=in1[1] and value=0
+node name=in1[2] and value=0
+node name=in1[3] and value=0
+node name=in1[4] and value=0
+node name=in1[5] and value=0
+node name=in1[6] and value=0
+node name=in1[7] and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=in1[0] and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+END INFO::CASE-ANALYSIS-SETTING
+BEGIN INFO :: CLOCKS INFORMATION
+Clk-Name=SYSTEM_TOP.REF_CLK::Pos-Flop=266::Neg-Flop=0::UnKnown-Flop=0::Gating=Yes
+Clk-Name=SYSTEM_TOP.UART_CLK::Pos-Flop=82::Neg-Flop=0::UnKnown-Flop=0::Gating=Yes
+END CLOCKS INFORMATION
+Enabled Sync_cell-Sync

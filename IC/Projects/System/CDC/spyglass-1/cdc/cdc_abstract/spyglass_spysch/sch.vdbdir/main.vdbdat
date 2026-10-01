@@ -1,0 +1,202 @@
+#x HLBEGIN S.1
+#x {{COLOR=>1;}{TEXT=>F:17;COLOR=>1;}{TEXT=>F:249;COLOR=>1;}}
+#x !{-2 0 0 -2 0 0 -2 0 0}
+#x 136 { @@p 0 a 0 @@p 0 a 0 @@p 0 a 2 @@p1 1 0 @@p2 1 0 @@d 9 { @@i 0 a 0
+#x @@t 0 3 a 1 @@t0 1 0 3 @@t1 0 0 1 } @@d 10 { @@i 147 a 0 @@t0 0 147 2 }
+#x @@d 11 { @@d 4 { @@i 8 a 0 @@t2 0 8 2 } } }
+#x HLEND
+#x HLBEGIN S.2
+#x {{COLOR=>1;}{TEXT=>F:38;COLOR=>1;}{TEXT=>F:39;COLOR=>1;}{TEXT=>F:5;COLOR=>1;}
+#x }
+#x !{-2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0}
+#x 136 { @@p 1 a 0 @@p 1 a 0 @@p 1 a 0 @@p 1 a 3 @@p1 1 1 @@p3 1 1 @@p4 1 1
+#x @@d 1 { @@i 104 a 0 @@t 104 0 a 1 @@t0 1 104 0 @@t1 0 104 2 } @@d 2 {
+#x @@i 104 a 0 @@t 104 0 a 2 @@t2 1 104 0 @@t3 0 104 2 } @@d 4 { @@i 4 a 0
+#x @@t4 0 4 2 } @@d 5 { @@d 1 { @@d 6 { @@i 71 a 0 @@t2 0 71 2 } } } @@d 12 {
+#x @@i 6 a 0 @@t0 0 6 2 } }
+#x HLEND
+#x HLBEGIN S.3
+#x {{TEXT=>1;COLOR=>1;}{TEXT=>0;COLOR=>2;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,38;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,38;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}{TEXT=>0(F);COLOR=>2;BRF=>1,36;}
+#x {TEXT=>0(F);COLOR=>2;BRF=>1,36;}}
+#x !{2 1 0 4 1 0 34 1 0 2 0 0 4 0 0 4 0 0}
+#x 136 { @@n 46 a 0 @@d 1 { @@t 123 1 a 50 @@t 122 1 a 51 @@t 121 1 a 52
+#x @@t 120 1 a 53 @@t 119 1 a 54 @@t 118 1 a 55 @@t 117 1 a 56 @@t 116 1 a 57
+#x @@t 72 2 a 58 @@t 71 1 a 59 @@t 70 1 a 60 @@t 69 1 a 61 @@t 68 1 a 62
+#x @@t 67 1 a 63 @@t 66 1 a 64 @@t 65 1 a 65 @@t 63 1 a 66 @@t 53 3 a 67
+#x @@t 52 3 a 68 @@t 51 3 a 69 @@t 50 3 a 70 @@t 49 3 a 71 @@t 48 3 a 72
+#x @@t 47 3 a 73 @@t 46 3 a 74 @@t 45 3 a 75 @@t 11 9 a 76 @@t 11 8 a 77
+#x @@t 11 7 a 78 @@t 11 6 a 79 @@t 11 5 a 80 @@t 11 4 a 81 @@t 11 3 a 82
+#x @@t 11 2 a 83 @@t 4 17 a 84 @@t 4 16 a 85 @@t 4 15 a 86 @@t 4 14 a 87
+#x @@t 4 13 a 88 @@t 4 12 a 89 @@t 4 11 a 90 @@t 1 17 a 91 @@t 1 16 a 92
+#x @@t 1 15 a 93 @@t 1 14 a 94 @@t 1 13 a 95 @@t 1 12 a 96 @@t 1 11 a 97
+#x @@n 31 a 0 @@n 37 a 0 @@n 38 a 0 @@n 39 a 0 @@n 40 a 0 @@n 41 a 0 @@n 42 a 0
+#x @@n 43 a 0 @@n 44 a 0 @@n 46 a 0 @@n 47 a 0 @@n 55 a 0 @@n 58 a 0 @@n 83 a 0
+#x @@n 92 a 0 @@n 104 a 0 @@n 114 a 0 @@n 126 a 0 @@n 139 a 0 @@n 144 a 0
+#x @@n 145 a 0 @@n 146 a 0 @@n 147 a 0 @@n 148 a 0 @@n 149 a 0 @@n 150 a 0
+#x @@n 151 a 0 @@n 152 a 0 @@n 153 a 0 @@n 156 a 0 @@n 14 a 1 @@n 15 a 1
+#x @@n 16 a 1 @@n 17 a 1 @@n 18 a 1 @@n 19 a 1 @@n 20 a 1 @@n 21 a 1 @@n 35 a 1
+#x @@n 45 a 1 @@n 48 a 1 @@n 49 a 1 @@n 50 a 1 @@n 51 a 1 @@n 52 a 1 @@n 53 a 1
+#x @@n 54 a 1 @@n 56 a 1 @@n 59 a 1 @@n 60 a 1 @@n 61 a 1 @@n 62 a 1 @@n 63 a 1
+#x @@n 64 a 1 @@n 65 a 1 @@n 66 a 1 @@n 67 a 1 @@n 68 a 1 @@n 69 a 1 @@n 70 a 1
+#x @@n 71 a 1 @@n 72 a 1 @@n 73 a 1 @@n 74 a 1 @@n 75 a 1 @@n 76 a 1 @@n 77 a 1
+#x @@n 78 a 1 @@n 79 a 1 @@n 80 a 1 @@n 81 a 1 @@n 82 a 1 @@n 84 a 1 @@n 85 a 1
+#x @@n 86 a 1 @@n 87 a 1 @@n 88 a 1 @@n 89 a 1 @@n 90 a 1 @@n 91 a 1 @@n 95 a 1
+#x @@n 96 a 1 @@n 97 a 1 @@n 98 a 1 @@n 99 a 1 @@n 100 a 1 @@n 101 a 1
+#x @@n 105 a 1 @@n 106 a 1 @@n 107 a 1 @@n 108 a 1 @@n 109 a 1 @@n 110 a 1
+#x @@n 111 a 1 @@n 112 a 1 @@n 113 a 1 @@n 115 a 1 @@n 116 a 1 @@n 118 a 1
+#x @@n 119 a 1 @@n 120 a 1 @@n 121 a 1 @@n 122 a 1 @@n 123 a 1 @@n 124 a 1
+#x @@n 125 a 1 @@n 127 a 1 @@n 128 a 1 @@n 129 a 1 @@n 130 a 1 @@n 131 a 1
+#x @@n 132 a 1 @@n 133 a 1 @@n 134 a 1 @@n 135 a 1 @@n 136 a 1 @@n 137 a 1
+#x @@n 140 a 1 @@n 141 a 1 @@n 154 a 1 @@t1 0 4 18 @@t1 1 4 18 @@t1 2 1 18
+#x @@t1 3 1 18 @@t4 0 6 19 @@t4 1 6 19 @@t4 2 1 19 @@t4 3 1 19 } @@d 2 {
+#x @@i 4 a 1 @@i 4 a 1 @@i 4 a 1 @@i 4 a 1 @@i 4 a 1 @@i 1 a 1 @@i 1 a 1
+#x @@i 1 a 1 @@i 1 a 1 @@i 1 a 1 @@t 123 1 a 2 @@t 122 1 a 3 @@t 121 1 a 4
+#x @@t 120 1 a 5 @@t 119 1 a 6 @@t 118 1 a 7 @@t 117 1 a 8 @@t 116 1 a 9
+#x @@t 72 2 a 10 @@t 71 1 a 11 @@t 70 1 a 12 @@t 69 1 a 13 @@t 68 1 a 14
+#x @@t 67 1 a 15 @@t 66 1 a 16 @@t 65 1 a 17 @@t 63 1 a 18 @@t 53 3 a 19
+#x @@t 52 3 a 20 @@t 51 3 a 21 @@t 50 3 a 22 @@t 49 3 a 23 @@t 48 3 a 24
+#x @@t 47 3 a 25 @@t 46 3 a 26 @@t 45 3 a 27 @@t 11 9 a 28 @@t 11 8 a 29
+#x @@t 11 7 a 30 @@t 11 6 a 31 @@t 11 5 a 32 @@t 11 4 a 33 @@t 11 3 a 34
+#x @@t 11 2 a 35 @@t 4 17 a 36 @@t 4 16 a 37 @@t 4 15 a 38 @@t 4 14 a 39
+#x @@t 4 13 a 40 @@t 4 12 a 41 @@t 4 11 a 42 @@t 1 17 a 43 @@t 1 16 a 44
+#x @@t 1 15 a 45 @@t 1 14 a 46 @@t 1 13 a 47 @@t 1 12 a 48 @@t 1 11 a 49
+#x @@n 31 a 0 @@n 37 a 0 @@n 38 a 0 @@n 39 a 0 @@n 40 a 0 @@n 41 a 0 @@n 42 a 0
+#x @@n 43 a 0 @@n 44 a 0 @@n 46 a 0 @@n 47 a 0 @@n 55 a 0 @@n 58 a 0 @@n 83 a 0
+#x @@n 92 a 0 @@n 104 a 0 @@n 114 a 0 @@n 126 a 0 @@n 139 a 0 @@n 144 a 0
+#x @@n 145 a 0 @@n 146 a 0 @@n 147 a 0 @@n 148 a 0 @@n 149 a 0 @@n 150 a 0
+#x @@n 151 a 0 @@n 152 a 0 @@n 153 a 0 @@n 156 a 0 @@n 14 a 1 @@n 15 a 1
+#x @@n 16 a 1 @@n 17 a 1 @@n 18 a 1 @@n 19 a 1 @@n 20 a 1 @@n 21 a 1 @@n 35 a 1
+#x @@n 45 a 1 @@n 48 a 1 @@n 49 a 1 @@n 50 a 1 @@n 51 a 1 @@n 52 a 1 @@n 53 a 1
+#x @@n 54 a 1 @@n 56 a 1 @@n 59 a 1 @@n 60 a 1 @@n 61 a 1 @@n 62 a 1 @@n 63 a 1
+#x @@n 64 a 1 @@n 65 a 1 @@n 66 a 1 @@n 67 a 1 @@n 68 a 1 @@n 69 a 1 @@n 70 a 1
+#x @@n 71 a 1 @@n 72 a 1 @@n 73 a 1 @@n 74 a 1 @@n 75 a 1 @@n 76 a 1 @@n 77 a 1
+#x @@n 78 a 1 @@n 79 a 1 @@n 80 a 1 @@n 81 a 1 @@n 82 a 1 @@n 84 a 1 @@n 85 a 1
+#x @@n 86 a 1 @@n 87 a 1 @@n 88 a 1 @@n 89 a 1 @@n 90 a 1 @@n 91 a 1 @@n 95 a 1
+#x @@n 96 a 1 @@n 97 a 1 @@n 98 a 1 @@n 99 a 1 @@n 100 a 1 @@n 101 a 1
+#x @@n 105 a 1 @@n 106 a 1 @@n 107 a 1 @@n 108 a 1 @@n 109 a 1 @@n 110 a 1
+#x @@n 111 a 1 @@n 112 a 1 @@n 113 a 1 @@n 115 a 1 @@n 116 a 1 @@n 118 a 1
+#x @@n 119 a 1 @@n 120 a 1 @@n 121 a 1 @@n 122 a 1 @@n 123 a 1 @@n 124 a 1
+#x @@n 125 a 1 @@n 127 a 1 @@n 128 a 1 @@n 129 a 1 @@n 130 a 1 @@n 131 a 1
+#x @@n 132 a 1 @@n 133 a 1 @@n 134 a 1 @@n 135 a 1 @@n 136 a 1 @@n 137 a 1
+#x @@n 140 a 1 @@n 141 a 1 @@n 154 a 1 @@t2 0 71 1 @@t2 1 71 1 @@t2 2 70 1
+#x @@t2 3 70 1 @@t2 4 69 1 @@t2 5 69 1 @@t2 6 68 1 @@t2 7 68 1 @@t2 8 67 1
+#x @@t2 9 67 1 @@t2 10 4 13 @@t2 11 4 13 @@t2 12 4 14 @@t2 13 4 14 @@t2 14 4 15
+#x @@t2 15 4 15 @@t2 16 4 16 @@t2 17 4 16 @@t2 18 4 17 @@t2 19 4 17 @@t2 20 4 18
+#x @@t2 21 4 18 @@t2 22 1 18 @@t2 23 1 18 @@t2 24 1 17 @@t2 25 1 17 @@t2 26 1 16
+#x @@t2 27 1 16 @@t2 28 1 15 @@t2 29 1 15 @@t2 30 1 14 @@t2 31 1 14 @@t2 32 1 13
+#x @@t2 33 1 13 @@t5 0 6 19 @@t5 1 6 19 @@t5 2 1 19 @@t5 3 1 19 } @@d 5 {
+#x @@d 1 { @@d 3 { @@n 25 a 1 @@t0 0 17 1 @@t0 1 17 1 } } } @@d 7 { @@t3 0 66 1
+#x @@t3 1 66 1 } }
+#x HLEND
+#x HLBEGIN S.4
+#x {{COLOR=>1;}{TEXT=>F:12;COLOR=>1;}{TEXT=>F:16;COLOR=>1;}
+#x {TEXT=>F:137;COLOR=>1;}{TEXT=>F:17;COLOR=>1;}{TEXT=>F:9;COLOR=>1;}
+#x {TEXT=>F:64;COLOR=>1;}{TEXT=>F:8;COLOR=>1;}{TEXT=>F:3;COLOR=>1;}
+#x {TEXT=>F:18;COLOR=>1;}{TEXT=>F:18;COLOR=>1;}{TEXT=>F:1;COLOR=>1;}
+#x {TEXT=>F:13;COLOR=>1;}{TEXT=>F:3;COLOR=>1;}{TEXT=>F:1;COLOR=>1;}
+#x {TEXT=>F:1;COLOR=>1;}{TEXT=>F:1;COLOR=>1;}{TEXT=>F:3;COLOR=>1;}
+#x {TEXT=>F:20;COLOR=>1;}{TEXT=>F:6;COLOR=>1;}{TEXT=>F:7;COLOR=>1;}
+#x {TEXT=>F:9;COLOR=>1;}{TEXT=>F:8;COLOR=>1;}{TEXT=>F:4;COLOR=>1;}
+#x {TEXT=>F:3;COLOR=>1;}}
+#x !{-2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0
+#x  0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0
+#x  0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0
+#x  0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0
+#x  0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0 -2 0 0}
+#x 136 { @@p 2 a 0 @@p 2 a 0 @@p16 1 2 @@p49 1 2 @@d 1 { @@i 125 a 0 @@i 17 a 0
+#x @@t 17 0 a 9 @@t17 0 125 3 @@t17 1 17 0 @@t18 0 17 1 } @@d 2 { @@i 125 a 0
+#x @@i 17 a 0 @@t 17 0 a 10 @@t19 0 125 3 @@t19 1 17 0 @@t20 0 17 1 } @@d 3 {
+#x @@i 1 a 0 @@i 4 a 0 @@i 0 a 0 @@t 0 0 a 8 @@t1 1 1 0 @@t3 1 1 0 @@t5 1 1 0
+#x @@t7 1 1 0 @@t9 1 1 0 @@t11 1 1 0 @@t13 1 1 0 @@t14 0 1 1 @@t14 1 4 0
+#x @@t15 0 4 3 @@t15 1 0 0 @@t16 0 0 1 } @@d 4 { @@i 1 a 0 @@i 4 a 0 @@i 0 a 0
+#x @@t 0 0 a 24 @@t18 1 1 0 @@t20 1 1 0 @@t22 1 1 0 @@t24 1 1 0 @@t26 1 1 0
+#x @@t28 1 1 0 @@t30 1 1 0 @@t32 1 1 0 @@t34 1 1 0 @@t36 1 1 0 @@t38 1 1 0
+#x @@t40 1 1 0 @@t42 1 1 0 @@t44 1 1 0 @@t46 1 1 0 @@t47 0 1 1 @@t47 1 4 0
+#x @@t48 0 4 3 @@t48 1 0 0 @@t49 0 0 1 } @@d 5 { @@d 0 { @@d 1 { @@i 5 a 0
+#x @@i 2 a 0 @@t 2 0 a 11 @@t21 0 5 3 @@t21 1 2 0 @@t22 0 2 1 } @@d 2 {
+#x @@i 38 a 0 @@i 3 a 0 @@t 3 0 a 12 @@t23 0 38 3 @@t23 1 3 0 @@t24 0 3 1 }
+#x @@d 3 { @@i 40 a 0 @@i 0 a 0 @@t 0 0 a 13 @@t25 0 40 3 @@t25 1 0 0
+#x @@t26 0 0 1 } } @@d 1 { @@d 0 { @@i 14 a 0 @@i 9 a 0 @@t 9 0 a 14
+#x @@t27 0 14 3 @@t27 1 9 0 @@t28 0 9 1 } @@d 1 { @@i 2 a 0 @@i 0 a 0
+#x @@t 0 0 a 15 @@t29 0 2 3 @@t29 1 0 0 @@t30 0 0 1 } @@d 2 { @@i 10 a 0
+#x @@i 5 a 0 @@t 5 0 a 16 @@t31 0 10 3 @@t31 1 5 0 @@t32 0 5 1 } @@d 3 {
+#x @@i 31 a 0 @@i 8 a 0 @@t 8 0 a 17 @@t33 0 31 3 @@t33 1 8 0 @@t34 0 8 1 }
+#x @@d 4 { @@i 65 a 0 @@i 12 a 0 @@t 12 0 a 18 @@t35 0 65 3 @@t35 1 12 0
+#x @@t36 0 12 1 } @@d 5 { @@i 22 a 0 @@i 3 a 0 @@t 3 0 a 19 @@t37 0 22 3
+#x @@t37 1 3 0 @@t38 0 3 1 } @@d 6 { @@i 71 a 0 @@i 6 a 0 @@t 6 0 a 20
+#x @@t39 0 71 3 @@t39 1 6 0 @@t40 0 6 1 } } } @@d 6 { @@i 22 a 0 @@i 0 a 0
+#x @@t 0 0 a 1 @@t0 0 22 3 @@t0 1 0 0 @@t1 0 0 1 } @@d 7 { @@i 191 a 0 @@i 5 a 0
+#x @@t 5 0 a 2 @@t2 0 191 3 @@t2 1 5 0 @@t3 0 5 1 } @@d 8 { @@i 234 a 0
+#x @@i 30 a 0 @@t 30 0 a 3 @@t4 0 234 3 @@t4 1 30 0 @@t5 0 30 1 } @@d 10 {
+#x @@i 147 a 0 @@i 0 a 0 @@t 0 0 a 4 @@t6 0 147 3 @@t6 1 0 0 @@t7 0 0 1 }
+#x @@d 11 { @@d 0 { @@i 28 a 0 @@i 5 a 0 @@t 5 0 a 21 @@t41 0 28 3 @@t41 1 5 0
+#x @@t42 0 5 1 } @@d 1 { @@i 33 a 0 @@i 5 a 0 @@t 5 0 a 5 @@t8 0 33 3 @@t8 1 5 0
+#x @@t9 0 5 1 } @@d 2 { @@i 97 a 0 @@i 9 a 0 @@t 9 0 a 6 @@t10 0 97 3
+#x @@t10 1 9 0 @@t11 0 9 1 } @@d 3 { @@i 8 a 0 @@i 0 a 0 @@t 0 0 a 22
+#x @@t43 0 8 3 @@t43 1 0 0 @@t44 0 0 1 } @@d 4 { @@i 8 a 0 @@i 0 a 0 @@t 0 0 a 7
+#x @@t12 0 8 3 @@t12 1 0 0 @@t13 0 0 1 } } @@d 12 { @@i 6 a 0 @@i 2 a 0
+#x @@t 2 0 a 23 @@t45 0 6 3 @@t45 1 2 0 @@t46 0 2 1 } }
+#x HLEND
+#x HLBEGIN S.5
+#x {{COLOR=>1}}
+#x 136 { @@p 0 a 0 }
+#x HLEND
+#x HLBEGIN S.6
+#x {{COLOR=>1}}
+#x 136 { @@p 1 a 0 }
+#x HLEND
+#x HLBEGIN S.7
+#x {{COLOR=>1}}
+#x 136 { @@p 2 a 0 }
+#x HLEND
+#x HLBEGIN S.8
+#x {{COLOR=>1}}
+#x 136 { @@p 3 a 0 }
+#x HLEND

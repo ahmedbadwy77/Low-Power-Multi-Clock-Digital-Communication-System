@@ -1,0 +1,33 @@
+# ==============================================================================
+# Git Ignore for Digital System Design & ASIC Flow Project
+# ==============================================================================
+
+# Simulation artifacts (ModelSim / QuestaSim)
+work/
+transcript
+*.wlf
+*.vstf
+*.dbg
+covhtmlreport/
+*.ucdb
+
+# Synopsys Design Compiler & Formality temp files
+*.lck
+**/FM_WORK/
+**/formality_svf/
+**/default.svf
+**/command.log
+
+# SpyGlass temporary cache and run directories
+**/WORK/
+**/.SG_SaveRestoreDB/
+**/.designread_setup_db/
+**/.design_setup_db/
+**/.tmp_*
+**/spyglass_cache/
+
+# OS-generated files
+Thumbs.db
+[Dd]esktop.ini
+.DS_Store
+*.tmp

@@ -1,0 +1,2 @@
+Ac_conv02@@SYSTEM_TOP.U0_ASYNC_FIFO.U4.sync_reg[3:0]@@SYSTEM_TOP.sgdc:52
+Ac_conv01@@SYSTEM_TOP.U0_ASYNC_FIFO.U4.sync_reg[3:0],SYSTEM_TOP.U0_DATA_SYNC.multi_flops[0]@@SYSTEM_TOP.sgdc:52

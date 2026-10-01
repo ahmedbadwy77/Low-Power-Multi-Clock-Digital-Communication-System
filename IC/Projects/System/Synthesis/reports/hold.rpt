@@ -1,0 +1,50 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 1
+        -sort_by slack
+Design : SYSTEM_TOP
+Version: O-2018.06-SP1
+Date   : Thu Oct  1 07:33:04 2026
+****************************************
+
+Operating Conditions: scmetro_tsmc_cl013g_rvt_ff_1p32v_m40c   Library: scmetro_tsmc_cl013g_rvt_ff_1p32v_m40c
+Wire Load Model Mode: top
+
+  Startpoint: U1_RST_SYNC/flops_reg[0]/CK
+              (internal path startpoint clocked by uart_clk)
+  Endpoint: U1_RST_SYNC/flops_reg[1]
+            (rising edge-triggered flip-flop clocked by uart_clk)
+  Path Group: uart_clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  SYSTEM_TOP         tsmc13_wl10           scmetro_tsmc_cl013g_rvt_ss_1p08v_125c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock uart_clk (rise edge)                              0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.00       0.00 r
+  U1_RST_SYNC/flops_reg[0]/CK (DFFRQX2M)                  0.00       0.00 r
+  U1_RST_SYNC/flops_reg[0]/Q (DFFRQX2M)                   0.51       0.51 f
+  U1_RST_SYNC/flops_reg[1]/D (DFFRQX2M)                   0.00       0.51 f
+  data arrival time                                                  0.51
+
+  clock uart_clk (rise edge)                              0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                       0.10       0.10
+  U1_RST_SYNC/flops_reg[1]/CK (DFFRQX2M)                  0.00       0.10 r
+  library hold time                                      -0.03       0.07
+  data required time                                                 0.07
+  --------------------------------------------------------------------------
+  data required time                                                 0.07
+  data arrival time                                                 -0.51
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.43
+
+
+1

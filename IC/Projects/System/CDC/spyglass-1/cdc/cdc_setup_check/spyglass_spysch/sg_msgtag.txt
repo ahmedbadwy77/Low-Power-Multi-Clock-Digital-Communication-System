@@ -1,0 +1,219 @@
+3 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+25
+4 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+26
+5 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+27
+6 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+28
+7 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+29
+8 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+30
+9 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+31
+10 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+32
+11 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+33
+12 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+34
+13 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+35
+14 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+36
+15 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+37
+16 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+38
+17 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+39
+18 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+40
+19 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+41
+20 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+42
+21 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+43
+22 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+44
+23 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+45
+24 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+46
+25 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+47
+26 "Domain_Matrix01" 1
+"Open_Sp_Sheet"
+["./spyglass-1/cdc/cdc_setup_check/spyglass_reports/sdc2sgdc/Domain/clock_SYSTEM_TOP_domain_matrix_0.csv@@noofheadercol:3"]
+27 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+1
+28 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+2
+29 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+3
+30 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+4
+31 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+5
+32 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+6
+33 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+7
+34 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+8
+35 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+9
+37 "SDC_Mapping01" 1
+"Open_Sp_Sheet"
+["./spyglass-1/cdc/cdc_setup_check/spyglass_reports/sdc2sgdc/sdcMapping.csv"]
+50 "Setup_port01" 1
+"SETUP_PORT_SS_SCH"
+1
+51 "Setup_port01" 1
+"SETUP_PORT_SDC_TAG"
+2
+52 "Setup_port01" 1
+"SETUP_PORT_SS_SCH"
+3
+53 "Setup_port01" 1
+"SETUP_PORT_SDC_TAG"
+4
+54 "Setup_port01" 1
+"SETUP_PORT_SS_SCH"
+5
+55 "Setup_port01" 1
+"SETUP_PORT_SDC_TAG"
+6
+56 "Setup_port01" 1
+"SETUP_PORT_SS_SCH"
+7
+57 "Setup_port01" 1
+"SETUP_PORT_SDC_TAG"
+8
+58 "Setup_port01" 1
+"Open_Sp_Sheet"
+["./spyglass-1/cdc/cdc_setup_check/spyglass_reports/clock-reset/Setup_port01/SYSTEM_TOP.csv"]
+-1 "Clock_info02" 3
+"TEMPLATE"
+["cdc/cdc_setup_check"]
+"RULE_ORDER"
+[17]
+"RULEGROUP"
+["clock-reset/FIND"]
+-1 "Clock_info03b" 3
+"TEMPLATE"
+["cdc/cdc_setup_check"]
+"RULE_ORDER"
+[12]
+"RULEGROUP"
+["clock-reset/INFORMATION/Clock_info03"]
+-1 "Clock_info15" 3
+"TEMPLATE"
+["cdc/cdc_setup_check"]
+"RULE_ORDER"
+[19]
+"RULEGROUP"
+["clock-reset/INFORMATION"]
+-1 "DetectTopDesignUnits" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "Domain_Matrix01" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "ElabSummary" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "Info_Case_Analysis" 5
+"TEMPLATE"
+["cdc/cdc_setup_check"]
+"RULE_ORDER"
+[21]
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+"SPG_RULETAG_SCH_INFO_RULE"
+"Show Info Case Analysis Data"
+-1 "Propagate_Clocks" 3
+"TEMPLATE"
+["cdc/cdc_setup_check"]
+"RULE_ORDER"
+[-1]
+"RULEGROUP"
+["clock-reset/INFORMATION"]
+-1 "Propagate_Resets" 3
+"TEMPLATE"
+["cdc/cdc_setup_check"]
+"RULE_ORDER"
+[-1]
+"RULEGROUP"
+["clock-reset/INFORMATION"]
+-1 "Reset_info02" 3
+"TEMPLATE"
+["cdc/cdc_setup_check"]
+"RULE_ORDER"
+[18]
+"RULEGROUP"
+["clock-reset/FIND"]
+-1 "SDC2SGDC_INFO" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "SDC_Mapping01" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "SGDC_abstract_port03" 2
+"RULEGROUP"
+["SGDC Checks"]
+"BUILTIN"
+"1"
+-1 "Setup_port01" 3
+"TEMPLATE"
+["cdc/cdc_setup_check"]
+"RULE_ORDER"
+[14]
+"RULEGROUP"
+["clock-reset/SETUP"]

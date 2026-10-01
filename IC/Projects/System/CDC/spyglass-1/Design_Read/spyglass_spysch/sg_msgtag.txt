@@ -1,0 +1,132 @@
+3 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+2
+4 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+3
+5 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+4
+6 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+5
+7 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+6
+8 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+7
+9 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+8
+10 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+9
+11 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+10
+12 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+11
+13 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+12
+14 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+13
+15 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+14
+16 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+15
+17 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+16
+18 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+17
+19 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+18
+20 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+19
+21 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+20
+22 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+21
+23 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+22
+24 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+23
+25 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+24
+26 "Domain_Matrix01" 1
+"Open_Sp_Sheet"
+["./spyglass-1/Design_Read/spyglass_reports/sdc2sgdc/Domain/clock_SYSTEM_TOP_domain_matrix_0.csv@@noofheadercol:3"]
+27 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+1
+28 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+2
+29 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+3
+30 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+4
+31 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+5
+32 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+6
+33 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+7
+34 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+8
+35 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+9
+37 "SDC_Mapping01" 1
+"Open_Sp_Sheet"
+["./spyglass-1/Design_Read/spyglass_reports/sdc2sgdc/sdcMapping.csv"]
+-1 "DetectTopDesignUnits" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "Domain_Matrix01" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "ElabSummary" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "SDC2SGDC_INFO" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "SDC_Mapping01" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "SGDC_abstract_port03" 2
+"RULEGROUP"
+["SGDC Checks"]
+"BUILTIN"
+"1"

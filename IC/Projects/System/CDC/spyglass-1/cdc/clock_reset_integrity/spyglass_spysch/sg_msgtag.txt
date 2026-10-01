@@ -1,0 +1,164 @@
+3 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+48
+4 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+49
+5 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+50
+6 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+51
+7 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+52
+8 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+53
+9 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+54
+10 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+55
+11 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+56
+12 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+57
+13 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+58
+14 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+59
+15 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+60
+16 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+61
+17 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+62
+18 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+63
+19 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+64
+20 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+65
+21 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+66
+22 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+67
+23 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+68
+24 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+69
+25 "Domain_Matrix01" 1
+"DomainMatrix_SS"
+70
+26 "Domain_Matrix01" 1
+"Open_Sp_Sheet"
+["./spyglass-1/cdc/clock_reset_integrity/spyglass_reports/sdc2sgdc/Domain/clock_SYSTEM_TOP_domain_matrix_0.csv@@noofheadercol:3"]
+27 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+1
+28 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+2
+29 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+3
+30 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+4
+31 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+5
+32 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+6
+33 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+7
+34 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+8
+35 "SDC_Mapping01" 1
+"SDCMapping_TAG"
+9
+37 "SDC_Mapping01" 1
+"Open_Sp_Sheet"
+["./spyglass-1/cdc/clock_reset_integrity/spyglass_reports/sdc2sgdc/sdcMapping.csv"]
+-1 "Clock_Reset_info01" 3
+"TEMPLATE"
+["cdc/clock_reset_integrity"]
+"RULE_ORDER"
+[11]
+"RULEGROUP"
+["clock-reset/INFORMATION"]
+-1 "DetectTopDesignUnits" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "Domain_Matrix01" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "ElabSummary" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "Info_Case_Analysis" 5
+"TEMPLATE"
+["cdc/clock_reset_integrity"]
+"RULE_ORDER"
+[20]
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+"SPG_RULETAG_SCH_INFO_RULE"
+"Show Info Case Analysis Data"
+-1 "Propagate_Clocks" 3
+"TEMPLATE"
+["cdc/clock_reset_integrity"]
+"RULE_ORDER"
+[-1]
+"RULEGROUP"
+["clock-reset/INFORMATION"]
+-1 "Propagate_Resets" 3
+"TEMPLATE"
+["cdc/clock_reset_integrity"]
+"RULE_ORDER"
+[-1]
+"RULEGROUP"
+["clock-reset/INFORMATION"]
+-1 "SDC2SGDC_INFO" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "SDC_Mapping01" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "SGDC_abstract_port03" 2
+"RULEGROUP"
+["SGDC Checks"]
+"BUILTIN"
+"1"

@@ -1,0 +1,38 @@
+###################################################################
+
+# Created by write_sdc on Thu Oct 1 03:03:38 2026
+
+###################################################################
+
+set_units -time ns -resistance kOhm -capacitance pF -voltage V -current mA
+set_operating_conditions -max scmetro_tsmc_cl013g_rvt_ss_1p08v_125c -max_library scmetro_tsmc_cl013g_rvt_ss_1p08v_125c -min scmetro_tsmc_cl013g_rvt_ff_1p32v_m40c -min_library scmetro_tsmc_cl013g_rvt_ff_1p32v_m40c
+set_wire_load_model -name tsmc13_wl10 -library scmetro_tsmc_cl013g_rvt_ss_1p08v_125c
+set_driving_cell -lib_cell BUFX2M -library scmetro_tsmc_cl013g_rvt_ss_1p08v_125c [get_ports RX_IN]
+set_load -pin_load 0.1 [get_ports TX_OUT]
+set_load -pin_load 0.1 [get_ports parity_error]
+set_load -pin_load 0.1 [get_ports framing_error]
+create_clock [get_ports REF_CLK]  -name ref_clk  -period 10  -waveform {0 5}
+set_clock_uncertainty -setup 0.2  [get_clocks ref_clk]
+set_clock_uncertainty -hold 0.1  [get_clocks ref_clk]
+set_clock_transition -max -fall 0.05 [get_clocks ref_clk]
+set_clock_transition -min -fall 0.05 [get_clocks ref_clk]
+set_clock_transition -max -rise 0.05 [get_clocks ref_clk]
+set_clock_transition -min -rise 0.05 [get_clocks ref_clk]
+create_clock [get_ports UART_CLK]  -name uart_clk  -period 271.267  -waveform {0 135.634}
+set_clock_uncertainty -setup 0.2  [get_clocks uart_clk]
+set_clock_uncertainty -hold 0.1  [get_clocks uart_clk]
+set_clock_transition -max -fall 0.05 [get_clocks uart_clk]
+set_clock_transition -min -fall 0.05 [get_clocks uart_clk]
+set_clock_transition -max -rise 0.05 [get_clocks uart_clk]
+set_clock_transition -min -rise 0.05 [get_clocks uart_clk]
+create_generated_clock [get_pins U1_RX_CLK_DIV/o_div_clk]  -name rx_clk  -source [get_ports UART_CLK]  -master_clock uart_clk  -divide_by 1  -add
+create_generated_clock [get_pins U0_TX_CLK_DIV/o_div_clk]  -name tx_clk  -source [get_ports UART_CLK]  -master_clock uart_clk  -divide_by 32  -add
+create_generated_clock [get_pins U0_CLK_GATE/gated_clk]  -name alu_clk  -source [get_ports REF_CLK]  -master_clock ref_clk  -divide_by 1  -add
+group_path -name INOUT  -from [list [get_ports REF_CLK] [get_ports UART_CLK] [get_ports RST] [get_ports RX_IN]]  -to [list [get_ports TX_OUT] [get_ports parity_error] [get_ports framing_error]]
+group_path -name INREG  -from [list [get_ports REF_CLK] [get_ports UART_CLK] [get_ports RST] [get_ports RX_IN]]
+group_path -name REGOUT  -to [list [get_ports TX_OUT] [get_ports parity_error] [get_ports framing_error]]
+set_input_delay -clock uart_clk  54.2535  [get_ports RX_IN]
+set_output_delay -clock uart_clk  54.2535  [get_ports TX_OUT]
+set_output_delay -clock uart_clk  54.2535  [get_ports parity_error]
+set_output_delay -clock uart_clk  54.2535  [get_ports framing_error]
+set_clock_groups -asynchronous -name uart_clk_1 -group [list [get_clocks uart_clk] [get_clocks rx_clk] [get_clocks tx_clk]] -group [list [get_clocks alu_clk] [get_clocks ref_clk]]

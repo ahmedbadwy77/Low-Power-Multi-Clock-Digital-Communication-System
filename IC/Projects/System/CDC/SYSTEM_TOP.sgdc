@@ -1,0 +1,52 @@
+
+current_design SYSTEM_TOP
+
+sdc_data -file ./SYSTEM_TOP.sdc
+
+####################################################################################
+                  #### Section 1 : Clock Definition ####
+#################################################################################### 
+
+#In SDC file
+
+####################################################################################
+                  #### Section 2 : Reset Definition ####
+####################################################################################
+
+reset -name RST -value 0 -async
+
+####################################################################################
+             #### Section 3 : set input/output clock domains  ####
+####################################################################################
+
+#In SDC file
+
+abstract_port -ports RST -clock RST_d0
+
+####################################################################################
+             #### Section 4 : Quasi static signals  ####
+####################################################################################
+
+quasi_static -name SYSTEM_TOP.REG2
+
+####################################################################################
+             #### Section 5 : set_case_analysis  ####
+####################################################################################
+
+set_case_analysis -name SYSTEM_TOP.U0_TX_CLK_DIV.i_div_ratio -value 0
+
+set_case_analysis -name SYSTEM_TOP.U1_RX_CLK_DIV.i_div_ratio -value 0
+
+####################################################################################
+             #### Section 6 : DATA/RESET Synchronizers  ####
+####################################################################################
+
+reset_synchronizer -name U0_RST_SYNC.sync_rst -clock ref_clk  -reset RST -value 0
+reset_synchronizer -name U1_RST_SYNC.sync_rst -clock uart_clk -reset RST -value 0
+
+sync_cell -name DF_SYNC
+
+####################################################################################
+             #### Section 7 : Constraints  ####
+####################################################################################
+cdc_attribute -unrelated  {SYSTEM_TOP.U0_DATA_SYNC.bus_enable SYSTEM_TOP.U0_ASYNC_FIFO.rptr_gray}

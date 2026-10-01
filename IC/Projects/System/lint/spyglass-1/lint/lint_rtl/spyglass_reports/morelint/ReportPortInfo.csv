@@ -1,0 +1,8 @@
+Module Name,Module Type,Port Name,Direction,Width,Index,Comment Source,Comment 
+SYSTEM_TOP,Top_Level,REF_CLK,INPUT,1,-,-,-
+SYSTEM_TOP,Top_Level,UART_CLK,INPUT,1,-,-,-
+SYSTEM_TOP,Top_Level,RST,INPUT,1,-,-,-
+SYSTEM_TOP,Top_Level,RX_IN,INPUT,1,-,-,-
+SYSTEM_TOP,Top_Level,TX_OUT,OUTPUT,1,-,-,-
+SYSTEM_TOP,Top_Level,parity_error,OUTPUT,1,-,-,-
+SYSTEM_TOP,Top_Level,framing_error,OUTPUT,1,-,-,-

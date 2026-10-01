@@ -1,0 +1,38 @@
+-1 "DetectTopDesignUnits" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "ElabSummary" 2
+"RULEGROUP"
+["Design Read"]
+"BUILTIN"
+"1"
+-1 "RegInputOutput-ML" 3
+"TEMPLATE"
+["lint/lint_rtl"]
+"RULE_ORDER"
+[63]
+"RULEGROUP"
+["morelint"]
+-1 "ReportPortInfo-ML" 3
+"TEMPLATE"
+["lint/lint_rtl"]
+"RULE_ORDER"
+[42]
+"RULEGROUP"
+["morelint"]
+-1 "STARC05-1.4.3.4" 3
+"TEMPLATE"
+["lint/lint_rtl"]
+"RULE_ORDER"
+[81]
+"RULEGROUP"
+["starc2005/s05_Construct/s05_Construct1","starc2005/Basic_Design_Constraint_05"]
+-1 "STARC05-2.11.3.1" 3
+"TEMPLATE"
+["lint/lint_rtl"]
+"RULE_ORDER"
+[19]
+"RULEGROUP"
+["starc2005/s05_Construct/s05_Construct2","starc2005/RTL_Description_Technique_05"]

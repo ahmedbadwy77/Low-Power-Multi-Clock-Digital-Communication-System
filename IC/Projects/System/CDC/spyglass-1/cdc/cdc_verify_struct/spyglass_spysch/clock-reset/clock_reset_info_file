@@ -1,0 +1,889 @@
+Enabled AND-Sync
+Enabled Sync-Enable
+Enabled Clock_Gate-Sync
+Enabled Mux-Select
+Enabled Recirculation
+BEGIN::INFO
+SGDC current_design = SYSTEM_TOP
+clock =
+REF_CLK
+UART_CLK
+END::INFO
+BEGIN::INFO
+SGDC current_design = SYSTEM_TOP
+reset =
+RST
+END::INFO
+BEGIN INFO::CASE-ANALYSIS-SETTING
+node name=in1[0] and value=0
+node name=in1[1] and value=0
+node name=in1[2] and value=0
+node name=in1[3] and value=0
+node name=in1[4] and value=0
+node name=in1[5] and value=0
+node name=in1[6] and value=0
+node name=in2[0] and value=0
+node name=in2[1] and value=0
+node name=in2[2] and value=0
+node name=in2[3] and value=0
+node name=in2[4] and value=0
+node name=in2[5] and value=0
+node name=in2[6] and value=0
+node name=in1[0] and value=0
+node name=in1[1] and value=0
+node name=in1[2] and value=0
+node name=in1[3] and value=0
+node name=in1[4] and value=0
+node name=in1[5] and value=0
+node name=in1[6] and value=0
+node name=in1[7] and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=in1[0] and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=in1[0] and value=0
+node name=in1[1] and value=0
+node name=in1[2] and value=0
+node name=in1[3] and value=0
+node name=in1[4] and value=0
+node name=in1[5] and value=0
+node name=in1[6] and value=0
+node name=in2[0] and value=0
+node name=in2[1] and value=0
+node name=in2[2] and value=0
+node name=in2[3] and value=0
+node name=in2[4] and value=0
+node name=in2[5] and value=0
+node name=in2[6] and value=0
+node name=in1[0] and value=0
+node name=in1[1] and value=0
+node name=in1[2] and value=0
+node name=in1[3] and value=0
+node name=in1[4] and value=0
+node name=in1[5] and value=0
+node name=in1[6] and value=0
+node name=in1[7] and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=sel_0 and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=A and value=0
+node name=in1[0] and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+node name=D and value=0
+END INFO::CASE-ANALYSIS-SETTING
+BEGIN INFO :: CLOCKS INFORMATION
+Clk-Name=SYSTEM_TOP.REF_CLK::Pos-Flop=266::Neg-Flop=0::UnKnown-Flop=0::Gating=Yes
+Clk-Name=SYSTEM_TOP.UART_CLK::Pos-Flop=82::Neg-Flop=0::UnKnown-Flop=0::Gating=Yes
+END CLOCKS INFORMATION
+Enabled Sync_cell-Sync
+RULE: Clock_info02 INFORMATION START
+AtLeastOneClockIsDumped
+ROOT CLOCK: SYSTEM_TOP.UART_CLK
+SYSTEM_TOP.UART_CLK
+    SYSTEM_TOP.U0_TX_CLK_DIV.clk_div_en (+)
+    SYSTEM_TOP.U1_RX_CLK_DIV.clk_div_en (+)
+    SYSTEM_TOP.U1_RST_SYNC.flops[0] (+)
+    SYSTEM_TOP.U1_RST_SYNC.flops[1] (+)
+    SYSTEM_TOP.U1_RST_SYNC.flops[2] (+)
+    SYSTEM_TOP.RX_CLK
+    SYSTEM_TOP.TX_CLK
+SYSTEM_TOP.RX_CLK
+    SYSTEM_TOP.parity_error (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.strt_glitch (+)
+    SYSTEM_TOP.framing_error (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U3.first_sample (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U3.second_sample (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U3.third_sample (+)
+    SYSTEM_TOP.RX_OUT_P[0] (+)
+    SYSTEM_TOP.RX_OUT_P[1] (+)
+    SYSTEM_TOP.RX_OUT_P[2] (+)
+    SYSTEM_TOP.RX_OUT_P[3] (+)
+    SYSTEM_TOP.RX_OUT_P[4] (+)
+    SYSTEM_TOP.RX_OUT_P[5] (+)
+    SYSTEM_TOP.RX_OUT_P[6] (+)
+    SYSTEM_TOP.RX_OUT_P[7] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.counter[0] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.counter[1] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.counter[2] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.counter[3] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[0] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[1] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[2] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[3] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[4] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[5] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[6] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[7] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U5.edges_counter[0] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U5.edges_counter[1] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U5.edges_counter[2] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U5.edges_counter[3] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U5.edges_counter[4] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U5.edges_counter[5] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U6.current_state[0] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U6.current_state[1] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U6.current_state[2] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U6.data_counter[0] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U6.data_counter[1] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U6.data_counter[2] (+)
+    SYSTEM_TOP.RX_OUT_V (+)
+SYSTEM_TOP.TX_CLK
+    SYSTEM_TOP.U0_UART.U0_UART_TX.par_bit (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.ser_data (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.ser_done (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[0] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[1] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[2] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[3] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[4] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[5] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[6] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[7] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.count[0] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.count[1] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.count[2] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U3.current_state[0] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U3.current_state[1] (+)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U3.current_state[2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[3] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rempty_reg (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rptr_gray_reg[0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rptr_gray_reg[1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rptr_gray_reg[2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rptr_gray_reg[3] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.rq2_wptr[0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.rq2_wptr[1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.rq2_wptr[2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.rq2_wptr[3] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[3] (+)
+    SYSTEM_TOP.FIFO_RINC (+)
+    SYSTEM_TOP.U0_Pulse_Gen.sync_reg[0] (+)
+    SYSTEM_TOP.U0_Pulse_Gen.sync_reg[1] (+)
+    SYSTEM_TOP.U0_Pulse_Gen.sync_d (+)
+ROOT CLOCK: SYSTEM_TOP.REF_CLK
+SYSTEM_TOP.REF_CLK
+    SYSTEM_TOP.U0_RST_SYNC.flops[0] (+)
+    SYSTEM_TOP.U0_RST_SYNC.flops[1] (+)
+    SYSTEM_TOP.U0_RST_SYNC.flops[2] (+)
+    SYSTEM_TOP.U0_DATA_SYNC.multi_flops[0] (+)
+    SYSTEM_TOP.U0_DATA_SYNC.multi_flops[1] (+)
+    SYSTEM_TOP.U0_DATA_SYNC.enable_flop (+)
+    SYSTEM_TOP.sync_bus[0] (+)
+    SYSTEM_TOP.sync_bus[1] (+)
+    SYSTEM_TOP.sync_bus[2] (+)
+    SYSTEM_TOP.sync_bus[3] (+)
+    SYSTEM_TOP.sync_bus[4] (+)
+    SYSTEM_TOP.sync_bus[5] (+)
+    SYSTEM_TOP.sync_bus[6] (+)
+    SYSTEM_TOP.sync_bus[7] (+)
+    SYSTEM_TOP.enable_pulse (+)
+    SYSTEM_TOP.U0_SYS_CTRL.command[0] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.command[1] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.command[2] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.command[3] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.command[4] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.command[5] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.command[6] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.command[7] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.addr_reg[0] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.addr_reg[1] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.addr_reg[2] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.addr_reg[3] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.current_state[0] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.current_state[1] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.current_state[2] (+)
+    SYSTEM_TOP.U0_SYS_CTRL.current_state[3] (+)
+    SYSTEM_TOP.Rd_D_Vld (+)
+    SYSTEM_TOP.Rd_D[0] (+)
+    SYSTEM_TOP.Rd_D[1] (+)
+    SYSTEM_TOP.Rd_D[2] (+)
+    SYSTEM_TOP.Rd_D[3] (+)
+    SYSTEM_TOP.Rd_D[4] (+)
+    SYSTEM_TOP.Rd_D[5] (+)
+    SYSTEM_TOP.Rd_D[6] (+)
+    SYSTEM_TOP.Rd_D[7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][7] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][0] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][1] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][2] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][3] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][4] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][5] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][6] (+)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][7] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wcounter[0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wcounter[1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wcounter[2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wcounter[3] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wptr_gray_reg[0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wptr_gray_reg[1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wptr_gray_reg[2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wptr_gray_reg[3] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wfull_reg (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][3] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][4] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][5] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][6] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][7] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][3] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][4] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][5] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][6] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][7] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][3] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][4] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][5] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][6] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][7] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][3] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][4] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][5] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][6] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][7] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][3] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][4] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][5] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][6] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][7] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][3] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][4] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][5] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][6] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][7] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][3] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][4] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][5] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][6] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][7] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][3] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][4] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][5] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][6] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][7] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.wq2_rptr[0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.wq2_rptr[1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.wq2_rptr[2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.wq2_rptr[3] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U4.sync_reg[0] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U4.sync_reg[1] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U4.sync_reg[2] (+)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U4.sync_reg[3] (+)
+    SYSTEM_TOP.gated_clk
+SYSTEM_TOP.gated_clk
+    SYSTEM_TOP.ALU_OUT[0] (+)
+    SYSTEM_TOP.ALU_OUT[1] (+)
+    SYSTEM_TOP.ALU_OUT[2] (+)
+    SYSTEM_TOP.ALU_OUT[3] (+)
+    SYSTEM_TOP.ALU_OUT[4] (+)
+    SYSTEM_TOP.ALU_OUT[5] (+)
+    SYSTEM_TOP.ALU_OUT[6] (+)
+    SYSTEM_TOP.ALU_OUT[7] (+)
+    SYSTEM_TOP.ALU_OUT[8] (+)
+    SYSTEM_TOP.ALU_OUT[9] (+)
+    SYSTEM_TOP.ALU_OUT[10] (+)
+    SYSTEM_TOP.ALU_OUT[11] (+)
+    SYSTEM_TOP.ALU_OUT[12] (+)
+    SYSTEM_TOP.ALU_OUT[13] (+)
+    SYSTEM_TOP.ALU_OUT[14] (+)
+    SYSTEM_TOP.ALU_OUT[15] (+)
+    SYSTEM_TOP.ALU_OUT_V (+)
+RULE: Clock_info02 INFORMATION END
+RULE: Reset_info02 INFORMATION START
+AtLeastOneResetIsDumped
+ROOT RESET: SYSTEM_TOP.RST
+SYSTEM_TOP.RST
+    SYSTEM_TOP.U1_RST_SYNC.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_RST_SYNC.rtlc_N0 ~~~~
+SYSTEM_TOP.U1_RST_SYNC.rtlc_N0 ~~~~
+    SYSTEM_TOP.U1_RST_SYNC.flops[0] (-)
+    SYSTEM_TOP.U1_RST_SYNC.flops[1] (-)
+    SYSTEM_TOP.U1_RST_SYNC.flops[2] (-)
+    SYSTEM_TOP.U1_RST_SYNC.flops[2]
+SYSTEM_TOP.U1_RST_SYNC.flops[2]
+    SYSTEM_TOP.UART_RST
+SYSTEM_TOP.UART_RST
+    SYSTEM_TOP.U0_Pulse_Gen.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_ASYNC_FIFO.U3.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U6.rtlc_N11 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U5.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U3.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U2.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U1.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U0.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U3.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U1.rtlc_N0 ~~~~
+    SYSTEM_TOP.U1_RX_CLK_DIV.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_TX_CLK_DIV.rtlc_N0 ~~~~
+SYSTEM_TOP.U0_Pulse_Gen.rtlc_N0 ~~~~
+    SYSTEM_TOP.FIFO_RINC (-)
+    SYSTEM_TOP.U0_Pulse_Gen.sync_reg[0] (-)
+    SYSTEM_TOP.U0_Pulse_Gen.sync_reg[1] (-)
+    SYSTEM_TOP.U0_Pulse_Gen.sync_d (-)
+SYSTEM_TOP.U0_ASYNC_FIFO.U3.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_ASYNC_FIFO.rq2_wptr[0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.rq2_wptr[1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.rq2_wptr[2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.rq2_wptr[3] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[3] (-)
+SYSTEM_TOP.U0_ASYNC_FIFO.U0.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[3] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rempty_reg (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rptr_gray_reg[0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rptr_gray_reg[1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rptr_gray_reg[2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U0.rptr_gray_reg[3] (-)
+SYSTEM_TOP.U0_UART.U0_UART_RX.U6.rtlc_N11 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U6.current_state[0] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U6.current_state[1] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U6.current_state[2] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U6.data_counter[0] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U6.data_counter[1] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U6.data_counter[2] (-)
+    SYSTEM_TOP.RX_OUT_V (-)
+SYSTEM_TOP.U0_UART.U0_UART_RX.U5.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U5.edges_counter[0] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U5.edges_counter[1] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U5.edges_counter[2] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U5.edges_counter[3] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U5.edges_counter[4] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U5.edges_counter[5] (-)
+SYSTEM_TOP.U0_UART.U0_UART_RX.U4.rtlc_N0 ~~~~
+    SYSTEM_TOP.RX_OUT_P[0] (-)
+    SYSTEM_TOP.RX_OUT_P[1] (-)
+    SYSTEM_TOP.RX_OUT_P[2] (-)
+    SYSTEM_TOP.RX_OUT_P[3] (-)
+    SYSTEM_TOP.RX_OUT_P[4] (-)
+    SYSTEM_TOP.RX_OUT_P[5] (-)
+    SYSTEM_TOP.RX_OUT_P[6] (-)
+    SYSTEM_TOP.RX_OUT_P[7] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.counter[0] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.counter[1] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.counter[2] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.counter[3] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[0] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[1] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[2] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[3] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[4] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[5] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[6] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U4.data[7] (-)
+SYSTEM_TOP.U0_UART.U0_UART_RX.U3.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U3.first_sample (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U3.second_sample (-)
+    SYSTEM_TOP.U0_UART.U0_UART_RX.U3.third_sample (-)
+SYSTEM_TOP.U0_UART.U0_UART_RX.U2.rtlc_N0 ~~~~
+    SYSTEM_TOP.framing_error (-)
+SYSTEM_TOP.U0_UART.U0_UART_RX.U1.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_RX.strt_glitch (-)
+SYSTEM_TOP.U0_UART.U0_UART_RX.U0.rtlc_N0 ~~~~
+    SYSTEM_TOP.parity_error (-)
+SYSTEM_TOP.U0_UART.U0_UART_TX.U3.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U3.current_state[0] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U3.current_state[1] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U3.current_state[2] (-)
+SYSTEM_TOP.U0_UART.U0_UART_TX.U2.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_TX.ser_data (-)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.ser_done (-)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[0] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[1] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[2] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[3] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[4] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[5] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[6] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.Data_In[7] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.count[0] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.count[1] (-)
+    SYSTEM_TOP.U0_UART.U0_UART_TX.U2.count[2] (-)
+SYSTEM_TOP.U0_UART.U0_UART_TX.U1.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_UART.U0_UART_TX.par_bit (-)
+SYSTEM_TOP.U1_RX_CLK_DIV.rtlc_N0 ~~~~
+    SYSTEM_TOP.U1_RX_CLK_DIV.clk_div_en (-)
+SYSTEM_TOP.U0_TX_CLK_DIV.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_TX_CLK_DIV.clk_div_en (-)
+SYSTEM_TOP.U0_RST_SYNC.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_RST_SYNC.flops[0] (-)
+    SYSTEM_TOP.U0_RST_SYNC.flops[1] (-)
+    SYSTEM_TOP.U0_RST_SYNC.flops[2] (-)
+    SYSTEM_TOP.U0_RST_SYNC.flops[2]
+SYSTEM_TOP.U0_RST_SYNC.flops[2]
+    SYSTEM_TOP.REF_RST
+SYSTEM_TOP.REF_RST
+    SYSTEM_TOP.U0_ASYNC_FIFO.U4.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.rtlc_N264 ~~~~
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_ALU.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_REGFILE.rtlc_N601 ~~~~
+    SYSTEM_TOP.U0_SYS_CTRL.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_DATA_SYNC.rtlc_N8 ~~~~
+SYSTEM_TOP.U0_ASYNC_FIFO.U4.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_ASYNC_FIFO.wq2_rptr[0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.wq2_rptr[1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.wq2_rptr[2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.wq2_rptr[3] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U4.sync_reg[0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U4.sync_reg[1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U4.sync_reg[2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U4.sync_reg[3] (-)
+SYSTEM_TOP.U0_ASYNC_FIFO.U2.rtlc_N264 ~~~~
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][3] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][4] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][5] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][6] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[0][7] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][3] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][4] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][5] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][6] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[1][7] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][3] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][4] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][5] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][6] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[2][7] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][3] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][4] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][5] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][6] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[3][7] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][3] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][4] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][5] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][6] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[4][7] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][3] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][4] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][5] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][6] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[5][7] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][3] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][4] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][5] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][6] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[6][7] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][3] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][4] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][5] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][6] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7][7] (-)
+SYSTEM_TOP.U0_ASYNC_FIFO.U1.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wcounter[0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wcounter[1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wcounter[2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wcounter[3] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wptr_gray_reg[0] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wptr_gray_reg[1] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wptr_gray_reg[2] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wptr_gray_reg[3] (-)
+    SYSTEM_TOP.U0_ASYNC_FIFO.U1.wfull_reg (-)
+SYSTEM_TOP.U0_ALU.rtlc_N0 ~~~~
+    SYSTEM_TOP.ALU_OUT[0] (-)
+    SYSTEM_TOP.ALU_OUT[1] (-)
+    SYSTEM_TOP.ALU_OUT[2] (-)
+    SYSTEM_TOP.ALU_OUT[3] (-)
+    SYSTEM_TOP.ALU_OUT[4] (-)
+    SYSTEM_TOP.ALU_OUT[5] (-)
+    SYSTEM_TOP.ALU_OUT[6] (-)
+    SYSTEM_TOP.ALU_OUT[7] (-)
+    SYSTEM_TOP.ALU_OUT[8] (-)
+    SYSTEM_TOP.ALU_OUT[9] (-)
+    SYSTEM_TOP.ALU_OUT[10] (-)
+    SYSTEM_TOP.ALU_OUT[11] (-)
+    SYSTEM_TOP.ALU_OUT[12] (-)
+    SYSTEM_TOP.ALU_OUT[13] (-)
+    SYSTEM_TOP.ALU_OUT[14] (-)
+    SYSTEM_TOP.ALU_OUT[15] (-)
+    SYSTEM_TOP.ALU_OUT_V (-)
+SYSTEM_TOP.U0_REGFILE.rtlc_N601 ~~~~
+    SYSTEM_TOP.Rd_D_Vld (-)
+    SYSTEM_TOP.Rd_D[0] (-)
+    SYSTEM_TOP.Rd_D[1] (-)
+    SYSTEM_TOP.Rd_D[2] (-)
+    SYSTEM_TOP.Rd_D[3] (-)
+    SYSTEM_TOP.Rd_D[4] (-)
+    SYSTEM_TOP.Rd_D[5] (-)
+    SYSTEM_TOP.Rd_D[6] (-)
+    SYSTEM_TOP.Rd_D[7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[0][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[1][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[2][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[3][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[4][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[5][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[6][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[7][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[8][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[9][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[10][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[11][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[12][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[13][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[14][7] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][0] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][1] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][2] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][3] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][4] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][5] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][6] (-)
+    SYSTEM_TOP.U0_REGFILE.Registers[15][7] (-)
+SYSTEM_TOP.U0_SYS_CTRL.rtlc_N0 ~~~~
+    SYSTEM_TOP.U0_SYS_CTRL.command[0] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.command[1] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.command[2] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.command[3] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.command[4] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.command[5] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.command[6] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.command[7] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.addr_reg[0] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.addr_reg[1] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.addr_reg[2] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.addr_reg[3] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.current_state[0] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.current_state[1] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.current_state[2] (-)
+    SYSTEM_TOP.U0_SYS_CTRL.current_state[3] (-)
+SYSTEM_TOP.U0_DATA_SYNC.rtlc_N8 ~~~~
+    SYSTEM_TOP.U0_DATA_SYNC.multi_flops[0] (-)
+    SYSTEM_TOP.U0_DATA_SYNC.multi_flops[1] (-)
+    SYSTEM_TOP.U0_DATA_SYNC.enable_flop (-)
+    SYSTEM_TOP.sync_bus[0] (-)
+    SYSTEM_TOP.sync_bus[1] (-)
+    SYSTEM_TOP.sync_bus[2] (-)
+    SYSTEM_TOP.sync_bus[3] (-)
+    SYSTEM_TOP.sync_bus[4] (-)
+    SYSTEM_TOP.sync_bus[5] (-)
+    SYSTEM_TOP.sync_bus[6] (-)
+    SYSTEM_TOP.sync_bus[7] (-)
+    SYSTEM_TOP.enable_pulse (-)
+RULE: Reset_info02 INFORMATION END

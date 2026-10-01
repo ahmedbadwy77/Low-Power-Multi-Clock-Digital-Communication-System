@@ -1,0 +1,185 @@
+read_file -type sourcelist ../rtl/list.f
+read_file -type gateslib {../std_cells/scmetro_tsmc_cl013g_rvt_ff_1p32v_m40c.lib ../std_cells/scmetro_tsmc_cl013g_rvt_ss_1p08v_125c.lib ../std_cells/scmetro_tsmc_cl013g_rvt_tt_1p2v_25c.lib}
+read_file -type sgdc SYSTEM_TOP.sgdc
+
+
+
+current_goal Design_Read -alltop
+
+
+link_design -force
+
+
+
+
+
+
+set_option enableSV yes
+set_option sdc2sgdc yes
+
+
+link_design -force
+
+
+
+current_goal cdc/cdc_setup_check -alltop
+run_goal
+
+
+
+
+
+
+current_goal cdc/clock_reset_integrity -alltop
+run_goal
+
+
+
+
+
+
+current_goal cdc/cdc_verify_struct -alltop
+run_goal
+
+
+
+
+gui_select_message -rule Ac_conv02 -msg {4 synchronizers (SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[1:0],SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[3:2]) converge on flop 'SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[0]' (same source divergence). Gray encoding check: 'DISABLED'}
+gui_open_schematic -is
+read_file -type awl ./spyglass-1/cdc/cdc_verify_struct/spyglass-1_waiver_file.awl
+set_goal_option default_waiver_file ./spyglass-1/cdc/cdc_verify_struct/spyglass-1_waiver_file.awl
+read_file -type awl ./spyglass-1/cdc/cdc_verify_struct/spyglass-1_waiver_file.awl
+set_goal_option default_waiver_file ./spyglass-1/cdc/cdc_verify_struct/spyglass-1_waiver_file.awl
+
+set _sg_current_default_waiver_file ""; set _sg_current_default_waiver_file [get_goal_option default_waiver_file]
+waive -rule Ac_conv02 -msg {4 synchronizers (SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[1:0],SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[3:2]) converge on flop 'SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[0]' (same source divergence). Gray encoding check: 'DISABLED'} -comment {Created by ICer on 01-Oct-2026 06:21:02}
+if {$_sg_current_default_waiver_file == {} || $_sg_current_default_waiver_file == {{}}} {remove_goal_option default_waiver_file } else { set_goal_option default_waiver_file $_sg_current_default_waiver_file}
+
+
+
+
+
+
+gui_select_message -rule Ac_glitch03 -msg {Destination flop 'SYSTEM_TOP.U0_ASYNC_FIFO.U4.sync_reg[2:0]' clocked by 'SYSTEM_TOP.REF_CLK' can glitch (1 source(s), 1 domain(s)). Reason :'Sources from same domain in fanin'}
+gui_open_schematic -is
+run_goal
+
+gui_select_message -rule Ac_glitch03 -msg {Destination flop 'SYSTEM_TOP.U0_DATA_SYNC.multi_flops[0]' clocked by 'SYSTEM_TOP.REF_CLK' can glitch (2 source(s), 1 domain(s)). Reason :'Source reconverges'}
+gui_open_schematic -is
+run_goal
+
+gui_select_message -rule Ac_glitch03 -msg {Destination flop 'SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[2:0]' clocked by 'SYSTEM_TOP.UART_CLK' can glitch (1 source(s), 1 domain(s)). Reason :'Sources from same domain in fanin'}
+gui_open_schematic -is
+run_goal
+
+gui_select_message -rule Ac_unsync01 -msg {Unsynchronized Crossing: destination flop SYSTEM_TOP.U0_UART.U0_UART_RX.U3.third_sample, clocked by SYSTEM_TOP.UART_CLK, source flop SYSTEM_TOP.U0_REGFILE.Registers[2][7:3], clocked by SYSTEM_TOP.REF_CLK. Reason: Qualifier not found [Total Sources: 1 (Number of source domains: 1)]}
+gui_open_schematic -is
+gui_expand_schematic {net REG2[3]}
+gui_expand_schematic {net U0_UART.U0_UART_RX.prescale[1]}
+run_goal
+
+gui_select_message -rule Ac_unsync01 -msg {Unsynchronized Crossing: destination flop SYSTEM_TOP.U0_UART.U0_UART_RX.U3.third_sample, clocked by SYSTEM_TOP.UART_CLK, source flop SYSTEM_TOP.U0_REGFILE.Registers[2][7:4], clocked by SYSTEM_TOP.REF_CLK. Reason: Qualifier not found [Total Sources: 2 (Number of source domains: 1)]}
+gui_open_schematic -is
+gui_expand_schematic {net REG2[4]}
+gui_expand_schematic {net U0_UART.U0_UART_RX.prescale[2]}
+gui_expand_schematic {net U0_REGFILE.Registers[20]}
+gui_expand_schematic {pin U0_REGFILE.rtlc_I169 Z output}
+gui_expand_schematic {pin {U0_REGFILE.\RdData_reg[4] } Q output}
+gui_expand_schematic {pinBus U0_REGFILE RdData output 8}
+gui_expand_schematic {net REG2[4]}
+run_goal
+
+gui_select_message -rule Ac_unsync01 -msg {Unsynchronized Crossing: destination flop SYSTEM_TOP.U0_UART.U0_UART_RX.U3.third_sample, clocked by SYSTEM_TOP.UART_CLK, source flop SYSTEM_TOP.U0_REGFILE.Registers[2][7:5], clocked by SYSTEM_TOP.REF_CLK. Reason: Qualifier not found [Total Sources: 3 (Number of source domains: 1)]}
+gui_open_schematic -is
+gui_expand_schematic {net REG2[5]}
+gui_expand_schematic {net U0_UART.U0_UART_RX.prescale[3]}
+gui_expand_schematic {hierPin U0_REGFILE REG2[0] input}
+gui_expand_schematic {hierPin U0_REGFILE REG2[1] input}
+gui_expand_schematic {hierPin U0_REGFILE REG2[2] input}
+gui_expand_schematic {hierPin U0_REGFILE REG2[3] input}
+gui_expand_schematic {hierPin U0_REGFILE REG2[4] input}
+gui_expand_schematic {hierPin U0_REGFILE REG2[5] input}
+gui_expand_schematic {hierPin U0_REGFILE REG2[6] input}
+gui_expand_schematic {hierPin U0_REGFILE REG2[7] input}
+gui_expand_schematic {pin U0_UART Prescale[0] input}
+gui_expand_schematic {pin U0_UART Prescale[1] input}
+gui_expand_schematic {pin U0_UART Prescale[2] input}
+gui_expand_schematic {pin U0_UART Prescale[3] input}
+gui_expand_schematic {pin U0_UART Prescale[4] input}
+gui_expand_schematic {pin U0_UART Prescale[5] input}
+gui_expand_schematic {pin U0_UART Prescale[0] input}
+gui_expand_schematic {pin U0_UART Prescale[1] input}
+gui_expand_schematic {pin U0_UART Prescale[2] input}
+gui_expand_schematic {pin U0_UART Prescale[3] input}
+gui_expand_schematic {pin U0_UART Prescale[4] input}
+gui_expand_schematic {pin U0_UART Prescale[5] input}
+gui_expand_schematic {hierPinBus U0_UART Prescale output 6}
+gui_expand_schematic {autoBundle REG2[7] 6}
+run_goal
+
+gui_select_message -rule Ac_unsync01 -msg {Unsynchronized Crossing: destination flop SYSTEM_TOP.U0_UART.U0_UART_RX.U0.par_err, clocked by SYSTEM_TOP.UART_CLK, source flop SYSTEM_TOP.U0_REGFILE.Registers[2][1], clocked by SYSTEM_TOP.REF_CLK. Reason: Qualifier not found [Total Sources: 2 (Number of source domains: 1)]}
+gui_open_schematic -is
+gui_expand_schematic {net U0_UART.parity_type}
+gui_expand_schematic {net U0_UART.U0_UART_RX.clk}
+gui_expand_schematic {net U0_UART.U0_UART_RX.clk}
+gui_expand_schematic {net U0_UART.U0_UART_RX.clk}
+run_goal
+
+gui_select_message -rule Ac_unsync02 -msg {Unsynchronized Crossing: destination flop SYSTEM_TOP.U0_UART.U0_UART_RX.U6.current_state[2], clocked by SYSTEM_TOP.UART_CLK, source flop SYSTEM_TOP.U0_REGFILE.Registers[2][0], clocked by SYSTEM_TOP.REF_CLK. Reason: Qualifier not found [Total Sources: 2 (Number of source domains: 1)]}
+gui_open_schematic -is
+run_goal
+
+
+set _sg_current_default_waiver_file ""; set _sg_current_default_waiver_file [get_goal_option default_waiver_file]
+waive -rule Ac_conv02 -msg {4 synchronizers (SYSTEM_TOP.U0_ASYNC_FIFO.U3.sync_reg[3:0]) converge on flop 'SYSTEM_TOP.U0_ASYNC_FIFO.U0.rcounter[0]'. Gray encoding check: 'DISABLED'} -comment {Created by ICer on 01-Oct-2026 06:50:44}
+if {$_sg_current_default_waiver_file == {} || $_sg_current_default_waiver_file == {{}}} {remove_goal_option default_waiver_file } else { set_goal_option default_waiver_file $_sg_current_default_waiver_file}
+
+
+
+
+
+
+save_waiver
+
+
+current_goal cdc/cdc_verify_struct -alltop
+run_goal
+
+
+
+
+
+
+current_goal cdc/cdc_verify -alltop
+run_goal
+
+
+
+
+gui_select_message -rule Ac_datahold01a -msg {Synchronized crossing: destination flop 'SYSTEM_TOP.U0_UART.U0_UART_TX.U1.par_bit', clocked by 'SYSTEM_TOP.UART_CLK', source flop 'SYSTEM_TOP.U0_ASYNC_FIFO.U2.fifo_mem[7:0][7:0]', clocked by 'SYSTEM_TOP.REF_CLK'. Data-enable sequencing check: Partially-Proved}
+gui_open_schematic -is
+read_file -type awl ./spyglass-1/cdc/cdc_verify/spyglass-1_waiver_file.awl
+set_goal_option default_waiver_file ./spyglass-1/cdc/cdc_verify/spyglass-1_waiver_file.awl
+
+set _sg_current_default_waiver_file ""; set _sg_current_default_waiver_file [get_goal_option default_waiver_file]
+waive -rule Ac_datahold01a -comment {Created by ICer on 01-Oct-2026 07:05:20}
+if {$_sg_current_default_waiver_file == {} || $_sg_current_default_waiver_file == {{}}} {remove_goal_option default_waiver_file } else { set_goal_option default_waiver_file $_sg_current_default_waiver_file}
+
+
+
+
+
+
+save_waiver
+
+
+current_goal cdc/cdc_abstract -alltop
+run_goal
+
+
+
+
+save_project -force /home/ICer/IC/Projects/System/CDC/CDC.prj
+save_project
+gui_exit
+gui_exit
