@@ -833,7 +833,7 @@ Final_System/
 │
 ├── docs/                               # System specifications and PDF documentation
 │   ├── Final_System.pdf                # Architectural specifications
-│   └── simulation_waveform_last.pdf    # Full formatted simulation waveform printout
+│   └── simulation_waveform.pdf         # Full formatted simulation waveform printout
 │
 ├── do_files/                           # Multi-simulator automation & compilation scripts
 │   ├── run.do                          # ModelSim / QuestaSim DO script
