@@ -115,10 +115,12 @@ Idle (1) ──┐        ┌──────┬──────┬───
 
 ### 3.2 Baud Rate & Oversampling Calculation
 The serial communication baud rate is determined by dividing `UART_CLK`:
-$$\text{TX Baud Rate} = \frac{f_{\text{UART\_CLK}}}{\text{Div Ratio (REG3)}} = \frac{3.6864\text{ MHz}}{32} = 115,200\text{ Baud}$$
+
+$$\text{TX Baud Rate} = \frac{f_{\text{UART-CLK}}}{\text{Div Ratio (REG3)}} = \frac{3.6864\text{ MHz}}{32} = 115,200\text{ Baud}$$
 
 For the receiver, oversampling ensures robust data recovery in noisy environments:
-$$\text{RX Sampling Clock} = \frac{f_{\text{UART\_CLK}}}{\text{Prescale Mux Ratio}} = 115,200 \times \text{Prescale}$$
+
+$$\text{RX Sampling Clock} = \frac{f_{\text{UART-CLK}}}{\text{Prescale Mux Ratio}} = 115,200 \times \text{Prescale}$$
 
 ### 3.3 Master Command Protocol
 The external host controls the system by sending multi-frame commands over UART:
@@ -333,7 +335,7 @@ The design was fully verified using an exhaustive self-checking testbench ([`SYS
 The digital ASIC implementation flow was executed under worst-case corner conditions (**SS / 1.08V / 125°C**) using standard cell libraries (`scmetro_tsmc_cl013g_rvt`).
 
 ### 6.1 Logic Synthesis (Synopsys Design Compiler)
-* **Target Clock Frequency**: 100 MHz (Clock Period $T = 10.0\text{ ns}$)
+* **Target Clock Frequency**: 100 MHz (Clock Period = 10.0 ns)
 * **Setup Timing Slack**: **`0.00 ns` (MET — Zero Slack Closure)**
 * **Hold Timing Slack**: **`0.04 ns` (MET)**
 * **Total Cell Area**: **`27,225.31 µm²`**
