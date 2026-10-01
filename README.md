@@ -179,6 +179,33 @@ The **System Controller** is the master finite state machine (FSM) operating in 
 
 ![SYS_CTRL Block Diagram](assets/sys_ctrl_diagram.png)
 
+```mermaid
+stateDiagram-v2
+    direction TB
+    [*] --> IDLE
+    IDLE --> CMD_DECODE: RX_D_VLD == 1
+    
+    state CMD_DECODE <<choice>>
+    CMD_DECODE --> RF_WR_ADDR: CMD == 0xAA (RF Write)
+    CMD_DECODE --> RF_RD_ADDR: CMD == 0xBB (RF Read)
+    CMD_DECODE --> ALU_OP_A: CMD == 0xCC (ALU with Op)
+    CMD_DECODE --> ALU_FUN_OP: CMD == 0xDD (ALU no Op)
+    
+    RF_WR_ADDR --> RF_WR_DATA: RX_D_VLD == 1 (Latch Addr)
+    RF_WR_DATA --> IDLE: Latch Data & Assert WrEn
+    
+    RF_RD_ADDR --> WAIT_RD: Assert RdEn
+    WAIT_RD --> FIFO_WR_RD: RdData_Valid == 1
+    FIFO_WR_RD --> IDLE: Push to FIFO (WR_INC)
+    
+    ALU_OP_A --> ALU_OP_B: RX_D_VLD == 1 (Store Op A)
+    ALU_OP_B --> ALU_FUN_OP: RX_D_VLD == 1 (Store Op B)
+    ALU_FUN_OP --> ALU_WAIT: Assert ALU_EN & CLK_EN
+    ALU_WAIT --> FIFO_WR_P1: OUT_VALID == 1 (Push LSB)
+    FIFO_WR_P1 --> FIFO_WR_P2: Push MSB
+    FIFO_WR_P2 --> IDLE: Computation Complete
+```
+
 * **Key FSM States**: `IDLE`, `RF_ADDR`, `RF_WR_DATA`, `RF_RD_DATA`, `ALU_OP_A`, `ALU_OP_B`, `ALU_FUN_OP`, `ALU_WAIT`, `FIFO_WR_P1`, `FIFO_WR_P2`.
 * **Handshake Coordination**: Automatically manages `WrEn`, `RdEn`, `CLK_EN`, `ALU_EN`, and `WR_INC` to ensure collision-free internal transfers.
 
@@ -240,6 +267,18 @@ The **UART Transmitter** handles parallel-to-serial conversion of bytes popped f
 
 ![UART TX Block Diagram](assets/uart_tx_diagram.png)
 
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> IDLE
+    IDLE --> START: DATA_VALID == 1
+    START --> DATA: 1 TX_CLK period (Send Start 0)
+    DATA --> PARITY: Bit_Count == 8 & PAR_EN == 1
+    DATA --> STOP: Bit_Count == 8 & PAR_EN == 0
+    PARITY --> STOP: 1 TX_CLK period (Send Parity)
+    STOP --> IDLE: 1 TX_CLK period (Send Stop 1)
+```
+
 * **Internal Blocks**:
   * **`FSM_TX`**: Controls frame state sequencing (`IDLE`, `START`, `DATA`, `PARITY`, `STOP`).
   * **`Serializer`**: Shifts out parallel data bit-by-bit driven by `TX_CLK`.
@@ -253,6 +292,18 @@ The **UART Transmitter** handles parallel-to-serial conversion of bytes popped f
 The **UART Receiver** captures incoming serial stream `RX_IN`, filters noise, checks frame integrity, and converts valid bytes into parallel data.
 
 ![UART RX Block Diagram](assets/uart_rx_diagram.png)
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> IDLE
+    IDLE --> START: RX_IN == 0 (Falling Edge Detected)
+    START --> DATA: Valid Start Bit Checked (Samples 3,4,5 = 0)
+    DATA --> PARITY: Bit_Count == 8 & PAR_EN == 1
+    DATA --> STOP: Bit_Count == 8 & PAR_EN == 0
+    PARITY --> STOP: Check Parity (Assert PAR_ERR if mismatch)
+    STOP --> IDLE: Check Stop Bit (Assert STP_ERR if 0, else DATA_VLD)
+```
 
 * **Internal Blocks**:
   * **`data_sampling`**: Takes 3 samples per bit interval and applies majority voting for glitch immunity.
