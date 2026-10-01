@@ -1,7 +1,7 @@
 # Low-Power Multi-Clock Digital Communication System & ASIC Implementation Flow
 
 [![CI](https://github.com/ahmedbadwy77/Low-Power-Multi-Clock-Digital-Communication-System/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ahmedbadwy77/Low-Power-Multi-Clock-Digital-Communication-System/actions/workflows/ci.yml)
-[![HDL](https://img.shields.io/badge/HDL-Verilog%20%7C%20SystemVerilog-blue.svg)](rtl/)
+[![HDL](https://img.shields.io/badge/HDL-Verilog%20%7C%20SystemVerilog-blue.svg)](SYS_TOP/)
 [![PDK](https://img.shields.io/badge/PDK-TSMC%20130nm-orange.svg)](IC/Projects/System/std_cells/)
 [![Synthesis](https://img.shields.io/badge/Synthesis-Synopsys%20Design%20Compiler-red.svg)](IC/Projects/System/Synthesis/)
 [![DFT Coverage](https://img.shields.io/badge/DFT%20Coverage-99.66%25-brightgreen.svg)](IC/Projects/System/DFT/)
@@ -755,7 +755,7 @@ flowchart LR
 
 ## 5. Verification & Waveforms
 
-The design was fully verified using an exhaustive self-checking testbench ([`SYSTEM_TOP_tb.v`](tb/SYSTEM_TOP_tb.v)) in **QuestaSim / ModelSim**, validating:
+The design was fully verified using an exhaustive self-checking testbench ([`SYSTEM_TOP_tb.v`](Test_bench/SYSTEM_TOP_tb.v)) in **QuestaSim / ModelSim**, validating:
 1. Reset assertion and deassertion across clock domains.
 2. Register File configuration writes (`REG2` UART prescaler, `REG3` clock divisor).
 3. General-purpose Register File writes and readback verification.
@@ -765,10 +765,10 @@ The design was fully verified using an exhaustive self-checking testbench ([`SYS
 7. Asynchronous FIFO continuous buffering under rate mismatch.
 
 ### Simulation Waveform 1: System Initialization & Configuration
-![ModelSim Waveform 1](assets/modelsim_waveform_1.png)
+![ModelSim Waveform 1](Screenshots/modelsim_waveform_1.png)
 
 ### Simulation Waveform 2: ALU Execution & UART Serialization
-![ModelSim Waveform 2](assets/modelsim_waveform_2.png)
+![ModelSim Waveform 2](Screenshots/modelsim_waveform_2.png)
 
 ---
 
@@ -828,55 +828,36 @@ Final_System/
 │   └── workflows/
 │       └── ci.yml                      # Automated GitHub Actions RTL CI verification
 │
-├── assets/                             # Logic simulation waveform captures
-│   ├── modelsim_waveform_1.png
-│   └── modelsim_waveform_2.png
+├── ALU/                                # 16-bit Arithmetic Logic Unit
+│   └── ALU.v
 │
-├── docs/                               # System specifications and PDF documentation
-│   ├── Final_System.pdf                # Architectural specifications
-│   └── simulation_waveform.pdf         # Simulation printout
-│
-├── rtl/                                # Golden synthesizable RTL source files (29 modules)
-│   ├── ALU.v
+├── ASYNC_FIFO/                         # Dual-Clock Asynchronous FIFO
 │   ├── ASYNC_FIFO.v
-│   ├── Clk_Div.v
-│   ├── CLK_GATE.v                      # Dual-mode (simulation & TSMC gate instantiation)
-│   ├── DATA_SYNC.v
 │   ├── DF_SYNC.v
 │   ├── FIFO_MEM_CNTRL.v
 │   ├── FIFO_RD.v
-│   ├── FIFO_WR.v
-│   ├── FSM_RX.v
-│   ├── FSM_TX.sv
-│   ├── MUX.v
-│   ├── Parity_Calc.v
-│   ├── Pulse_Gen.v
-│   ├── RST_SYNC.v
-│   ├── SYS_CTRL.v
-│   ├── SYSTEM_TOP.v                    # System top module
-│   ├── Serializer.v
-│   ├── UART.v
-│   ├── UART_RX.v
-│   ├── UART_TX.v
-│   ├── data_sampling.v
-│   ├── deserializer.v
-│   ├── edge_bit_counter.v
-│   ├── parity_checker.v
-│   ├── prescale_mux.v
-│   ├── regfile.v
-│   ├── stop_checker.v
-│   └── strt_checker.v
+│   └── FIFO_WR.v
 │
-├── scripts/                            # Host communication software & verification
-│   └── uart_driver.py                  # Python UART host driver & protocol regression suite
+├── CLK_DIV/                            # Parameterized Clock Divider
+│   └── Clk_Div.v
 │
-├── sim/                                # Multi-simulator automation scripts
+├── CLK_DIV_RX_MUX/                     # RX Oversampling Clock Prescale Multiplexer
+│   └── prescale_mux.v
+│
+├── CLK_GATING/                         # Integrated Clock Gating Cell (TLATNCA / Simulation)
+│   └── CLK_GATE.v
+│
+├── DATA_SYNC/                          # Multi-Bit Enable-Handshake Data Synchronizer
+│   └── DATA_SYNC.v
+│
+├── do_files/                           # Multi-simulator automation & compilation scripts
 │   ├── run.do                          # ModelSim / QuestaSim DO script
 │   ├── run_iverilog.sh                 # Open-source Icarus Verilog script (Linux/macOS/CI)
 │   └── run_iverilog.bat                # Open-source Icarus Verilog script (Windows)
 │
-├── tb/                                 # Verification testbench
-│   └── SYSTEM_TOP_tb.v
+├── docs/                               # System specifications and PDF documentation
+│   ├── Final_System.pdf                # Architectural specifications
+│   └── simulation_waveform.pdf         # Simulation printout
 │
 ├── IC/                                 # ASIC Implementation Flow (VM Environment)
 │   └── Projects/
@@ -887,6 +868,47 @@ Final_System/
 │           ├── Synthesis/              # Synopsys DC scripts, constraints, reports, netlists
 │           ├── DFT/                    # Synopsys DFT scan insertion, scan netlists & reports
 │           └── Formality/              # Formal Equivalence Verification (post-syn, post-dft, post-pnr)
+│
+├── Pulse_Gen/                          # Single-Cycle Pulse Generator
+│   └── Pulse_Gen.v
+│
+├── Reg_File/                           # 16x8 Dual-Port Register File
+│   └── regfile.v
+│
+├── RST_SYNC/                           # 2-Stage Reset Synchronizer
+│   └── RST_SYNC.v
+│
+├── Screenshots/                        # Logic simulation waveform captures
+│   ├── modelsim_waveform_1.png
+│   └── modelsim_waveform_2.png
+│
+├── scripts/                            # Host communication software & verification
+│   └── uart_driver.py                  # Python UART host driver & protocol regression suite
+│
+├── SYS_CTRL/                           # Master System Controller FSM
+│   └── SYS_CTRL.v
+│
+├── SYS_TOP/                            # Top-Level SoC Integration
+│   └── SYSTEM_TOP.v
+│
+├── Test_bench/                         # Exhaustive self-checking testbench
+│   └── SYSTEM_TOP_tb.v
+│
+├── UART/                               # Full-Duplex Configurable UART Subsystem
+│   ├── UART.v
+│   ├── UART_TX.v
+│   ├── UART_RX.v
+│   ├── Serializer.v
+│   ├── Parity_Calc.v
+│   ├── MUX.v
+│   ├── FSM_TX.sv
+│   ├── FSM_RX.v
+│   ├── data_sampling.v
+│   ├── strt_checker.v
+│   ├── stop_checker.v
+│   ├── parity_checker.v
+│   ├── edge_bit_counter.v
+│   └── deserializer.v
 │
 ├── .gitignore                          # EDA & simulation cache filter
 └── README.md                           # Master project documentation
@@ -900,9 +922,9 @@ The testbench can be verified using proprietary EDA tools (ModelSim/QuestaSim), 
 
 ### 8.1 ModelSim / QuestaSim (GUI Simulation)
 1. Open **ModelSim / QuestaSim**.
-2. Navigate to the `sim` directory:
+2. Navigate to the `do_files` directory:
    ```tcl
-   cd sim
+   cd do_files
    ```
 3. Run the automated compilation and execution script:
    ```tcl
@@ -913,16 +935,16 @@ The testbench can be verified using proprietary EDA tools (ModelSim/QuestaSim), 
 The testbench can be compiled and executed with 100% open-source tools on Linux, macOS, or Windows:
 * **Linux / macOS**:
   ```bash
-  chmod +x sim/run_iverilog.sh
-  ./sim/run_iverilog.sh
+  chmod +x do_files/run_iverilog.sh
+  ./do_files/run_iverilog.sh
   ```
 * **Windows (Command Prompt / PowerShell)**:
   ```bat
-  sim\run_iverilog.bat
+  do_files\run_iverilog.bat
   ```
 * **View Simulation Waveforms in GTKWave**:
   ```bash
-  gtkwave sim/system_waveform.vcd
+  gtkwave do_files/system_waveform.vcd
   ```
 
 ### 8.3 Host Python UART Driver & Interactive Verification
