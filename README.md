@@ -46,8 +46,6 @@ The system operates across **two distinct asynchronous clock domains** connected
 1. **Reference Clock Domain (`REF_CLK` @ 50 MHz)**: High-speed processing domain hosting the master System Controller FSM, the Register File, the Integrated Clock Gating latch, and the 16-bit ALU.
 2. **UART Clock Domain (`UART_CLK` @ 3.6864 MHz)**: Low-speed serial communication domain hosting the UART transmitter, UART receiver, clock division logic, and FIFO pop-pulse generation.
 
-![System Top-Level Block Diagram](assets/system_top_block_diagram.png)
-
 ```mermaid
 flowchart TB
     subgraph UART_Domain["UART Clock Domain (UART_CLK = 3.6864 MHz)"]
@@ -177,7 +175,48 @@ Frame 1: [ ALU_OUT[15:8] (Most Significant Byte)  ]
 ### 4.1 System Controller (`SYS_CTRL`)
 The **System Controller** is the master finite state machine (FSM) operating in the `REF_CLK` domain. It samples synchronized UART command frames, decodes opcodes, coordinates reads/writes to the Register File, asserts clock gating to the ALU, initiates ALU operations, and writes outgoing responses to the Asynchronous FIFO.
 
-![SYS_CTRL Block Diagram](assets/sys_ctrl_diagram.png)
+```mermaid
+flowchart LR
+    subgraph Inputs["Control & Data Inputs"]
+        sync_bus["sync_bus [7:0]"]
+        enable_pulse["enable_pulse"]
+        Rd_D["Rd_D [7:0] & Rd_D_Vld"]
+        ALU_OUT["ALU_OUT [15:0] & out_valid"]
+        FIFO_FULL["FIFO_FULL"]
+        clk_rst["clk (REF_CLK) & rst"]
+    end
+
+    subgraph SYS_CTRL_CORE["SYS_CTRL Module Core"]
+        DEC["Command & Address Latch<br/>(0xAA, 0xBB, 0xCC, 0xDD)"]
+        FSM["10-State Master Controller FSM"]
+        OUT_GEN["Output Multiplexer &<br/>Handshake Generator"]
+        DEC --> FSM
+        FSM --> OUT_GEN
+    end
+
+    subgraph Outputs["Subsystem Interfaces"]
+        subgraph to_rf["To Register File"]
+            RF_BUS["Addr [3:0]<br/>Wr_D [7:0]<br/>WrEn, RdEn"]
+        end
+        subgraph to_alu["To 16-bit ALU"]
+            ALU_BUS["FUN [3:0]<br/>en (ALU_EN)"]
+        end
+        subgraph to_cg["To Clock Gate"]
+            CG_BUS["Gate_EN (CLK_EN)"]
+        end
+        subgraph to_fifo["To Async FIFO"]
+            FIFO_BUS["WR_DATA [7:0]<br/>WR_INC (Push Pulse)"]
+        end
+        subgraph to_clkdiv["To Clock Dividers"]
+            DIV_BUS["clk_div_en"]
+        end
+    end
+
+    sync_bus & enable_pulse --> DEC
+    Rd_D & ALU_OUT & FIFO_FULL --> FSM
+    clk_rst --> FSM
+    OUT_GEN --> RF_BUS & ALU_BUS & CG_BUS & FIFO_BUS & DIV_BUS
+```
 
 ```mermaid
 stateDiagram-v2
@@ -214,7 +253,54 @@ stateDiagram-v2
 ### 4.2 Register File (`regfile`)
 The **Register File** contains 16 addressable 8-bit registers (REG0 through REG15). Addresses `0x0` to `0x3` are reserved for system hardware configurations and direct operand feeds, while `0x4` to `0xF` are general-purpose storage registers.
 
-![Register File Block Diagram](assets/regfile_block_diagram.png)
+```mermaid
+flowchart LR
+    subgraph Inputs["Register File Inputs"]
+        WrData["WrData [7:0]"]
+        Address["Address [3:0]"]
+        WrEn["WrEn"]
+        RdEn["RdEn"]
+        clk_rst["clk (REF_CLK) & rst"]
+    end
+
+    subgraph RF_Array["16 x 8-bit Register Storage Array"]
+        direction TB
+        REG0["REG0 (0x0): ALU Operand A [7:0]"]
+        REG1["REG1 (0x1): ALU Operand B [7:0]"]
+        REG2["REG2 (0x2): Prescale [7:2] | Parity [1:0]"]
+        REG3["REG3 (0x3): TX Clock Div Ratio [7:0]"]
+        REG_GP["REG4 - REG15: General Purpose Registers [7:0]"]
+    end
+
+    subgraph Write_Logic["Write Decode Logic"]
+        W_DEC["Address Decoder &<br/>Register Write Enable"]
+    end
+
+    subgraph Read_Logic["Read Decode & Output MUX"]
+        R_MUX["16-to-1 Multiplexer &<br/>Valid Flag Register"]
+    end
+
+    subgraph Outputs["External & Dedicated Ports"]
+        REG0_OUT["REG0 [7:0] --> ALU (Operand A)"]
+        REG1_OUT["REG1 [7:0] --> ALU (Operand B)"]
+        REG2_OUT["REG2 [7:0] --> UART & RX Div"]
+        REG3_OUT["REG3 [7:0] --> TX Div Ratio"]
+        RdData["RdData [7:0] --> SYS_CTRL"]
+        Rd_Data_Valid["Rd_Data_Valid --> SYS_CTRL"]
+    end
+
+    WrData & Address & WrEn --> W_DEC
+    W_DEC --> REG0 & REG1 & REG2 & REG3 & REG_GP
+    REG0 & REG1 & REG2 & REG3 & REG_GP --> R_MUX
+    Address & RdEn --> R_MUX
+    clk_rst --> RF_Array & R_MUX
+
+    REG0 --> REG0_OUT
+    REG1 --> REG1_OUT
+    REG2 --> REG2_OUT
+    REG3 --> REG3_OUT
+    R_MUX --> RdData & Rd_Data_Valid
+```
 
 #### Memory Map & Reserved Registers:
 | Address | Name | Default Value | Description |
@@ -230,7 +316,44 @@ The **Register File** contains 16 addressable 8-bit registers (REG0 through REG1
 ### 4.3 Arithmetic Logic Unit (`ALU`)
 The **ALU** is a 16-bit parameterized computation engine operating on 8-bit operands (`A` and `B`). It executes arithmetic, logical, comparison, and shifting operations based on the 4-bit `ALU_FUN` signal.
 
-![ALU Block Diagram](assets/alu_block_diagram.png)
+```mermaid
+flowchart LR
+    subgraph Inputs["ALU Inputs"]
+        A["Operand A [7:0] (from REG0)"]
+        B["Operand B [7:0] (from REG1)"]
+        ALU_FUN["ALU_FUN [3:0] (from SYS_CTRL)"]
+        en["en (ALU_EN from SYS_CTRL)"]
+        clk_rst["clk (GATED_CLK) & rst"]
+    end
+
+    subgraph Computation_Blocks["Parallel Computation Units"]
+        direction TB
+        ARITH["Arithmetic Unit<br/>ADD (+) | SUB (-) | MUL (*) | DIV (/)"]
+        LOGIC["Logic Unit<br/>AND (&) | OR (|) | NAND | NOR | XOR (^) | XNOR"]
+        CMP["Comparator Unit<br/>Equal (A == B) | Greater (A > B)"]
+        SHIFT["Barrel Shifter<br/>Shift Right (>> 1) | Shift Left (<< 1)"]
+    end
+
+    subgraph Output_Stage["Output Multiplexer & Registers"]
+        MUX["16-to-1 Operation MUX<br/>(Selected by ALU_FUN)"]
+        OUT_REG["16-bit ALU_OUT Register"]
+        VAL_REG["out_valid Flag Register"]
+    end
+
+    subgraph Outputs["ALU Outputs"]
+        ALU_OUT["ALU_OUT [15:0] --> SYS_CTRL"]
+        out_valid["out_valid --> SYS_CTRL"]
+    end
+
+    A & B --> ARITH & LOGIC & CMP & SHIFT
+    ARITH & LOGIC & CMP & SHIFT --> MUX
+    ALU_FUN --> MUX
+    en --> VAL_REG
+    MUX --> OUT_REG
+    clk_rst --> OUT_REG & VAL_REG
+    OUT_REG --> ALU_OUT
+    VAL_REG --> out_valid
+```
 
 #### Supported ALU Operations:
 | `ALU_FUN` | Operation | Output Formula / Logic | Description |
@@ -255,7 +378,30 @@ The **ALU** is a 16-bit parameterized computation engine operating on 8-bit oper
 ### 4.4 Integrated Clock Gating (`CLK_GATE`)
 To reduce dynamic power consumption during idle periods, the ALU clock is gated using an **Integrated Clock Gating (ICG)** cell. The clock is active only when `SYS_CTRL` asserts `CLK_EN` during active ALU computations.
 
-![Clock Gating Diagram](assets/clk_gate_diagram.png)
+```mermaid
+flowchart LR
+    subgraph Inputs["Clock Gate Inputs"]
+        clk["clk (REF_CLK = 50 MHz)"]
+        clk_en["clk_en (Gate_EN from SYS_CTRL)"]
+    end
+
+    subgraph ICG_Cell["Integrated Clock Gating Cell (TLATNCAX2M)"]
+        direction LR
+        INV["Clock Inverter<br/>(Active-Low Control)"]
+        LATCH["Negative-Level-Sensitive Latch<br/>Transparent when clk = 0<br/>Latched when clk = 1"]
+        AND_GATE["2-Input AND Gate"]
+    end
+
+    subgraph Outputs["Gated Output"]
+        gated_clk["gated_clk --> ALU Sequential Logic"]
+    end
+
+    clk --> INV --> LATCH
+    clk_en --> LATCH
+    LATCH -- "glitch_free_en" --> AND_GATE
+    clk --> AND_GATE
+    AND_GATE --> gated_clk
+```
 
 * **Architecture**: Negative-level-sensitive latch driving an AND gate, completely preventing clock glitches and runt pulses.
 * **ASIC Implementation**: Maps to TSMC 130nm library cell `TLATNCAX2M`.
@@ -265,7 +411,42 @@ To reduce dynamic power consumption during idle periods, the ALU clock is gated 
 ### 4.5 UART Transmitter (`UART_TX`)
 The **UART Transmitter** handles parallel-to-serial conversion of bytes popped from the Asynchronous FIFO.
 
-![UART TX Block Diagram](assets/uart_tx_diagram.png)
+```mermaid
+flowchart LR
+    subgraph Inputs["UART_TX Inputs"]
+        Data_Valid["Data_Valid (from ASYNC_FIFO)"]
+        P_DATA["P_DATA [7:0] (from ASYNC_FIFO)"]
+        PAR_EN["PAR_EN (from REG2[0])"]
+        PAR_TYP["PAR_TYP (from REG2[1])"]
+        clk_rst["clk (TX_CLK) & rst"]
+    end
+
+    subgraph Internal_Blocks["UART_TX Architecture"]
+        FSM["FSM_TX<br/>(IDLE, START, DATA, PARITY, STOP)"]
+        SER["Serializer<br/>(P_DATA to 1-bit ser_data)"]
+        PAR["Parity_Calc<br/>(Even / Odd Parity Bit)"]
+        MUX["Output MUX 4:1<br/>[0: Start, 1: Stop, 2: ser_data, 3: par_bit]"]
+    end
+
+    subgraph Outputs["UART_TX Outputs"]
+        TX_OUT["TX_OUT (Serial Output Pin)"]
+        busy["busy --> Pulse_Gen (FIFO Read Trigger)"]
+    end
+
+    Data_Valid --> FSM & PAR
+    P_DATA --> SER & PAR
+    PAR_EN --> FSM
+    PAR_TYP --> PAR
+    clk_rst --> FSM & SER & PAR
+
+    FSM -- "ser_en" --> SER
+    SER -- "ser_done" --> FSM
+    SER -- "ser_data" --> MUX
+    PAR -- "par_bit" --> MUX
+    FSM -- "mux_sel [1:0]" --> MUX
+    FSM --> busy
+    MUX --> TX_OUT
+```
 
 ```mermaid
 stateDiagram-v2
@@ -291,7 +472,58 @@ stateDiagram-v2
 ### 4.6 UART Receiver (`UART_RX`)
 The **UART Receiver** captures incoming serial stream `RX_IN`, filters noise, checks frame integrity, and converts valid bytes into parallel data.
 
-![UART RX Block Diagram](assets/uart_rx_diagram.png)
+```mermaid
+flowchart LR
+    subgraph Inputs["UART_RX Inputs"]
+        RX_IN["RX_IN (Serial Input Pin)"]
+        prescale["prescale [5:0] (from REG2[7:2])"]
+        PAR_EN["PAR_EN (from REG2[0])"]
+        PAR_TYP["PAR_TYP (from REG2[1])"]
+        clk_rst["clk (RX_CLK) & rst"]
+    end
+
+    subgraph Core_Blocks["UART_RX Architecture"]
+        CNT["edge_bit_counter<br/>(Tracks edge_cnt & bit_cnt)"]
+        SAMP["data_sampling<br/>(3-Sample Majority Voter)"]
+        STRT["strt_checker<br/>(Start Glitch Detector)"]
+        DESER["deserializer<br/>(SIPO Shift Register)"]
+        PAR_CHK["parity_checker<br/>(Dynamic Parity Validator)"]
+        STP_CHK["stop_checker<br/>(Framing Stop Bit Validator)"]
+        FSM["FSM_RX<br/>(11-State Master RX Engine)"]
+    end
+
+    subgraph Outputs["UART_RX Outputs"]
+        P_DATA["P_DATA [7:0] --> DATA_SYNC"]
+        data_valid["data_valid --> DATA_SYNC (bus_enable)"]
+        par_err["par_err (Parity Error Flag)"]
+        stp_err["stp_err (Framing Error Flag)"]
+    end
+
+    RX_IN --> SAMP & FSM
+    prescale --> CNT & SAMP & PAR_CHK & STP_CHK & FSM
+    clk_rst --> CNT & SAMP & STRT & DESER & PAR_CHK & STP_CHK & FSM
+
+    FSM -- "enable" --> CNT
+    CNT -- "edge_cnt" --> SAMP & PAR_CHK & STP_CHK & FSM
+    FSM -- "dat_samp_en" --> SAMP
+    SAMP -- "majority_bit" --> STRT & DESER & PAR_CHK & STP_CHK
+
+    FSM -- "strt_chk_en" --> STRT
+    STRT -- "strt_glitch" --> FSM
+
+    FSM -- "deser_en" --> DESER
+    DESER --> P_DATA
+
+    FSM -- "par_chk_en" --> PAR_CHK
+    PAR_EN & PAR_TYP --> PAR_CHK
+    P_DATA --> PAR_CHK
+    PAR_CHK --> par_err
+
+    FSM -- "stp_chk_en" --> STP_CHK
+    STP_CHK --> stp_err
+
+    FSM --> data_valid
+```
 
 ```mermaid
 stateDiagram-v2
@@ -319,7 +551,44 @@ stateDiagram-v2
 ### 4.7 Asynchronous FIFO (`ASYNC_FIFO`)
 The **Asynchronous FIFO** provides rate matching and safe cross-clock domain data transfer between the high-speed `REF_CLK` domain (writing ALU/RegFile results) and the low-speed `UART_CLK` domain (reading for serial transmission).
 
-![Asynchronous FIFO Diagram](assets/async_fifo_diagram.png)
+```mermaid
+flowchart TB
+    subgraph Write_Domain["Write Clock Domain (REF_CLK = 50 MHz)"]
+        wdata["wdata [7:0] (from SYS_CTRL)"]
+        winc["winc (WR_INC from SYS_CTRL)"]
+        wclk["wclk (REF_CLK) & wrst_n"]
+        FIFO_WR["FIFO_WR<br/>• Binary/Gray Write Pointer<br/>• Full Flag Generation"]
+        SYNC_R2W["DF_SYNC (U4)<br/>2-Flop Synchronizer<br/>(rptr_gray -> wq2_rptr)"]
+        wfull["wfull (FIFO_FULL) --> SYS_CTRL"]
+    end
+
+    subgraph Dual_Port_RAM["Dual-Port SRAM (FIFO_MEM_CNTRL 8x8)"]
+        MEM_CORE["8-Entry x 8-bit Dual-Port Register Array<br/>wclken = winc & !wfull"]
+    end
+
+    subgraph Read_Domain["Read Clock Domain (TX_CLK = 115.2 kHz)"]
+        rinc["rinc (from Pulse_Gen)"]
+        rclk["rclk (TX_CLK) & rrst_n"]
+        FIFO_RD["FIFO_RD<br/>• Binary/Gray Read Pointer<br/>• Empty Flag Generation"]
+        SYNC_W2R["DF_SYNC (U3)<br/>2-Flop Synchronizer<br/>(wptr_gray -> rq2_wptr)"]
+        rempty["rempty (FIFO Empty Flag)"]
+        rdata["rdata [7:0] (P_DATA) --> UART_TX"]
+    end
+
+    winc & wclk & wrst_n --> FIFO_WR
+    FIFO_WR --> wfull
+    FIFO_WR -- "waddr [2:0]" --> MEM_CORE
+    wdata & wclk --> MEM_CORE
+    FIFO_WR -- "wptr_gray [3:0]" --> SYNC_W2R
+    SYNC_W2R -- "rq2_wptr" --> FIFO_RD
+
+    rinc & rclk & rrst_n --> FIFO_RD
+    FIFO_RD --> rempty
+    FIFO_RD -- "raddr [2:0]" --> MEM_CORE
+    MEM_CORE --> rdata
+    FIFO_RD -- "rptr_gray [3:0]" --> SYNC_R2W
+    SYNC_R2W -- "wq2_rptr" --> FIFO_WR
+```
 
 * **Buffer Depth & Width**: 8 words deep, 8 bits wide (dual-port memory).
 * **Pointer Synchronization**: Read and Write pointers are converted to **Gray code** before crossing clock domains via 2-stage synchronizers (`DF_SYNC`), eliminating multi-bit metastability risks.
@@ -330,7 +599,44 @@ The **Asynchronous FIFO** provides rate matching and safe cross-clock domain dat
 ### 4.8 Multi-Bit Data Synchronizer (`DATA_SYNC`)
 Transfers parallel 8-bit data from `UART_RX` (`UART_CLK` domain) into `SYS_CTRL` (`REF_CLK` domain) without bus skew or metastability issues.
 
-![Data Synchronizer Diagram](assets/data_sync_diagram.png)
+```mermaid
+flowchart LR
+    subgraph Inputs["Source Domain Inputs (UART_CLK Domain)"]
+        unsync_bus["unsync_bus [7:0] (from UART_RX)"]
+        bus_enable["bus_enable (data_valid from UART_RX)"]
+    end
+
+    subgraph Sync_Logic["Destination Domain Synchronization (REF_CLK Domain)"]
+        subgraph Flop_Stages["2-Stage Multi-Flop Synchronizer"]
+            FF1["Synchronizer Flop 1"] --> FF2["Synchronizer Flop 2"]
+        end
+        subgraph Pulse_Unit["Edge Detector & Pulse Generator"]
+            FF3["Enable Flop (Delay)"]
+            AND_GATE["Pulse AND Gate<br/>(multi_flops[1] & !enable_flop)"]
+            FF2 --> FF3
+            FF2 & FF3 --> AND_GATE
+        end
+        subgraph Holding_Reg["Data Holding Register & Multiplexer"]
+            MUX["Bus Multiplexer<br/>pulse ? unsync_bus : sync_bus"]
+            OUT_REG["sync_bus Output Register"]
+            PULSE_REG["enable_pulse Output Register"]
+            MUX --> OUT_REG
+            AND_GATE --> PULSE_REG
+            AND_GATE --> MUX
+        end
+    end
+
+    subgraph Outputs["Synchronized Outputs (REF_CLK Domain)"]
+        sync_bus["sync_bus [7:0] --> SYS_CTRL"]
+        enable_pulse["enable_pulse --> SYS_CTRL"]
+    end
+
+    bus_enable --> FF1
+    unsync_bus --> MUX
+    OUT_REG --> sync_bus
+    OUT_REG -- "feedback" --> MUX
+    PULSE_REG --> enable_pulse
+```
 
 * **Mechanism**: Uses pulse handshake coordination. When `bus_enable` is asserted in the transmitter domain, a synchronized enable pulse is generated in the destination domain after the multi-bit bus has stabilized.
 
@@ -339,7 +645,31 @@ Transfers parallel 8-bit data from `UART_RX` (`UART_CLK` domain) into `SYS_CTRL`
 ### 4.9 Reset Synchronizer (`RST_SYNC`)
 Ensures clean system reset assertion and deassertion across both independent clock domains.
 
-![Reset Synchronizer Diagram](assets/rst_sync_diagram.png)
+```mermaid
+flowchart LR
+    subgraph Inputs["Reset Inputs"]
+        rst["rst (Asynchronous Active-Low Reset)"]
+        clk["clk (Domain Reference Clock)"]
+        VCC["Logic 1'b1 (VCC)"]
+    end
+
+    subgraph Sync_Chain["3-Stage Synchronizer Flop Chain"]
+        direction LR
+        FF0["Flip-Flop 0<br/>Async Clear = !rst"]
+        FF1["Flip-Flop 1<br/>Async Clear = !rst"]
+        FF2["Flip-Flop 2<br/>Async Clear = !rst"]
+        FF0 --> FF1 --> FF2
+    end
+
+    subgraph Outputs["Synchronized Reset"]
+        sync_rst["sync_rst<br/>(Asynchronous Assert, Synchronous Deassert)"]
+    end
+
+    VCC --> FF0
+    clk --> FF0 & FF1 & FF2
+    rst -- "Direct Async Clear" --> FF0 & FF1 & FF2
+    FF2 --> sync_rst
+```
 
 * **Operation**: **Asynchronous Assertion, Synchronous Deassertion**. Reset asserts instantly to protect hardware, but deasserts synchronously with clock edges to prevent reset recovery/removal timing violations.
 * Two dedicated instances: `U0_RST_SYNC` for `REF_CLK` and `U1_RST_SYNC` for `UART_CLK`.
@@ -351,14 +681,74 @@ Generates the baud clocks from `UART_CLK` (3.6864 MHz):
 * **`U0_TX_CLK_DIV`**: Divides `UART_CLK` by `REG3` (division ratio) to produce `TX_CLK`.
 * **`U1_RX_CLK_DIV`**: Divides `UART_CLK` by `rx_div_ratio` (produced by `prescale_mux` from `REG2[7:2]`) to generate the oversampled `RX_CLK`.
 
-![Clock Divider Diagram](assets/clk_div_diagram.png)
+```mermaid
+flowchart LR
+    subgraph Inputs["Clock & Configuration Inputs"]
+        UART_CLK["UART_CLK (3.6864 MHz)"]
+        REG2["REG2[7:2] (UART Prescale)"]
+        REG3["REG3[7:0] (TX Div Ratio = 32)"]
+        clk_div_en["clk_div_en (from SYS_CTRL)"]
+    end
+
+    subgraph Prescaler["Prescaler Logic"]
+        MUX["prescale_mux<br/>32 -> div 1<br/>16 -> div 2<br/>8  -> div 4"]
+    end
+
+    subgraph Dividers["Clock Divider Units"]
+        RX_DIV["U1_RX_CLK_DIV (CLK_DIV)<br/>Odd / Even Integer Divider"]
+        TX_DIV["U0_TX_CLK_DIV (CLK_DIV)<br/>Divide-by-32 Clock Divider"]
+    end
+
+    subgraph Outputs["Generated Clocks"]
+        RX_CLK["RX_CLK (Oversampling Clock) --> UART_RX"]
+        TX_CLK["TX_CLK (115,200 Hz Baud Clock) --> UART_TX"]
+    end
+
+    REG2 --> MUX
+    MUX -- "div_ratio [2:0]" --> RX_DIV
+    UART_CLK --> RX_DIV & TX_DIV
+    clk_div_en --> RX_DIV & TX_DIV
+    REG3 --> TX_DIV
+
+    RX_DIV --> RX_CLK
+    TX_DIV --> TX_CLK
+```
 
 ---
 
 ### 4.11 Pulse Generator (`Pulse_Gen`)
 Detects the falling edge of the `UART_TX` busy signal and converts it into a single `TX_CLK`-cycle pulse. This pulse drives `R_INC` on the Asynchronous FIFO, popping the next byte for continuous multi-byte transmissions.
 
-![Pulse Generator Diagram](assets/pulse_gen_diagram.png)
+```mermaid
+flowchart LR
+    subgraph Inputs["Pulse_Gen Inputs"]
+        async["async (UART_TX Busy Signal)"]
+        clk["clk (TX_CLK)"]
+        rst["rst (Active-Low Reset)"]
+    end
+
+    subgraph Sync_and_Detect["Synchronization & Edge Detection"]
+        direction LR
+        subgraph Sync_Stages["2-Stage Synchronizer"]
+            FF1["sync_reg[0]"] --> FF2["sync_reg[1]"]
+        end
+        D_FF["Delay Register (sync_d)"]
+        INV["Inverter (~sync_d)"]
+        AND_GATE["Pulse AND Gate<br/>(sync_reg[1] & !sync_d)"]
+        OUT_FF["sync Output Register"]
+
+        FF2 --> D_FF --> INV
+        FF2 & INV --> AND_GATE --> OUT_FF
+    end
+
+    subgraph Outputs["Pulse Output"]
+        sync["sync (Single-Cycle Pulse) --> ASYNC_FIFO (R_INC)"]
+    end
+
+    async --> FF1
+    clk & rst --> FF1 & FF2 & D_FF & OUT_FF
+    OUT_FF --> sync
+```
 
 ---
 
@@ -433,19 +823,7 @@ SYSTEM_TOP                27225.31                 100.0%
 ```
 Final_System/
 │
-├── assets/                             # High-resolution diagrams & waveform captures
-│   ├── system_top_block_diagram.png
-│   ├── regfile_block_diagram.png
-│   ├── alu_block_diagram.png
-│   ├── clk_gate_diagram.png
-│   ├── sys_ctrl_diagram.png
-│   ├── clk_div_diagram.png
-│   ├── uart_tx_diagram.png
-│   ├── uart_rx_diagram.png
-│   ├── async_fifo_diagram.png
-│   ├── data_sync_diagram.png
-│   ├── rst_sync_diagram.png
-│   ├── pulse_gen_diagram.png
+├── assets/                             # Logic simulation waveform captures
 │   ├── modelsim_waveform_1.png
 │   └── modelsim_waveform_2.png
 │
