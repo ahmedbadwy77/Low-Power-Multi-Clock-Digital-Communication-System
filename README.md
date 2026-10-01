@@ -1,6 +1,6 @@
 # Low-Power Multi-Clock Digital Communication System & ASIC Implementation Flow
 
-[![CI](https://github.com/ahmedbadwy77/Low-Power-Multi-Clock-Digital-Communication-System/actions/workflows/ci.yml/badge.svg)](https://github.com/ahmedbadwy77/Low-Power-Multi-Clock-Digital-Communication-System/actions)
+[![CI](https://github.com/ahmedbadwy77/Low-Power-Multi-Clock-Digital-Communication-System/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ahmedbadwy77/Low-Power-Multi-Clock-Digital-Communication-System/actions/workflows/ci.yml)
 [![HDL](https://img.shields.io/badge/HDL-Verilog%20%7C%20SystemVerilog-blue.svg)](rtl/)
 [![PDK](https://img.shields.io/badge/PDK-TSMC%20130nm-orange.svg)](IC/Projects/System/std_cells/)
 [![Synthesis](https://img.shields.io/badge/Synthesis-Synopsys%20Design%20Compiler-red.svg)](IC/Projects/System/Synthesis/)
