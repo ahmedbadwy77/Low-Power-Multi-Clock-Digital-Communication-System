@@ -27,8 +27,9 @@ jobs:
 
       - name: Run Self-Checking Simulation
         run: |
+          sed -i 's/\r$//' sim/run_iverilog.sh
           chmod +x sim/run_iverilog.sh
-          ./sim/run_iverilog.sh
+          bash sim/run_iverilog.sh
 
       - name: Upload VCD Simulation Waveform
         uses: actions/upload-artifact@v4

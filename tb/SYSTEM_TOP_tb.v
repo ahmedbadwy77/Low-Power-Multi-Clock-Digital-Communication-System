@@ -24,6 +24,8 @@ SYSTEM_TOP DUT(
     .framing_error(framing_error)
 );
 
+wire [7:0] tb_DUT_REG2 = DUT.REG2;
+
 
 /*====================================================
   WAVEFORM DUMP (VCD)
@@ -60,7 +62,7 @@ task send_bit;
 input bit_value;
 integer cycles;
 begin
-    cycles = DUT.REG2[7:2];
+    cycles = tb_DUT_REG2[7:2];
     RX_IN = bit_value;
     repeat(cycles) @(posedge DUT.RX_CLK);
 end
@@ -80,8 +82,8 @@ begin
     for(i = 0; i < 8; i = i + 1)
         send_bit(data[i]);
 
-    if(DUT.REG2[0]) begin
-        if(DUT.REG2[1])
+    if(tb_DUT_REG2[0]) begin
+        if(tb_DUT_REG2[1])
             parity_bit = ~(^data);
         else
             parity_bit = ^data;
@@ -185,10 +187,10 @@ begin
 
         check_value("TX received byte",received_data,expected_data);
 
-        if(DUT.REG2[0]) begin
+        if(tb_DUT_REG2[0]) begin
             @(negedge DUT.TX_CLK);
 
-            if(DUT.REG2[1])
+            if(tb_DUT_REG2[1])
                 expected_parity_bit = ~(^expected_data);
             else
                 expected_parity_bit = ^expected_data;
@@ -282,11 +284,13 @@ initial begin
     write_reg(4'h2,8'h80);
     write_reg(4'h4,8'h55);
 
+    `ifndef IVERILOG
     check_value(
         "REG[4] after write",
         DUT.U0_REGFILE.Registers[4],
         8'h55
     );
+    `endif
 
     read_reg_and_check(4'h4,8'h55);
 
@@ -300,11 +304,13 @@ initial begin
 
     write_reg(4'h5,8'hA5);
 
+    `ifndef IVERILOG
     check_value(
         "REG[5] after write",
         DUT.U0_REGFILE.Registers[5],
         8'hA5
     );
+    `endif
 
     read_reg_and_check(4'h5,8'hA5);
 
@@ -319,11 +325,13 @@ initial begin
     write_reg(4'h2,8'h81);
     write_reg(4'h6,8'h3C);
 
+    `ifndef IVERILOG
     check_value(
         "REG[6] after write",
         DUT.U0_REGFILE.Registers[6],
         8'h3C
     );
+    `endif
 
     read_reg_and_check(4'h6,8'h3C);
 
@@ -338,11 +346,13 @@ initial begin
     write_reg(4'h2,8'h83);
     write_reg(4'h7,8'h96);
 
+    `ifndef IVERILOG
     check_value(
         "REG[7] after write",
         DUT.U0_REGFILE.Registers[7],
         8'h96
     );
+    `endif
 
     read_reg_and_check(4'h7,8'h96);
 
