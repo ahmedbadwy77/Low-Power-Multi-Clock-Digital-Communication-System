@@ -6,11 +6,26 @@
 [![Synthesis](https://img.shields.io/badge/Synthesis-Synopsys%20Design%20Compiler-red.svg)](IC/Projects/System/Synthesis/)
 [![DFT Coverage](https://img.shields.io/badge/DFT%20Coverage-99.66%25-brightgreen.svg)](IC/Projects/System/DFT/)
 [![Formality](https://img.shields.io/badge/Equivalence-100%25%20Verified-success.svg)](IC/Projects/System/Formality/)
+[![PnR Sign-off](https://img.shields.io/badge/PnR%20Sign--off-Cadence%20Encounter-blueviolet.svg)](IC/Projects/System/System_pnr/)
+[![Report](https://img.shields.io/badge/Report-Final%20PDF-blue.svg)](docs/Final_Report.pdf)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-An industrial-grade, multi-clock domain System-on-Chip (SoC) communication subsystem designed in synthesizable **Verilog / SystemVerilog** and verified through a complete **ASIC backend flow** using Synopsys and SpyGlass EDA tools under the **TSMC 130nm CMOS** technology library.
+An industrial-grade, multi-clock domain System-on-Chip (SoC) communication subsystem designed in synthesizable **Verilog / SystemVerilog** and taken through a complete **RTL-to-GDSII ASIC implementation flow** — synthesis → DFT insertion → formal equivalence → place & route → sign-off → GDSII — using Synopsys, Cadence, and SpyGlass EDA tools under the **TSMC 130nm CMOS** technology library.
 
-The system features full-duplex configurable **UART communication**, **dual-clock asynchronous synchronization**, a 16-word dual-clock **Asynchronous FIFO**, dynamic **clock dividers**, an **Integrated Clock Gating (ICG)** cell for ultra-low dynamic power, a 16-register **Register File**, and a high-performance 16-bit **Arithmetic Logic Unit (ALU)**.
+The system features full-duplex configurable **UART communication**, **dual-clock asynchronous synchronization**, an 8-word (8×8) dual-clock **Asynchronous FIFO**, dynamic **clock dividers**, an **Integrated Clock Gating (ICG)** cell for low dynamic power, a 16-register **Register File**, and a high-performance 16-bit **Arithmetic Logic Unit (ALU)**.
+
+> 📄 **Complete Final Report:** [**Final_Report.pdf**](docs/Final_Report.pdf) — the full 42-page RTL-to-GDSII documentation (LaTeX source and figures included in [`docs/`](docs/)).
+
+## Key Results at a Glance
+
+| Stage | Headline Result |
+| :--- | :--- |
+| **Synthesis (Design Compiler)** | 2,275 cells · 27,225.31 µm² · WNS **0.00 ns** setup / **+0.43 ns** hold @ 100 MHz |
+| **DFT (4 scan chains)** | 380 scan cells (4 × 95) · **99.66%** test coverage (17,638 faults) |
+| **Formal (Formality)** | **379 / 361 / 361** compare points — post-synthesis / post-DFT / post-PnR — all SUCCEEDED |
+| **Place & Route (Encounter)** | Die **240.47 × 220.47 µm** · 56.8% density · **0 DRC / antenna / connectivity violations** |
+| **Post-route STA** | Setup **+4.409 ns** / hold **+0.015 ns** · 0 violating paths |
+| **Sign-off** | Signed-off **GDSII** (`SYS_TOP.gds`) + SDF v3.0 + SPF exports |
 
 ---
 
@@ -36,15 +51,17 @@ The system features full-duplex configurable **UART communication**, **dual-cloc
   - [6.2 Design for Testability (DFT Compiler)](#62-design-for-testability-dft-compiler)
   - [6.3 Formal Verification (Synopsys Formality)](#63-formal-verification-synopsys-formality)
   - [6.4 Lint & CDC Sign-off (SpyGlass)](#64-lint--cdc-sign-off-spyglass)
+  - [6.5 Place & Route Sign-off (Cadence Encounter)](#65-place--route-sign-off-cadence-encounter)
 - [7. Directory Structure](#7-directory-structure)
 - [8. How to Run Simulation & Verification](#8-how-to-run-simulation--verification)
+- [9. Final Report & Documentation](#9-final-report--documentation)
 
 ---
 
 ## 1. System Architecture Overview
 
 The system operates across **two distinct asynchronous clock domains** connected through robust Clock Domain Crossing (CDC) synchronization structures:
-1. **Reference Clock Domain (`REF_CLK` @ 50 MHz)**: High-speed processing domain hosting the master System Controller FSM, the Register File, the Integrated Clock Gating latch, and the 16-bit ALU.
+1. **Reference Clock Domain (`REF_CLK` @ 100 MHz)**: High-speed processing domain hosting the master System Controller FSM, the Register File, the Integrated Clock Gating latch, and the 16-bit ALU.
 2. **UART Clock Domain (`UART_CLK` @ 3.6864 MHz)**: Low-speed serial communication domain hosting the UART transmitter, UART receiver, clock division logic, and FIFO pop-pulse generation.
 
 ```mermaid
@@ -60,11 +77,11 @@ flowchart TB
 
     subgraph CDC_Interface["Clock Domain Crossing (CDC)"]
         UART_RX -- "8-bit RX Data + Vld" --> DATA_SYNC[Multi-bit Data Synchronizer]
-        ASYNC_FIFO[Dual-Clock Asynchronous FIFO 8x16] -- "Read Data" --> UART_TX
+        ASYNC_FIFO[Dual-Clock Asynchronous FIFO 8x8] -- "Read Data" --> UART_TX
         PULSE_GEN -- "R_INC Pulse" --> ASYNC_FIFO
     end
 
-    subgraph REF_Domain["Reference Clock Domain (REF_CLK = 50 MHz)"]
+    subgraph REF_Domain["Reference Clock Domain (REF_CLK = 100 MHz)"]
         REF_RST_SYNC[Reset Synchronizer 1] --> SYS_CTRL & REGFILE & ALU
         DATA_SYNC -- "Sync Bus + Pulse" --> SYS_CTRL[System Controller FSM]
         SYS_CTRL -- "Addr, WrData, WrEn, RdEn" --> REGFILE[Register File 16x8]
@@ -86,7 +103,7 @@ flowchart TB
 
 | Port Name | Direction | Width | Clock Domain | Description |
 | :--- | :---: | :---: | :---: | :--- |
-| `REF_CLK` | Input | 1-bit | REF_CLK | Reference high-speed system clock (50 MHz) |
+| `REF_CLK` | Input | 1-bit | REF_CLK | Reference high-speed system clock (100 MHz) |
 | `UART_CLK` | Input | 1-bit | UART_CLK | Asynchronous UART baud generation clock (3.6864 MHz) |
 | `RST` | Input | 1-bit | Asynchronous | Master active-low asynchronous reset |
 | `RX_IN` | Input | 1-bit | UART_CLK | Serial UART input stream |
@@ -144,7 +161,7 @@ Frame 0: [ Read Data (8-bit) ]
 ```
 
 #### Command 3: ALU Operation with Operands (`0xCC`) — 4 Frames
-Updates operands in `REG0` and `REG1`, triggers the ALU, and transmits the 16-bit result back in 2 frames.
+Updates operands in `REG0` and `REG1`, triggers the ALU, and transmits the 16-bit result back in 2 frames (MSB byte first).
 ```
 Command:
 Frame 0: [ 0xCC ] (ALU with Operands Command ID)
@@ -153,8 +170,8 @@ Frame 2: [ Operand B (written to REG1) ]
 Frame 3: [ ALU Function Code (ALU_FUN [3:0]) ]
 
 System Response:
-Frame 0: [ ALU_OUT[7:0]  (Least Significant Byte) ]
-Frame 1: [ ALU_OUT[15:8] (Most Significant Byte)  ]
+Frame 0: [ ALU_OUT[15:8] (Most Significant Byte) ]
+Frame 1: [ ALU_OUT[7:0]  (Least Significant Byte)  ]
 ```
 
 #### Command 4: ALU Operation with No Operands (`0xDD`) — 2 Frames
@@ -165,8 +182,8 @@ Frame 0: [ 0xDD ] (ALU without Operands Command ID)
 Frame 1: [ ALU Function Code (ALU_FUN [3:0]) ]
 
 System Response:
-Frame 0: [ ALU_OUT[7:0]  (Least Significant Byte) ]
-Frame 1: [ ALU_OUT[15:8] (Most Significant Byte)  ]
+Frame 0: [ ALU_OUT[15:8] (Most Significant Byte) ]
+Frame 1: [ ALU_OUT[7:0]  (Least Significant Byte)  ]
 ```
 
 ---
@@ -241,12 +258,12 @@ stateDiagram-v2
     ALU_OP_A --> ALU_OP_B: RX_D_VLD == 1 (Store Op A)
     ALU_OP_B --> ALU_FUN_OP: RX_D_VLD == 1 (Store Op B)
     ALU_FUN_OP --> ALU_WAIT: Assert ALU_EN & CLK_EN
-    ALU_WAIT --> FIFO_WR_P1: OUT_VALID == 1 (Push LSB)
-    FIFO_WR_P1 --> FIFO_WR_P2: Push MSB
+    ALU_WAIT --> FIFO_WR_P1: OUT_VALID == 1 (Push MSB [15:8])
+    FIFO_WR_P1 --> FIFO_WR_P2: Push LSB [7:0]
     FIFO_WR_P2 --> IDLE: Computation Complete
 ```
 
-* **Key FSM States**: `IDLE`, `RF_ADDR`, `RF_WR_DATA`, `RF_RD_DATA`, `ALU_OP_A`, `ALU_OP_B`, `ALU_FUN_OP`, `ALU_WAIT`, `FIFO_WR_P1`, `FIFO_WR_P2`.
+* **Key FSM States**: `IDLE`, `ADDRESS`, `DATA_WRITE`, `DATA_READ`, `SEND_TO_FIFO`, `WRITE_A`, `WRITE_B`, `ALU_STATE`, `SEND_MSB`, `SEND_LSB` (the diagram above is a simplified representation of the command flow).
 * **Handshake Coordination**: Automatically manages `WrEn`, `RdEn`, `CLK_EN`, `ALU_EN`, and `WR_INC` to ensure collision-free internal transfers.
 
 ---
@@ -331,7 +348,7 @@ flowchart LR
         direction TB
         ARITH["Arithmetic Unit<br/>ADD (+) | SUB (-) | MUL (*) | DIV (/)"]
         LOGIC["Logic Unit<br/>AND (&) | OR (|) | NAND | NOR | XOR (^) | XNOR"]
-        CMP["Comparator Unit<br/>Equal (A == B) | Greater (A > B)"]
+        CMP["Comparator Unit<br/>Equal (A == B) | Greater (A > B) | Less (A < B)"]
         SHIFT["Barrel Shifter<br/>Shift Right (>> 1) | Shift Left (<< 1)"]
     end
 
@@ -362,7 +379,7 @@ flowchart LR
 | `4'b0000` | **Addition** | `A + B` | 16-bit sum of operands |
 | `4'b0001` | **Subtraction** | `A - B` | 16-bit difference of operands |
 | `4'b0010` | **Multiplication**| `A * B` | 16-bit product of operands |
-| `4'b0011` | **Division** | `A / B` | 16-bit quotient of operands |
+| `4'b0011` | **Division** | `A / B` | 16-bit quotient (returns `16'd0` when `B = 0`) |
 | `4'b0100` | **Bitwise AND** | `A & B` | Bitwise logical AND |
 | `4'b0101` | **Bitwise OR** | `A \| B` | Bitwise logical OR |
 | `4'b0110` | **Bitwise NAND**| `~(A & B)` | Bitwise logical NAND |
@@ -371,8 +388,10 @@ flowchart LR
 | `4'b1001` | **Bitwise XNOR**| `~(A ^ B)` | Bitwise logical XNOR |
 | `4'b1010` | **CMP: A = B** | `(A == B) ? 16'd1 : 16'd0` | Equality comparator |
 | `4'b1011` | **CMP: A > B** | `(A > B) ? 16'd2 : 16'd0` | Greater-than comparator |
-| `4'b1100` | **Shift Right** | `{1'b0, A[7:1]}` | Logical shift right by 1 bit |
-| `4'b1101` | **Shift Left** | `{A[6:0], 1'b0}` | Logical shift left by 1 bit |
+| `4'b1100` | **CMP: A < B** | `(A < B) ? 16'd3 : 16'd0` | Less-than comparator |
+| `4'b1101` | **Shift Right** | `{8'b0, A >> 1}` | Logical shift right by 1 bit |
+| `4'b1110` | **Shift Left** | `{8'b0, A << 1}` | Logical shift left by 1 bit |
+| `4'b1111` | **Reserved (default)** | `16'd0` (out_valid cleared) | Unused encoding |
 
 ---
 
@@ -382,7 +401,7 @@ To reduce dynamic power consumption during idle periods, the ALU clock is gated 
 ```mermaid
 flowchart LR
     subgraph Inputs["Clock Gate Inputs"]
-        clk["clk (REF_CLK = 50 MHz)"]
+        clk["clk (REF_CLK = 100 MHz)"]
         clk_en["clk_en (Gate_EN from SYS_CTRL)"]
     end
 
@@ -466,7 +485,7 @@ stateDiagram-v2
   * **`Serializer`**: Shifts out parallel data bit-by-bit driven by `TX_CLK`.
   * **`Parity_Calc`**: Computes Even or Odd parity dynamically across the 8 data bits.
   * **`MUX`**: Multiplexes Start (`0`), Serial Data, Parity, and Stop (`1`) bits onto `TX_OUT`.
-  * **`Busy` Flag**: Indicates when a transmission is ongoing; falling edge triggers next FIFO pop.
+  * **`Busy` Flag**: Indicates when a transmission is ongoing; the rising edge triggers the next FIFO pop.
 
 ---
 
@@ -490,7 +509,7 @@ flowchart LR
         DESER["deserializer<br/>(SIPO Shift Register)"]
         PAR_CHK["parity_checker<br/>(Dynamic Parity Validator)"]
         STP_CHK["stop_checker<br/>(Framing Stop Bit Validator)"]
-        FSM["FSM_RX<br/>(11-State Master RX Engine)"]
+        FSM["FSM_RX<br/>(5-State RX Engine)"]
     end
 
     subgraph Outputs["UART_RX Outputs"]
@@ -554,7 +573,7 @@ The **Asynchronous FIFO** provides rate matching and safe cross-clock domain dat
 
 ```mermaid
 flowchart TB
-    subgraph Write_Domain["Write Clock Domain (REF_CLK = 50 MHz)"]
+    subgraph Write_Domain["Write Clock Domain (REF_CLK = 100 MHz)"]
         wdata["wdata [7:0] (from SYS_CTRL)"]
         winc["winc (WR_INC from SYS_CTRL)"]
         wclk["wclk (REF_CLK) & wrst_n"]
@@ -718,7 +737,7 @@ flowchart LR
 ---
 
 ### 4.11 Pulse Generator (`Pulse_Gen`)
-Detects the falling edge of the `UART_TX` busy signal and converts it into a single `TX_CLK`-cycle pulse. This pulse drives `R_INC` on the Asynchronous FIFO, popping the next byte for continuous multi-byte transmissions.
+Detects the rising edge of the `UART_TX` busy signal and converts it into a single `TX_CLK`-cycle pulse. This pulse drives `R_INC` on the Asynchronous FIFO, popping the next byte for continuous multi-byte transmissions.
 
 ```mermaid
 flowchart LR
@@ -755,14 +774,12 @@ flowchart LR
 
 ## 5. Verification & Waveforms
 
-The design was fully verified using an exhaustive self-checking testbench ([`SYSTEM_TOP_tb.v`](Test_bench/SYSTEM_TOP_tb.v)) in **QuestaSim / ModelSim**, validating:
-1. Reset assertion and deassertion across clock domains.
-2. Register File configuration writes (`REG2` UART prescaler, `REG3` clock divisor).
-3. General-purpose Register File writes and readback verification.
-4. ALU operations with operands (Addition, Subtraction, Multiplication, Division, Logic).
-5. ALU operations without operands (using cached operands).
-6. Parity error detection and framing error reporting.
-7. Asynchronous FIFO continuous buffering under rate mismatch.
+The design was verified using an automated, directed **self-checking testbench** ([`SYSTEM_TOP_tb.v`](Test_bench/SYSTEM_TOP_tb.v)) in **QuestaSim / ModelSim**. The executed regression covers:
+1. Reset, default configuration, and clock-domain startup checks.
+2. Register File write/readback transactions across all parity configurations (`0x55`, `0xA5`, `0x3C`, `0x96`).
+3. Full UART TX frame-format validation (start bit, LSB-first data, dynamic parity, stop bit, idle return) on every readback frame.
+
+The archived run completes with `ALL TESTS PASSED` (`Errors: 0, Warnings: 0`) — the regression transcript excerpt is included in the [final report](docs/Final_Report.pdf) (Appendix B). The task-based bench is structured for easy extension to ALU-command coverage, error injection, and FIFO stress scenarios.
 
 ### Simulation Waveform 1: Clocks, UART, Synchronization & Control
 ![ModelSim Waveform 1](Screenshots/modelsim_waveform_1.png)
@@ -777,16 +794,16 @@ The design was fully verified using an exhaustive self-checking testbench ([`SYS
 
 ## 6. ASIC Implementation Flow & Results
 
-The digital ASIC implementation flow was executed under worst-case corner conditions (**SS / 1.08V / 125°C**) using standard cell libraries (`scmetro_tsmc_cl013g_rvt`).
+The digital ASIC implementation flow was executed under worst-case corner conditions (**SS / 1.08V / 125°C**) using standard cell libraries (`scmetro_tsmc_cl013g_rvt`), covering logic synthesis, DFT, formal equivalence, and the full Cadence Encounter place-and-route sign-off flow down to GDSII.
 
 ### 6.1 Logic Synthesis (Synopsys Design Compiler)
-* **Target Clock Frequency**: 100 MHz (Clock Period = 10.0 ns)
-* **Setup Timing Slack**: **`0.00 ns` (MET — Zero Slack Closure)**
-* **Hold Timing Slack**: **`0.04 ns` (MET)**
+* **Target Clock Frequency**: **100 MHz** (10 ns period)
+* **Setup Timing Slack (WNS)**: **`0.00 ns` — MET (Zero Slack Closure)**
+* **Hold Timing Slack (WNS)**: **`+0.43 ns` — MET**
 * **Total Cell Area**: **`27,225.31 µm²`**
-* **Total Chip Area (including net interconnect)**: **`301,113.36 µm²`**
 * **Total Cell Count**: **2,275 cells** (1,844 combinational, 393 sequential)
-* **Power Dissipation**: **13.56 mW Dynamic Power**, **704.9 nW Leakage Power**
+* **Total Chip Area (incl. estimated interconnect)**: **`301,113.36 µm²`** (wireload-based estimate)
+* **Power Estimate**: ≈**0.484 mW** (synthesis, vectorless, SS/1.08 V) · **1.212 mW** (post-route, @ 0.2 input activity — conditions in the [final report](docs/Final_Report.pdf) §14)
 
 ```
 Hierarchical Area Breakdown:
@@ -806,19 +823,32 @@ SYSTEM_TOP                27225.31                 100.0%
 ```
 
 ### 6.2 Design for Testability (DFT Compiler)
-* **Scan Architecture**: **4 Scan Chains** stitched across sequential elements.
-* **Scan Cells**: 389 scan flip-flops.
-* **Test Coverage**: **`99.66%`**
-* **Fault Coverage**: **`99.27%`**
-* **Fault Population**: 17,638 total faults evaluated; 0 un-testable violations.
+* **Scan Architecture**: **4 fully balanced scan chains of 95 cells each** (380 scan cells total).
+* **Test Coverage**: **`99.66%`** — 17,305 of 17,638 faults detected.
+* **Fault Summary**: 17,638 total faults; 333 non-detected (273 undetectable / 48 ATPG-untestable / 11 not detected / 1 possibly detected).
 
 ### 6.3 Formal Verification (Synopsys Formality)
-* **RTL vs. Post-Synthesis Netlist**: **100% Equivalence Verification SUCCEEDED** (55,620 compare points verified, 0 failing, 0 unverified).
-* **Post-Synthesis vs. Post-DFT Netlist**: **100% Equivalence Verification SUCCEEDED** (53,410 compare points verified, 0 failing, 0 unverified).
+* **RTL vs. Post-Synthesis Netlist**: **SUCCEEDED** — 379 compare points (0 failing, 0 unmatched).
+* **Pre-DFT vs. Post-DFT Netlist**: **SUCCEEDED** — 361 compare points.
+* **Post-DFT vs. Post-PnR Netlist**: **SUCCEEDED** — 361 compare points.
 
 ### 6.4 Lint & CDC Sign-off (SpyGlass)
-* **Lint Methodology**: Clean sign-off under `GuideWare/latest/block/rtl_handoff`.
-* **Clock Domain Crossing (CDC)**: Structural and functional CDC verification passed across all domain crossings with customized waiver files.
+* **Lint**: `GuideWare/latest/block/rtl_handoff` methodology — **0 errors**; 6 STARC05 warnings reviewed and **waived** (documented).
+* **CDC**: structural and functional verification — **0 unsynchronized crossings**; one Gray-coded FIFO pointer convergence analyzed (Gray-encoding check **PASSED**); all reported messages reviewed and waived.
+
+### 6.5 Place & Route Sign-off (Cadence Encounter)
+Full physical implementation and sign-off in Cadence First Encounter (v08.10) + NanoRoute — see [`System_pnr/`](IC/Projects/System/System_pnr/):
+* **Flow**: MMMC setup → floorplan & power planning → placement → clock tree synthesis → NanoRoute routing → chip finish → sign-off checks → GDSII/SDF/SPF export.
+* **Die / Core**: **240.47 × 220.47 µm** die · 228.32 × 208.32 µm core · placement density 56.8%.
+* **Clock Tree**: worst skew **159 ps** (scan) / 124.7 ps (UART) / 13.5 ps (REF) — versus a 200 ps target.
+* **Routing**: **70,072 µm** wire length · **16,708 vias** (32.6% multi-cut) · **0 DRC / 0 route failures**.
+* **Post-route STA**: Setup **+4.409 ns** / Hold **+0.015 ns** · 0 violating paths · all design-rule checks 0.
+* **Physical Verification**: `verifyGeometry` / `verifyConnectivity` / `verifyProcessAntenna` — **0 violations**.
+* **Exports**: signed-off **GDSII** + SDF (v3.0) + SPF + netlists → [`System_pnr/pnr/export/`](IC/Projects/System/System_pnr/pnr/export/)
+
+| Floorplan & Power Grid | Routed Layout (Physical View) |
+| :---: | :---: |
+| ![Floorplan view](docs/figures/floorplan_view.png) | ![Routed physical view](docs/figures/physical_view.png) |
 
 ---
 
@@ -832,8 +862,11 @@ Final_System/
 │       └── ci.yml                      # Automated GitHub Actions RTL CI verification
 │
 ├── docs/                               # System specifications and PDF documentation
+│   ├── Final_Report.pdf                # 📄 Complete final project report (RTL-to-GDSII)
+│   ├── Final_Report.tex                # LaTeX source of the final report
 │   ├── Final_System.pdf                # Architectural specifications
-│   └── simulation_waveform.pdf         # Full formatted simulation waveform printout
+│   ├── figures/                        # Report figures (waveforms + layout views)
+│   └── waveform & log.pdf              # Full formatted simulation waveform printout
 │
 ├── do_files/                           # Multi-simulator automation & compilation scripts
 │   ├── run.do                          # ModelSim / QuestaSim DO script
@@ -849,7 +882,8 @@ Final_System/
 │           ├── CDC/                    # SpyGlass CDC analysis, SDC & SGDC constraints
 │           ├── Synthesis/              # Synopsys DC scripts, constraints, reports, netlists
 │           ├── DFT/                    # Synopsys DFT scan insertion, scan netlists & reports
-│           └── Formality/              # Formal Equivalence Verification (post-syn, post-dft, post-pnr)
+│           ├── Formality/              # Formal Equivalence Verification (post-syn, post-dft, post-pnr)
+│           └── System_pnr/             # Cadence Encounter P&R: floorplan → CTS → route → sign-off → GDSII/SDF/SPF
 │
 ├── rtl/                                # Golden synthesizable RTL source modules
 │   ├── ALU/                            # 16-bit Arithmetic Logic Unit
@@ -872,7 +906,7 @@ Final_System/
 │   │   └── Pulse_Gen.v
 │   ├── Reg_File/                       # 16x8 Dual-Port Register File
 │   │   └── regfile.v
-│   ├── RST_SYNC/                       # 2-Stage Reset Synchronizer
+│   ├── RST_SYNC/                       # 3-Stage Reset Synchronizer
 │   │   └── RST_SYNC.v
 │   ├── SYS_CTRL/                       # Master System Controller FSM
 │   │   └── SYS_CTRL.v
@@ -902,7 +936,7 @@ Final_System/
 ├── scripts/                            # Host communication software & verification
 │   └── uart_driver.py                  # Python UART host driver & protocol regression suite
 │
-├── Test_bench/                         # Exhaustive self-checking testbench
+├── Test_bench/                         # Directed self-checking testbench
 │   └── SYSTEM_TOP_tb.v
 │
 ├── .gitignore                          # EDA & simulation cache filter
@@ -955,8 +989,15 @@ A Python driver is provided in `scripts/uart_driver.py` to interact with the SoC
 
 ---
 
+## 9. Final Report & Documentation
+
+The complete final project report (42 pages) is available at **[docs/Final_Report.pdf](docs/Final_Report.pdf)**, with its LaTeX source at [`docs/Final_Report.tex`](docs/Final_Report.tex) and all figures in [`docs/figures/`](docs/figures/). It documents the full flow — system architecture and microarchitecture, CDC methodology, verification, logic synthesis, DFT, formal equivalence, place-and-route sign-off, and GDSII export — with full traceability of every implementation metric to the underlying tool reports.
+
+---
+
 ## Author
 **Ahmed Badawy**  
-Faculty of Engineering, Cairo University  
+Faculty of Engineering, Cairo University — Digital Design & ASIC Implementation Diploma, Summer 2026  
+📄 [Final Report](docs/Final_Report.pdf)  
 📧 `ahmed.badwy05@eng-st.cu.edu.eg`  
 🔗 GitHub: [@ahmedbadwy77](https://github.com/ahmedbadwy77)
