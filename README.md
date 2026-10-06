@@ -15,7 +15,7 @@ An industrial-grade, multi-clock domain System-on-Chip (SoC) communication subsy
 
 The system features full-duplex configurable **UART communication**, **dual-clock asynchronous synchronization**, an 8-word (8×8) dual-clock **Asynchronous FIFO**, dynamic **clock dividers**, an **Integrated Clock Gating (ICG)** cell for low dynamic power, a 16-register **Register File**, and a high-performance 16-bit **Arithmetic Logic Unit (ALU)**.
 
-> 📄 **Complete Final Report:** [**Final_Report.pdf**](docs/Final_Report.pdf) — the full 44-page RTL-to-GDSII documentation (LaTeX source and figures included in [`docs/`](docs/)).
+> 📄 **Complete Final Report:** [**Final_Report.pdf**](docs/Final_Report.pdf) — the full 44-page RTL-to-GDSII documentation (report figures included in [`docs/`](docs/)).
 
 ## Key Results at a Glance
 
@@ -872,7 +872,6 @@ Final_System/
 │
 ├── docs/                               # System specifications and PDF documentation
 │   ├── Final_Report.pdf                # 📄 Complete final project report (RTL-to-GDSII)
-│   ├── Final_Report.tex                # LaTeX source of the final report
 │   ├── Final_System.pdf                # Architectural specifications
 │   ├── figures/                        # Report figures (waveforms + layout views)
 │   └── waveform & log.pdf              # Full formatted simulation waveform printout
@@ -1001,7 +1000,7 @@ A Python driver is provided in `scripts/uart_driver.py` to interact with the SoC
 
 ## 9. Final Report & Documentation
 
-The complete final project report (44 pages) is available at **[docs/Final_Report.pdf](docs/Final_Report.pdf)**, with its LaTeX source at [`docs/Final_Report.tex`](docs/Final_Report.tex) and all figures in [`docs/figures/`](docs/figures/). It documents the full flow — system architecture and microarchitecture, CDC methodology, verification, logic synthesis, DFT, formal equivalence, place-and-route sign-off, SDF-annotated gate-level simulation, PrimeTime PX power analysis, and GDSII export — with full traceability of every implementation metric to the underlying tool reports.
+The complete final project report (44 pages) is available at **[docs/Final_Report.pdf](docs/Final_Report.pdf)**, with all figures in [`docs/figures/`](docs/figures/). It documents the full flow — system architecture and microarchitecture, CDC methodology, verification, logic synthesis, DFT, formal equivalence, place-and-route sign-off, SDF-annotated gate-level simulation, PrimeTime PX power analysis, and GDSII export — with full traceability of every implementation metric to the underlying tool reports.
 
 ---
 
