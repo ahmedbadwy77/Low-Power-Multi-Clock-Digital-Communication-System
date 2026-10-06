@@ -215,6 +215,8 @@
 % TABLE OF CONTENTS
 % ------------------------------------------------------------------------------
 \newpage
+% TOC, List of Figures and List of Tables entries: black link color (body links keep primary)
+\hypersetup{linkcolor=black}
 \tableofcontents
 
 % ------------------------------------------------------------------------------
@@ -225,6 +227,8 @@
 
 \newpage
 \listoftables
+% restore body link color
+\hypersetup{linkcolor=primary}
 
 \newpage
 \phantomsection
@@ -267,6 +271,8 @@ FSM & Finite State Machine \\
 \hline
 GDSII & Graphic Data System II (layout stream format) \\
 \hline
+GLS & Gate-Level Simulation \\
+\hline
 ICG & Integrated Clock Gating \\
 \hline
 LEC & Logical Equivalence Checking \\
@@ -297,6 +303,8 @@ TNS & Total Negative Slack \\
 \hline
 UART & Universal Asynchronous Receiver/Transmitter \\
 \hline
+VCD & Value Change Dump (activity trace format) \\
+\hline
 WNS & Worst Negative Slack \\
 \hline
 \end{tabularx}}
@@ -313,11 +321,11 @@ WNS & Worst Negative Slack \\
 \noindent
 This report presents the complete microarchitectural specification, RTL design, directed self-checking functional verification, and complete RTL-to-GDSII ASIC back-end implementation of an industrial-grade, multi-clock domain digital communication System-on-Chip (SoC) subsystem. The design bridges two physically asynchronous clock domains: a high-speed computational domain driven by a reference clock (\texttt{REF\_CLK} at 100\,MHz) and an asynchronous serial interface domain driven by a dedicated baud generator clock (\texttt{UART\_CLK} at 3.6864\,MHz). The hardware architecture comprises an asynchronous multi-frame UART receiver and transmitter with reconfigurable oversampling ($8\times$, $16\times$, $32\times$) and parity checking; a double-flop enable-handshake Multi-Bit Data Synchronizer; a 10-state master System Controller FSM; a dual-port $16\times 8$-bit Register File; an energy-efficient 16-bit Arithmetic Logic Unit (ALU); an 8-word (8$\times$8) dual-clock Asynchronous FIFO utilizing 2-stage Gray-code pointer synchronization; and an Integrated Clock Gating (ICG) cell targeting dynamic power reduction during computational dormancy.
 
-The subsystem was verified in QuestaSim/ModelSim using an automated, directed, self-checking testbench covering reset, register-file write/readback transactions across all parity configurations, and full transmit-frame validation (start, LSB-first data, programmable parity, stop), with all executed checks passing. Static lint and Clock Domain Crossing (CDC) sign-off were achieved using Synopsys SpyGlass under the \texttt{GuideWare/latest/block/rtl\_handoff} methodology, with zero error-class findings, no unsynchronized clock-domain crossings, and all reported messages reviewed and waived (including the Gray-coded FIFO pointer convergence, confirmed safe by the Gray-encoding check). Logic synthesis was performed in Synopsys Design Compiler targeting the TSMC 130nm CMOS standard-cell library (\texttt{scmetro\_tsmc\_cl013g\_rvt}) at the SS / 1.08\,V / 125$^\circ$C corner, achieving zero-slack timing closure at 100\,MHz (\textbf{Setup Slack = 0.00\,ns}, \textbf{Hold Slack = +0.43\,ns}) across 2,275 standard cells ($27,225.31\,\mu\text{m}^2$ of active cell area). Manufacturing testability was integrated via Synopsys DFT Compiler with four balanced scan chains of 95 cells each (380 scan flip-flops total), achieving \textbf{99.66\% test coverage} across \textbf{17,638 faults}. A complete Cadence Encounter place-and-route flow --- floorplanning, power planning, placement, clock tree synthesis, and NanoRoute detailed routing --- produced a signed-off core layout of $240.47 \times 220.47\,\mu\text{m}$ with positive post-route slack (\textbf{Setup +4.409\,ns}, \textbf{Hold +0.015\,ns}), zero tool-level DRC, connectivity, and antenna violations, and GDSII stream-out. Formal equivalence was proven with Synopsys Formality across all three sign-off stages --- 379 (post-synthesis), 361 (post-DFT) and 361 (post-place-and-route) passing compare points.
+The subsystem was verified in QuestaSim/ModelSim using an automated, directed, self-checking testbench covering reset, register-file write/readback transactions across all parity configurations, and full transmit-frame validation (start, LSB-first data, programmable parity, stop), with all executed checks passing. Static lint and Clock Domain Crossing (CDC) sign-off were achieved using Synopsys SpyGlass under the \texttt{GuideWare/latest/block/rtl\_handoff} methodology, with zero error-class findings, no unsynchronized clock-domain crossings, and all reported messages reviewed and waived (including the Gray-coded FIFO pointer convergence, confirmed safe by the Gray-encoding check). Logic synthesis was performed in Synopsys Design Compiler targeting the TSMC 130nm CMOS standard-cell library (\texttt{scmetro\_tsmc\_cl013g\_rvt}) at the SS / 1.08\,V / 125$^\circ$C corner, achieving zero-slack timing closure at 100\,MHz (\textbf{Setup Slack = 0.00\,ns}, \textbf{Hold Slack = +0.43\,ns}) across 2,275 standard cells ($27,225.31\,\mu\text{m}^2$ of active cell area). Manufacturing testability was integrated via Synopsys DFT Compiler with four balanced scan chains of 95 cells each (380 scan flip-flops total), achieving \textbf{99.66\% test coverage} across \textbf{17,638 faults}. A complete Cadence Encounter place-and-route flow --- floorplanning, power planning, placement, clock tree synthesis, and NanoRoute detailed routing --- produced a signed-off core layout of $240.47 \times 220.47\,\mu\text{m}$ with positive post-route slack (\textbf{Setup +4.409\,ns}, \textbf{Hold +0.015\,ns}), zero tool-level DRC, connectivity, and antenna violations, and GDSII stream-out. Formal equivalence was proven with Synopsys Formality across all three sign-off stages --- 379 (post-synthesis), 361 (post-DFT) and 361 (post-place-and-route) passing compare points. The exported netlist was additionally re-verified at gate level with fully back-annotated post-route delays (slow-corner SDF) --- passing the complete directed regression --- and its recorded switching activity drove a PrimeTime PX power analysis of functional-mode operation, reporting a leakage-dominated average power of $\approx 11.7\,\mu$W at the typical corner (lower bound pending full activity coverage).
 
 \vspace{0.4cm}
 \noindent
-\textbf{Keywords} -- Multi-Clock SoC, Clock Domain Crossing (CDC), Asynchronous FIFO, Integrated Clock Gating (ICG), TSMC 130nm CMOS, Logic Synthesis, Design for Testability (DFT), Formal Verification, Synopsys Design Compiler, SpyGlass CDC, Place and Route, GDSII.
+\textbf{Keywords} -- Multi-Clock SoC, Clock Domain Crossing (CDC), Asynchronous FIFO, Integrated Clock Gating (ICG), TSMC 130nm CMOS, Logic Synthesis, Design for Testability (DFT), Formal Verification, Synopsys Design Compiler, SpyGlass CDC, Place and Route, Gate-Level Simulation, PrimeTime PX, GDSII.
 
 \vspace{0.8cm}
 
@@ -335,7 +343,7 @@ This final project delivers a complete, synthesizable, industrial-grade System-o
     \item \textbf{Aggressive Dynamic Power Reduction}: Architectural integration of an active-low latch-based Integrated Clock Gating (ICG) cell that cuts clock tree switching to the 16-bit ALU whenever arithmetic computation is idle, directly targeting switching power ($P_{\text{dyn}} = \alpha C V^2 f$).
     \item \textbf{Flexible Serial Telemetry \& Dynamic Prescaling}: A fully configurable UART transceiver supporting dynamic software-controlled oversampling ($8\times$, $16\times$, $32\times$), programmable parity generation/checking (Even/Odd/None), framing error detection, and noisy channel filtering via triple-sample majority voting.
     \item \textbf{Comprehensive Directed Self-Checking Verification}: An automated, directed, self-checking testbench covering reset behavior, register-file write/readback transactions across all parity configurations, and full transmit-frame validation (start, LSB-first data, programmable parity, stop).
-    \item \textbf{Complete ASIC Backend Sign-off Flow}: Static lint and CDC verification via Synopsys SpyGlass, 100\,MHz timing closure in Synopsys Design Compiler, scan insertion via Synopsys DFT Compiler, place-and-route closure and physical sign-off culminating in GDSII stream-out, and formal equivalence verification via Synopsys Formality.
+    \item \textbf{Complete ASIC Backend Sign-off Flow}: Static lint and CDC verification via Synopsys SpyGlass, 100\,MHz timing closure in Synopsys Design Compiler, scan insertion via Synopsys DFT Compiler, place-and-route closure and physical sign-off culminating in GDSII stream-out, post-route gate-level simulation with SDF back-annotation, activity-annotated power analysis, and formal equivalence verification via Synopsys Formality.
 \end{enumerate}
 
 The top-level interface of the subsystem, listed in Table~\ref{tab:io_ports}, comprises four inputs and three outputs.
@@ -366,7 +374,7 @@ The top-level interface of the subsystem, listed in Table~\ref{tab:io_ports}, co
 \end{tabularx}
 \end{table}
 
-The remainder of this report is organized as follows: Sections~2--6 present the system architecture, module-level design, and trade-off analysis; Sections~7--8 cover the verification methodology and functional simulation results; Sections~9--13 describe the implementation and sign-off flow (lint/CDC, synthesis, DFT, place-and-route, and formal equivalence); Sections~14--15 report the power analysis and the consolidated results summary; and Section~16 concludes the report. Appendices~A--C provide implementation scripts, a regression transcript excerpt, and reproducibility details.
+The remainder of this report is organized as follows: Sections~2--6 present the system architecture, module-level design, and trade-off analysis; Sections~7--8 cover the verification methodology and functional simulation results; Sections~9--13 describe the implementation and sign-off flow (lint/CDC, synthesis, DFT, place-and-route, post-route gate-level simulation, and formal equivalence); Sections~14--15 report the power analysis --- including the VCD-annotated PrimeTime PX results --- and the consolidated results summary; and Section~16 concludes the report. Appendices~A--C provide implementation scripts, a regression transcript excerpt, and reproducibility details.
 
 % ------------------------------------------------------------------------------
 % SECTION 2: MULTI-CLOCK ARCHITECTURE & CDC STRATEGY
@@ -1592,6 +1600,16 @@ The signed-off database was exported for hand-off: GDSII via \texttt{streamOut} 
 The SDF (version 3.0) and the SPF export are provided for downstream static timing and parasitic analysis of the routed netlist. The stream-out completed successfully; layer-mapping diagnostics emitted during export are retained as a follow-up item for downstream reference-deck checking. The layout views captured from the saved Encounter database are presented earlier in this section (Figures~\ref{fig:layout_floorplan} and~\ref{fig:layout_physical}).
 
 % (rendered placement-map figure removed --- replaced by captured floorplan/physical views above)
+
+% ---- Gate-Level Simulation (Post-Route SDF) ----
+\subsection{Gate-Level Simulation (Post-Route SDF)}
+\label{subsec:gls}
+
+As a final functional check on the implemented netlist, the exported post-route gate-level netlist and its version-3.0 SDF file (Table~\ref{tab:pnr_exports}) were re-simulated with the same self-checking regression testbench used at the RTL stage (Table~\ref{tab:testplan}), compiled against the TSMC 130\,nm standard-cell simulation models. The run was executed in QuestaSim~10.7c with the SDF applied in \texttt{-sdfmax} mode, i.e.\ at the maximum (slow) delays corresponding to 1.08\,V and 125\,$^\circ$C as recorded in the SDF header --- the setup-critical condition for timing sign-off.
+
+SDF back-annotation completed successfully and the full directed regression ran to completion: all checks passed, terminating with the \texttt{ALL TESTS PASSED} banner and the simulator's \texttt{[SIMULATION SUCCESSFUL]} status after $\approx 3.2$\,ms of simulated system operation ($\approx 17$\,s of wall-clock simulation time). The simulator's timing checks flagged three setup-time events, all on the first stage of the \texttt{DATA\_SYNC} synchronizer (\texttt{multi\_flops\_reg[0]}); these are the expected consequence of sampling the asynchronous \texttt{bus\_enable} input close to a clock edge and are resolved by the two-stage synchronizer by design --- no functional check failed. The remaining console output consists of SDF-to-model mapping notices (missing \texttt{specify} coverage in the cell simulation models, and post-PnR instance/port name mapping), which are tool-flow messages rather than design issues.
+
+The gate-level pass completes the verification stack for the delivered netlist: it is formally equivalent to the RTL (Section~\ref{sec:formality}), meets the post-route static timing sign-off (Table~\ref{tab:pnr_signoff}), and reproduces the complete directed regression functionally correct under real back-annotated delays. The full-hierarchy switching-activity trace (VCD) captured during this run is reused as the activity source for the VCD-annotated power analysis of Section~\ref{subsec:px}.
 % SECTION 13: SYNOPSYS FORMALITY FORMAL EQUIVALENCE
 % ------------------------------------------------------------------------------
 \section{Synopsys Formality Formal Equivalence Verification}
@@ -1620,10 +1638,38 @@ Power was profiled in the Synopsys DC/Power Compiler flow at 100\,MHz; the condi
 \begin{itemize}
     \item \textbf{Synthesis estimate} (\texttt{Synthesis/reports/power.rpt}; SS/1.08\,V/125\,$^\circ$C corner; default propagated activity --- primary inputs unannotated, low-effort vectorless simulation): total $\approx 0.484\,\text{mW}$ (internal $0.412\,\text{mW}$, switching $54.7\,\mu\text{W}$, leakage $18.2\,\mu\text{W}$).
     \item \textbf{Post-scan estimate} (\texttt{DFT/reports/power.rpt}): total $\approx 0.166\,\text{mW}$ (leakage $15.6\,\mu\text{W}$).
-    \item \textbf{Post-route estimate} (\texttt{System\_pnr/pnr/report/power.rpt}; primary-input activity 0.2): total $1.212\,\text{mW}$ at $1.08\,\text{V}$ (internal 70.3\%, switching 28.1\%, leakage 1.6\% $\approx 19.9\,\mu\text{W}$). This figure includes the DFT scan-clock domain ($\approx 48\%$ of the total power) and therefore overestimates functional-mode power.
+    \item \textbf{Post-route estimate} (\texttt{System\_pnr/pnr/report/power.rpt}; primary-input activity 0.2): total $1.212\,\text{mW}$ at $1.08\,\text{V}$ (internal 70.3\%, switching 28.1\%, leakage 1.6\% $\approx 19.9\,\mu\text{W}$). This figure includes the DFT scan-clock domain ($\approx 48\%$ of the total power) and therefore overestimates functional-mode power; the VCD-annotated analysis below quantifies the functional-mode figure.
 \end{itemize}
 
-All estimates above use default or vectorless activity where noted; an activity-annotated (VCD-driven) analysis to quantify the clock-gating savings is identified as future work.
+All estimates above use default or vectorless activity where noted. To complement them, a switching-activity-annotated analysis was performed on the post-route netlist using the activity trace captured during the gate-level regression, as described next.
+
+% ---- VCD-Annotated Power Analysis (PrimeTime PX) ----
+\subsection{VCD-Annotated Power Analysis (PrimeTime PX)}
+\label{subsec:px}
+
+A time-based power analysis was executed with Synopsys PrimeTime PX (O-2018.06-SP1) on the post-route netlist, driven by the VCD switching-activity trace captured during the gate-level regression of Section~\ref{subsec:gls}. Because the activity is taken from the actual functional run --- including the real clock-gating behavior of the ALU and the genuine \texttt{REF\_CLK}/\texttt{UART\_CLK} activity over $\approx 3.2$\,ms --- the result characterizes normal operation rather than assumed activity factors. The session resolves the typical-corner library (TT: 1.2\,V, 25\,$^\circ$C).
+
+\begin{table}[htbp]
+\centering
+\caption{PrimeTime PX VCD-annotated power summary for the post-route netlist (functional workload).}
+\label{tab:px_power}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{|Y|c|c|}
+\hline
+\textbf{Power Component} & \textbf{Value} & \textbf{Share of Total} \\
+\hline
+Net switching power & $0.67\,\mu$W & 5.7\% \\
+\hline
+Cell internal power & $3.21\,\mu$W & 27.4\% \\
+\hline
+Cell leakage power & $7.84\,\mu$W & 66.9\% \\
+\hline
+\textbf{Total power} & \textbf{11.72\,$\mu$W} & 100\% \\
+\hline
+\end{tabularx}
+\end{table}
+
+Two run conditions are noted for completeness: clock definitions were not applied in this first analysis session (clock-network and register power are therefore not separately attributed), and PrimeTime reports partial VCD coverage with its power-may-be-underestimated warning; the reported total is consequently treated as a \emph{lower bound} for functional-mode power, with a clock- and SDF-loaded rerun at fuller coverage identified as a refinement step. Even as a lower bound, the result quantitatively confirms the low-power behavior of the design under normal operation: with the scan clock idle and a UART-dominated workload, the reported average power is leakage-dominated ($\approx 67\%$) and lies roughly two orders of magnitude below the scan-inclusive, slow-corner post-route estimate of the item above.
 
 % ------------------------------------------------------------------------------
 % SECTION 15: SUMMARY OF IMPLEMENTATION RESULTS
@@ -1663,16 +1709,19 @@ Table~\ref{tab:summary_results} consolidates the complete architectural and phys
  & Setup Slack (Worst Negative Slack) & \textbf{0.00\,ns} (MET at 100\,MHz) \\ \cline{2-3}
  & Hold Slack & \textbf{+0.43\,ns} (MET) \\
 \hline
-\textbf{Power (100\,MHz)} & Post-route estimate & \textbf{1.212\,mW} (SS/1.08\,V, activity 0.2; incl. scan clock) \\
+\multirow{2}{*}{\textbf{Power (100\,MHz)}}
+ & Post-route estimate & \textbf{1.212\,mW} (SS/1.08\,V, activity 0.2; incl. scan clock) \\ \cline{2-3}
+ & VCD-annotated (functional, PrimeTime PX) & \textbf{11.72\,$\mu$W} (TT corner; leakage-dominated lower bound) \\
 \hline
 \multirow{3}{*}{\textbf{DFT \& Testability}}
  & Scan Chain Cells & 380 (4 $\times$ 95) \\ \cline{2-3}
  & Test Coverage & \textbf{99.66\%} (Synopsys DFT Compiler) \\ \cline{2-3}
  & Fault Class Summary & 17,305 DT / 333 non-detected of 17,638 \\
 \hline
-\multirow{2}{*}{\textbf{Formal \& CDC}}
+\multirow{3}{*}{\textbf{Verification Closure}}
  & SpyGlass CDC \& Lint Sign-off & 0 errors (lint: 6 waived STARC05 warnings; CDC: 0 unsynchronized crossings; 1 Gray-coded convergence --- check PASSED) \\ \cline{2-3}
- & Formality Formal Equivalence & \textbf{379 / 361 / 361} Compare Points (post-synth / post-DFT / post-PnR) \\
+ & Formality Formal Equivalence & \textbf{379 / 361 / 361} Compare Points (post-synth / post-DFT / post-PnR) \\ \cline{2-3}
+ & Gate-Level Simulation (post-route SDF) & \textbf{All tests passed} --- complete directed regression with back-annotated delays (Section~\ref{subsec:gls}) \\
 \hline
 \end{tabularx}
 \end{table}
@@ -1684,16 +1733,16 @@ Table~\ref{tab:summary_results} consolidates the complete architectural and phys
 
 This final project successfully demonstrated the microarchitecture, directed self-checking RTL verification, static CDC sign-off, logic synthesis, scan testability insertion, and formal verification of a low-power multi-clock digital communication SoC subsystem.
 
-By strategically deploying enable-handshake data synchronization, Gray-coded dual-clock asynchronous FIFO buffering, and dual-domain asynchronous reset synchronizers, the architecture eliminates metastability and multi-bit data incoherency across asynchronous clock boundaries, while a latch-based Integrated Clock Gating cell provides design-level clock gating for dynamic power reduction. The project delivered the complete flow from RTL through verification, SpyGlass sign-off, logic synthesis, DFT, place-and-route, in-tool physical sign-off checks, and post-route static timing analysis, with formal equivalence confirmed across all three sign-off stages and culminating in a signed-off core-level GDSII layout. The design closed timing at 100\,MHz under worst-case corner conditions with positive post-route slack (worst setup +4.409\,ns, worst hold +0.015\,ns) and zero violating paths; scan insertion achieved 99.66\% test coverage with four scan chains, and all in-tool checks are clean.
+By strategically deploying enable-handshake data synchronization, Gray-coded dual-clock asynchronous FIFO buffering, and dual-domain asynchronous reset synchronizers, the architecture eliminates metastability and multi-bit data incoherency across asynchronous clock boundaries, while a latch-based Integrated Clock Gating cell provides design-level clock gating for dynamic power reduction. The project delivered the complete flow from RTL through verification, SpyGlass sign-off, logic synthesis, DFT, place-and-route, in-tool physical sign-off checks, post-route static timing analysis, post-route gate-level simulation with SDF back-annotation, and a VCD-annotated power analysis, with formal equivalence confirmed across all three sign-off stages and culminating in a signed-off core-level GDSII layout. The design closed timing at 100\,MHz under worst-case corner conditions with positive post-route slack (worst setup +4.409\,ns, worst hold +0.015\,ns) and zero violating paths; scan insertion achieved 99.66\% test coverage with four scan chains, and all in-tool checks are clean.
 
 \subsection{Limitations}
 
 The following scope boundaries apply to the delivered results:
 \begin{itemize}
     \item \textbf{Verification scope.} Verification consists of the executed directed regression: reset behavior, register-file write/readback across parity configurations, and TX frame validation; extended ALU, error-injection, and FIFO-stress scenarios are pending.
-    \item \textbf{Gate-level simulation.} No system-level gate-level simulation was performed.
+    \item \textbf{Gate-level simulation.} The post-route gate-level regression (slow-corner SDF) passes the complete directed test suite; minimum-corner (hold) gate-level runs and extended stress scenarios are not included.
     \item \textbf{Physical verification.} Physical checks are tool-level (Encounter verify commands); no foundry-grade DRC/LVS decks were run.
-    \item \textbf{Power analysis.} Power estimates are vectorless, except where the post-route conditions are noted.
+    \item \textbf{Power analysis.} The vectorless estimates are complemented by the VCD-annotated PrimeTime PX result (Section~\ref{subsec:px}), which reflects the functional workload and is treated as a lower bound.
     \item \textbf{Layout scope.} The GDSII stream is core-level; no pad ring or full-chip assembly is included.
 \end{itemize}
 
@@ -1703,8 +1752,8 @@ The following items are identified as future work:
 \begin{itemize}
     \item Full pad-ring and full-chip assembly.
     \item Foundry-grade physical verification (Calibre-class DRC/LVS) and a re-stream of the GDSII with a corrected layer map and complete cell geometry.
-    \item Activity-annotated (VCD-based) power analysis.
-    \item System-level gate-level simulation with the post-route SDF.
+    \item Clock-attributed, full-coverage refinement of the VCD-annotated power analysis.
+    \item Minimum-corner (hold) gate-level regression with the post-route SDF, plus gate-level stress and error-injection scenarios.
     \item IR-drop and electromigration (EM) analysis.
     \item An optional APB/AXI bus wrapper for SoC integration.
 \end{itemize}
@@ -1791,6 +1840,17 @@ saveNetlist export/SYS_TOP.v
 streamOut export/SYS_TOP.gds -mapFile ./import/gds2InLayer.map -libName DesignLib -stripes 1 -units 2000 -mode ALL
 \end{lstlisting}
 
+The third excerpt shows the gate-level simulation flow used for the post-route SDF regression of Section~\ref{subsec:gls}: compilation of the cell models, the post-route netlist, and the testbench (with VCD activity dumping enabled), followed by maximum-delay SDF back-annotated simulation of the complete regression.
+
+\begin{lstlisting}
+# run.do (excerpt) -- post-route gate-level simulation with SDF
+vlog -sv std_cells/tsmc13_m.v
+vlog -sv sdc_sdf_netlist/SYS_TOP.v
+vlog -sv +define+DUMP_VCD +define+IVERILOG SYSTEM_TOP_tb.v
+vsim -sdfmax /SYSTEM_TOP_tb/DUT=sdc_sdf_netlist/SYS_TOP.sdf -sdfnoerror +no_notifier work.SYSTEM_TOP_tb
+run -all
+\end{lstlisting}
+
 % ------------------------------------------------------------------------------
 % APPENDIX B: REGRESSION TRANSCRIPT (EXCERPT)
 % ------------------------------------------------------------------------------
@@ -1845,6 +1905,10 @@ Table~\ref{tab:tool_versions} summarizes the EDA tools, versions, and technology
 \textbf{Activity} & \textbf{Tool \& Version} \\
 \hline
 Simulation & QuestaSim/ModelSim (Intel FPGA Edition v2020.1); open-source Icarus Verilog for continuous-integration regression \\
+\hline
+Gate-level simulation & QuestaSim 10.7c (SDF back-annotated, post-route netlist) \\
+\hline
+Power analysis & Synopsys PrimeTime PX O-2018.06-SP1 (VCD-annotated, time-based) \\
 \hline
 Lint / CDC & Synopsys SpyGlass vL-2016.06 (\texttt{GuideWare/latest/block/rtl\_handoff} methodology) \\
 \hline
