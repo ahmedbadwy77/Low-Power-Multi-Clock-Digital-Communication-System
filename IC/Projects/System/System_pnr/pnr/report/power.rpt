@@ -1,0 +1,91 @@
+*----------------------------------------------------------------------------------------
+*	First Encounter 08.10-p004_1 (32bit) 11/04/2008 14:34 (Linux 2.6)
+*	
+*
+* 	Date & Time:	2026-Oct-04 23:55:53 (2026-Oct-04 21:55:53 GMT)
+*
+*----------------------------------------------------------------------------------------
+*
+*	Design: SYS_TOP
+*
+*	Liberty Libraries used: 
+*	        ../std_cells/libs/scmetro_tsmc_cl013g_rvt_ss_1p08v_125c.lib
+*
+*	Power Domain used: 
+*		Rail:        VDD 	Voltage:       1.08 
+*
+*       User-Defined Activity : N.A.
+*
+*       Activity File: N.A.
+*
+*       Hierarchical Global Activity: N.A.
+*
+*       Global Activity: N.A.
+*
+*       Sequential Element Activity: N.A.
+*
+*       Clock Gates Enable Activity: N.A.
+*
+*       Primary Input Activity: 0.200000
+*
+*	Power Units = 1mW
+*
+*	Time Units = 1e-09 secs 
+*
+*       report_power -outfile report/power.rpt
+*
+-----------------------------------------------------------------------------------------
+
+
+Total Power 
+-----------------------------------------------------------------------------------------
+Total Internal Power:      0.8519      70.27%
+Total Switching Power:     0.3406      28.09%
+Total Leakage Power:       0.0199      1.642%
+Total Power:                1.212 
+-----------------------------------------------------------------------------------------
+
+
+Group                           Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+Sequential                        0.6114     0.04876    0.007102      0.6673       55.04 
+Macro                                  0           0           0           0           0 
+IO                                     0           0           0           0           0 
+Combinational                     0.2405      0.2918      0.0128      0.5452       44.96 
+-----------------------------------------------------------------------------------------
+Total                             0.8519      0.3406      0.0199       1.212         100 
+-----------------------------------------------------------------------------------------
+
+
+Rail                  Voltage   Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+VDD                      1.08     0.8519      0.3406      0.0199       1.212         100 
+
+
+Clock                           Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+rx_clk                          0.001333    0.001234    0.000241    0.002809      0.2316 
+tx_clk                         3.703e-05    3.95e-05    0.000241   0.0003175     0.02619 
+alu_clk                                0           0           0           0           0 
+dft_clk                           0.2184      0.3647    0.003573      0.5867       48.39 
+uart_clk                        0.005291     0.00296   0.0008906    0.009142       0.754 
+ref_clk                           0.1411         0.2    0.001026      0.3421       28.22 
+-----------------------------------------------------------------------------------------
+Total                             0.3662       0.569    0.005972      0.9411       77.62 
+-----------------------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------------------
+*	Power Distribution Summary: 
+* 		Highest Average Power:          REF_CLK_M__L3_I0 (CLKINVX40M): 	   0.01834 
+* 		Highest Leakage Power:           RX_CLK_M__L2_I0 (CLKBUFX40M): 	 5.483e-05 
+* 		Total Cap: 	2.60925e-11 F
+* 		Total instances in design:  2160
+* 		Total instances in design with no power:     7
+*          Total instances in design with no activty:     7
+* 		Total Fillers and Decap:     0
+-----------------------------------------------------------------------------------------
+

@@ -1,0 +1,29 @@
+Info:  Multiple drivers on net Ref:/WORK/SYS_TOP/fm_N8.
+Info:  Net Ref:/WORK/SYS_TOP/gated_clk is undriven.
+Info:  Net Ref:/WORK/SYS_TOP/SO[3] is undriven.
+Info:  Net Ref:/WORK/SYS_TOP/SO[2] is undriven.
+Info:  Net Ref:/WORK/SYS_TOP/SO[1] is undriven.
+Info:  Net Ref:/WORK/SYS_TOP/SO[0] is undriven.
+Info:  Multiple drivers on net Ref:/WORK/CLK_GATE/gated_clk.
+Info:  Multiple drivers on net Ref:/SCMETRO_TSMC_CL013G_RVT_SS_1P08V_125C/TLATNCAX2M/ECK.
+Info:  Multiple drivers on net Imp:/WORK/SYS_TOP/_1_net_.
+Info:  Multiple drivers on net Imp:/WORK/CLK_GATE/gated_clk.
+Info:  Multiple drivers on net Imp:/SCMETRO_TSMC_CL013G_RVT_SS_1P08V_125C/TLATNCAX2M/ECK.
+Info:  Multiple drivers on net Imp:/SCMETRO_TSMC_CL013G_RVT_SS_1P08V_125C/OR2X12M/Y.
+Info:  Net Imp:/WORK/FSM_RX_test_1/enable is undriven.
+Info:  Net Imp:/WORK/ALU_DW_div_uns_0/remainder[7] is undriven.
+Info:  Net Imp:/WORK/ALU_DW_div_uns_0/remainder[6] is undriven.
+Info:  Net Imp:/WORK/ALU_DW_div_uns_0/remainder[5] is undriven.
+Info:  Net Imp:/WORK/ALU_DW_div_uns_0/remainder[4] is undriven.
+Info:  Net Imp:/WORK/ALU_DW_div_uns_0/remainder[3] is undriven.
+Info:  Net Imp:/WORK/ALU_DW_div_uns_0/remainder[2] is undriven.
+Info:  Net Imp:/WORK/ALU_DW_div_uns_0/remainder[1] is undriven.
+Info:  Net Imp:/WORK/ALU_DW_div_uns_0/remainder[0] is undriven.
+Info:  Net Imp:/WORK/ALU_DW_div_uns_0/divide_by_0 is undriven.
+Info:  Net Imp:/WORK/ALU_DW01_sub_0/CO is undriven.
+Info:  Net Imp:/WORK/ALU_DW01_add_0/CO is undriven.
+Info:  Net Imp:/WORK/ALU_DW01_add_1/CO is undriven.
+Info:  guide_transformation 76 (Line: 655)  Unmatched boundary nodes.
+Info:  guide_uniquify 87 (Line: 734)  Cannot find object "U0_ALU/dp_cluster_0/mult_41" in design 'SYS_TOP'.
+Info:  Pre-verification of Ref:/WORK/ALU/div_46 SUCCEEDED.
+Info:  Pre-verification of Ref:/WORK/ALU/mult_41 SUCCEEDED.

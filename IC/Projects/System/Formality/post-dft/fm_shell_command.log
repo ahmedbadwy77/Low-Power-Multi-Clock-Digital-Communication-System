@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running fm_shell Version L-2016.03-SP1 for linux64 -- Apr 13, 2016
-#@ # Date:   Thu Oct  1 07:39:22 2026
+#@ # Date:   Mon Oct  5 04:39:48 2026
 #@ # Run by: ICer@IC_EDA
 #@ 
 
@@ -53,7 +53,7 @@ source -echo -verbose dft_fm_script.tcl
 #@ 
 #@ ########################### Define Top Module ############################
 #@ 
-#@ set top_module SYSTEM_TOP
+#@ set top_module SYS_TOP
 #@ 
 #@ ######################### Formality Setup File ###########################
 #@ 
@@ -99,7 +99,7 @@ source -echo -verbose dft_fm_script.tcl
 #@ read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/stop_checker.v
 #@ read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/strt_checker.v
 #@ read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/SYS_CTRL.v
-#@ read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/SYSTEM_TOP.v
+#@ read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/SYS_TOP.v
 #@ read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/UART.v
 #@ read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/UART_RX.v
 #@ read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/UART_TX.v
@@ -117,7 +117,7 @@ source -echo -verbose dft_fm_script.tcl
 #@ 
 #@ ## Read Implementation Design Files
 #@ 
-#@ read_verilog -container Imp /home/ICer/IC/Projects/System/DFT/netlists/SYSTEM_TOP.v
+#@ read_verilog -container Imp /home/ICer/IC/Projects/System/DFT/netlists/SYS_TOP.v
 #@ 
 #@ ## set the top Implementation Design
 #@ 

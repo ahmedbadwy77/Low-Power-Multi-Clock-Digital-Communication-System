@@ -31,3 +31,6 @@ Thumbs.db
 [Dd]esktop.ini
 .DS_Store
 *.tmp
+
+# Duplicated standard-cell libraries inside the PnR workspace (identical copies already tracked at IC/Projects/System/std_cells/)
+IC/Projects/System/System_pnr/std_cells/libs/

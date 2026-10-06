@@ -1,7 +1,7 @@
 
 ########################### Define Top Module ############################
                                                    
-set top_module SYSTEM_TOP
+set top_module SYS_TOP
 
 ######################### Formality Setup File ###########################
 
@@ -47,7 +47,7 @@ read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/Serializer.v
 read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/stop_checker.v
 read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/strt_checker.v
 read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/SYS_CTRL.v
-read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/SYSTEM_TOP.v
+read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/SYS_TOP.v
 read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/UART.v
 read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/UART_RX.v
 read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/UART_TX.v
@@ -65,7 +65,7 @@ read_db -container Imp [list $SSLIB $TTLIB $FFLIB]
 
 ## Read Implementation Design Files
 
-read_verilog -container Imp /home/ICer/IC/Projects/System/DFT/netlists/SYSTEM_TOP.v
+read_verilog -container Imp /home/ICer/IC/Projects/System/DFT/netlists/SYS_TOP.v
  
 ## set the top Implementation Design
 

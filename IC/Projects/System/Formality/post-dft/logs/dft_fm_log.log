@@ -19,17 +19,17 @@
 
 Build: 4031317
 Hostname: IC_EDA (RHEL64)
-Current time: Thu Oct  1 07:39:22 2026
+Current time: Mon Oct  5 04:39:48 2026
 
 Loading db file '/home/synopsys/Formality2016/libraries/syn/gtech.db'
 ########################### Define Top Module ############################
-set top_module SYSTEM_TOP
-SYSTEM_TOP
+set top_module SYS_TOP
+SYS_TOP
 ######################### Formality Setup File ###########################
 set synopsys_auto_setup true
 true
 set_svf "../../DFT/$top_module.svf"
-SVF set to '../../DFT/SYSTEM_TOP.svf'.
+SVF set to '../../DFT/SYS_TOP.svf'.
 1
 set SSLIB "/home/ICer/IC/Projects/System/std_cells/scmetro_tsmc_cl013g_rvt_ss_1p08v_125c.db"
 /home/ICer/IC/Projects/System/std_cells/scmetro_tsmc_cl013g_rvt_ss_1p08v_125c.db
@@ -149,9 +149,9 @@ read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/SYS_CTRL.v
 No target library specified, default is WORK
 Loading verilog file '/home/ICer/IC/Projects/System/DFT/rtl/SYS_CTRL.v'
 1
-read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/SYSTEM_TOP.v
+read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/SYS_TOP.v
 No target library specified, default is WORK
-Loading verilog file '/home/ICer/IC/Projects/System/DFT/rtl/SYSTEM_TOP.v'
+Loading verilog file '/home/ICer/IC/Projects/System/DFT/rtl/SYS_TOP.v'
 1
 read_verilog -container Ref /home/ICer/IC/Projects/System/DFT/rtl/UART.v
 No target library specified, default is WORK
@@ -167,11 +167,11 @@ Loading verilog file '/home/ICer/IC/Projects/System/DFT/rtl/UART_TX.v'
 1
 ## set the top Reference Design 
 set_reference_design $top_module
-Reference design set to 'Ref:/WORK/SYSTEM_TOP'
+Reference design set to 'Ref:/WORK/SYS_TOP'
 1
 set_top $top_module
-Setting top design to 'Ref:/WORK/SYSTEM_TOP'
-Status:   Elaborating design SYSTEM_TOP   ...  
+Setting top design to 'Ref:/WORK/SYS_TOP'
+Status:   Elaborating design SYS_TOP   ...  
 Status:   Elaborating design prescale_mux   ...  
 Status:   Elaborating design CLK_DIV   ...  
 Status:   Elaborating design RST_SYNC   ...  
@@ -208,8 +208,8 @@ Warning:  3 unlinked power cell(s) with unread pg pins.
         Use 'report_libraries -defects all' for more details.
 **************************************************
 
-Top design successfully set to 'Ref:/WORK/SYSTEM_TOP'
-Reference design set to 'Ref:/WORK/SYSTEM_TOP'
+Top design successfully set to 'Ref:/WORK/SYS_TOP'
+Reference design set to 'Ref:/WORK/SYS_TOP'
 1
 ######################## Implementation Container #########################
 ## Read Implementation technology libraries
@@ -221,20 +221,20 @@ Loading db file '/home/ICer/IC/Projects/System/std_cells/scmetro_tsmc_cl013g_rvt
 Loading db file '/home/ICer/IC/Projects/System/std_cells/scmetro_tsmc_cl013g_rvt_ff_1p32v_m40c.db'
 1
 ## Read Implementation Design Files
-read_verilog -container Imp /home/ICer/IC/Projects/System/DFT/netlists/SYSTEM_TOP.v
+read_verilog -container Imp /home/ICer/IC/Projects/System/DFT/netlists/SYS_TOP.v
 No target library specified, default is WORK
 Information: wand converted to a wire with no special attributes
-	at line 12 in /home/ICer/IC/Projects/System/DFT/netlists/SYSTEM_TOP.v (SVR-21)
+	at line 12 in /home/ICer/IC/Projects/System/DFT/netlists/SYS_TOP.v (SVR-21)
 Information: wand converted to a wire with no special attributes
-	at line 3781 in /home/ICer/IC/Projects/System/DFT/netlists/SYSTEM_TOP.v (SVR-21)
-Loading verilog file '/home/ICer/IC/Projects/System/DFT/netlists/SYSTEM_TOP.v'
+	at line 3782 in /home/ICer/IC/Projects/System/DFT/netlists/SYS_TOP.v (SVR-21)
+Loading verilog file '/home/ICer/IC/Projects/System/DFT/netlists/SYS_TOP.v'
 1
 ## set the top Implementation Design
 set_implementation_design $top_module
-Implementation design set to 'Imp:/WORK/SYSTEM_TOP'
+Implementation design set to 'Imp:/WORK/SYS_TOP'
 1
 set_top $top_module
-Setting top design to 'Imp:/WORK/SYSTEM_TOP'
+Setting top design to 'Imp:/WORK/SYS_TOP'
 Status:  Implementing inferred operators...
 
 ************ Library Checking Summary ************
@@ -242,68 +242,68 @@ Warning:  3 unlinked power cell(s) with unread pg pins.
         Use 'report_libraries -defects all' for more details.
 **************************************************
 
-Top design successfully set to 'Imp:/WORK/SYSTEM_TOP'
-Implementation design set to 'Imp:/WORK/SYSTEM_TOP'
+Top design successfully set to 'Imp:/WORK/SYS_TOP'
+Implementation design set to 'Imp:/WORK/SYS_TOP'
 1
 ############################### Don't verify #################################
 # do not verify scan in & scan out ports as a compare point as it is existed only after synthesis and not existed in the RTL
 #scan in
 set_dont_verify_points -type port {Ref:/WORK/*/SI[0]}
-Set don't verify point 'Ref:/WORK/SYSTEM_TOP/SI[0]'
+Set don't verify point 'Ref:/WORK/SYS_TOP/SI[0]'
 1
 set_dont_verify_points -type port {Ref:/WORK/*/SI[1]}
-Set don't verify point 'Ref:/WORK/SYSTEM_TOP/SI[1]'
+Set don't verify point 'Ref:/WORK/SYS_TOP/SI[1]'
 1
 set_dont_verify_points -type port {Ref:/WORK/*/SI[2]}
-Set don't verify point 'Ref:/WORK/SYSTEM_TOP/SI[2]'
+Set don't verify point 'Ref:/WORK/SYS_TOP/SI[2]'
 1
 set_dont_verify_points -type port {Ref:/WORK/*/SI[3]}
-Set don't verify point 'Ref:/WORK/SYSTEM_TOP/SI[3]'
+Set don't verify point 'Ref:/WORK/SYS_TOP/SI[3]'
 1
 #scan_out
 set_dont_verify_points -type port {Ref:/WORK/*/SO[0]}
-Set don't verify point 'Ref:/WORK/SYSTEM_TOP/SO[0]'
+Set don't verify point 'Ref:/WORK/SYS_TOP/SO[0]'
 1
 set_dont_verify_points -type port {Ref:/WORK/*/SO[1]}
-Set don't verify point 'Ref:/WORK/SYSTEM_TOP/SO[1]'
+Set don't verify point 'Ref:/WORK/SYS_TOP/SO[1]'
 1
 set_dont_verify_points -type port {Ref:/WORK/*/SO[2]}
-Set don't verify point 'Ref:/WORK/SYSTEM_TOP/SO[2]'
+Set don't verify point 'Ref:/WORK/SYS_TOP/SO[2]'
 1
 set_dont_verify_points -type port {Ref:/WORK/*/SO[3]}
-Set don't verify point 'Ref:/WORK/SYSTEM_TOP/SO[3]'
+Set don't verify point 'Ref:/WORK/SYS_TOP/SO[3]'
 1
 ############################### constants #####################################
 # all atpg enable(test_mode, scan_enable) are zero during formal compare
 #test_mode
 set_constant Ref:/WORK/*/test_mode 0
-Set 'Ref:/WORK/SYSTEM_TOP/test_mode' to constant 0
+Set 'Ref:/WORK/SYS_TOP/test_mode' to constant 0
 1
 set_constant Imp:/WORK/*/test_mode 0
-Set 'Imp:/WORK/SYSTEM_TOP/test_mode' to constant 0
+Set 'Imp:/WORK/SYS_TOP/test_mode' to constant 0
 1
 #scan_enable
 set_constant Ref:/WORK/*/SE 0
-Set 'Ref:/WORK/SYSTEM_TOP/SE' to constant 0
+Set 'Ref:/WORK/SYS_TOP/SE' to constant 0
 1
 set_constant Imp:/WORK/*/SE 0
-Set 'Imp:/WORK/SYSTEM_TOP/SE' to constant 0
+Set 'Imp:/WORK/SYS_TOP/SE' to constant 0
 1
 ########################### matching Compare points ##########################
 match
-Reference design is 'Ref:/WORK/SYSTEM_TOP'
-Implementation design is 'Imp:/WORK/SYSTEM_TOP'
+Reference design is 'Ref:/WORK/SYS_TOP'
+Implementation design is 'Imp:/WORK/SYS_TOP'
 Status:  Checking designs...
     Warning: 5 (12) undriven nets found in reference (implementation) design; see formality.log for list (FM-399)
     Info:  3 (4) multiply-driven nets found in reference (implementation) design; see formality.log for list.
 Status:  Building verification models...
 Status:  Processing Guide Commands...
-    Set 'Ref:/WORK/SYSTEM_TOP/SE' to constant 0    
-    Set 'Imp:/WORK/SYSTEM_TOP/SE' to constant 0    
-    Set 'Ref:/WORK/SYSTEM_TOP/test_mode' to constant 1    
-    Set 'Imp:/WORK/SYSTEM_TOP/test_mode' to constant 1    
-    Set 'Imp:/WORK/SYSTEM_TOP/SE' to constant 0    ; previous value was also 0
-    Set 'Imp:/WORK/SYSTEM_TOP/test_mode' to constant 1    ; previous value was also 1
+    Set 'Ref:/WORK/SYS_TOP/SE' to constant 0    
+    Set 'Imp:/WORK/SYS_TOP/SE' to constant 0    
+    Set 'Ref:/WORK/SYS_TOP/test_mode' to constant 1    
+    Set 'Imp:/WORK/SYS_TOP/test_mode' to constant 1    
+    Set 'Imp:/WORK/SYS_TOP/SE' to constant 0    ; previous value was also 0
+    Set 'Imp:/WORK/SYS_TOP/test_mode' to constant 1    ; previous value was also 1
 
 ***************************** Guidance Summary *****************************
                                          Status
@@ -323,7 +323,7 @@ uniquify            :         31          1          0          0         32
 Note: If verification succeeds you can safely ignore unaccepted guidance commands.
 
 SVF files read:
-      ../../DFT/SYSTEM_TOP.svf
+      ../../DFT/SYS_TOP.svf
 
 SVF files produced:
   /home/ICer/IC/Projects/System/Formality/post-dft/formality_svf/
@@ -345,8 +345,8 @@ Status:  Matching...
 1
 ################################# verify #####################################
 set successful [verify]
-Reference design is 'Ref:/WORK/SYSTEM_TOP'
-Implementation design is 'Imp:/WORK/SYSTEM_TOP'
+Reference design is 'Ref:/WORK/SYS_TOP'
+Implementation design is 'Imp:/WORK/SYS_TOP'
     
 *********************************** Matching Results ***********************************    
  360 Compare points matched by name    
@@ -377,8 +377,8 @@ Status:  Verifying...
 ### Test Logic Setup
    set verification_verify_directly_undriven_output false
    Constants set on:
-     SYSTEM_TOP/SE
-     SYSTEM_TOP/test_mode
+     SYS_TOP/SE
+     SYS_TOP/test_mode
    For details see report_dont_verify_points and report_constants
 
 
@@ -391,8 +391,8 @@ Verification SUCCEEDED
    ATTENTION: synopsys_auto_setup mode was enabled.
               See Synopsys Auto Setup Summary for details.
 ----------------------------------------------------------
- Reference design: Ref:/WORK/SYSTEM_TOP
- Implementation design: Imp:/WORK/SYSTEM_TOP
+ Reference design: Ref:/WORK/SYS_TOP
+ Implementation design: Imp:/WORK/SYS_TOP
  361 Passing compare points
 ----------------------------------------------------------------------------------------
 Matched Compare Points     BBPin    Loop   BBNet     Cut    Port     DFF     LAT   TOTAL
@@ -418,17 +418,17 @@ report_unmatched_points -status unread
 Report         : unmatched_points
                  -status unread 
 
-Reference      : Ref:/WORK/SYSTEM_TOP
-Implementation : Imp:/WORK/SYSTEM_TOP
+Reference      : Ref:/WORK/SYS_TOP
+Implementation : Imp:/WORK/SYS_TOP
 Version        : L-2016.03-SP1
-Date           : Thu Oct  1 07:39:24 2026
+Date           : Mon Oct  5 04:39:50 2026
 **************************************************
 
 2 Unmatched points (2 reference, 0 implementation):
 
-  Ref  DFF        Ref:/WORK/SYSTEM_TOP/U0_UART/U0_UART_RX/U4/counter_reg[3]
+  Ref  DFF        Ref:/WORK/SYS_TOP/U0_UART/U0_UART_RX/U4/counter_reg[3]
 
-  Ref  DFF0X      Ref:/WORK/SYSTEM_TOP/U0_UART/U0_UART_RX/U4/data_reg[7]
+  Ref  DFF0X      Ref:/WORK/SYS_TOP/U0_UART/U0_UART_RX/U4/data_reg[7]
 
  [BBNet: multiply-driven net
   BBox:  black-box
