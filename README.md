@@ -7,6 +7,7 @@
 [![DFT Coverage](https://img.shields.io/badge/DFT%20Coverage-99.66%25-brightgreen.svg)](IC/Projects/System/DFT/)
 [![Formality](https://img.shields.io/badge/Equivalence-100%25%20Verified-success.svg)](IC/Projects/System/Formality/)
 [![PnR Sign-off](https://img.shields.io/badge/PnR%20Sign--off-Cadence%20Encounter-blueviolet.svg)](IC/Projects/System/System_pnr/)
+[![GLS](https://img.shields.io/badge/GLS-SDF%20Verified-success.svg)](IC/Projects/System/GLS/)
 [![Report](https://img.shields.io/badge/Report-Final%20PDF-blue.svg)](docs/Final_Report.pdf)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -14,7 +15,7 @@ An industrial-grade, multi-clock domain System-on-Chip (SoC) communication subsy
 
 The system features full-duplex configurable **UART communication**, **dual-clock asynchronous synchronization**, an 8-word (8×8) dual-clock **Asynchronous FIFO**, dynamic **clock dividers**, an **Integrated Clock Gating (ICG)** cell for low dynamic power, a 16-register **Register File**, and a high-performance 16-bit **Arithmetic Logic Unit (ALU)**.
 
-> 📄 **Complete Final Report:** [**Final_Report.pdf**](docs/Final_Report.pdf) — the full 42-page RTL-to-GDSII documentation (LaTeX source and figures included in [`docs/`](docs/)).
+> 📄 **Complete Final Report:** [**Final_Report.pdf**](docs/Final_Report.pdf) — the full 44-page RTL-to-GDSII documentation (LaTeX source and figures included in [`docs/`](docs/)).
 
 ## Key Results at a Glance
 
@@ -26,6 +27,8 @@ The system features full-duplex configurable **UART communication**, **dual-cloc
 | **Place & Route (Encounter)** | Die **240.47 × 220.47 µm** · 56.8% density · **0 DRC / antenna / connectivity violations** |
 | **Post-route STA** | Setup **+4.409 ns** / hold **+0.015 ns** · 0 violating paths |
 | **Sign-off** | Signed-off **GDSII** (`SYS_TOP.gds`) + SDF v3.0 + SPF exports |
+| **Gate-Level Sim (QuestaSim)** | Post-route netlist + **SDF** back-annotation @ 1.08 V / 125 °C — **all directed tests passed** |
+| **Power (PrimeTime PX)** | **≈11.72 µW** total (typical corner, VCD-annotated) — leakage-dominated; lower bound pending full activity coverage |
 
 ---
 
@@ -52,6 +55,7 @@ The system features full-duplex configurable **UART communication**, **dual-cloc
   - [6.3 Formal Verification (Synopsys Formality)](#63-formal-verification-synopsys-formality)
   - [6.4 Lint & CDC Sign-off (SpyGlass)](#64-lint--cdc-sign-off-spyglass)
   - [6.5 Place & Route Sign-off (Cadence Encounter)](#65-place--route-sign-off-cadence-encounter)
+  - [6.6 Gate-Level Simulation & Power Analysis (PrimeTime PX)](#66-gate-level-simulation--power-analysis-primetime-px)
 - [7. Directory Structure](#7-directory-structure)
 - [8. How to Run Simulation & Verification](#8-how-to-run-simulation--verification)
 - [9. Final Report & Documentation](#9-final-report--documentation)
@@ -794,7 +798,7 @@ The archived run completes with `ALL TESTS PASSED` (`Errors: 0, Warnings: 0`) �
 
 ## 6. ASIC Implementation Flow & Results
 
-The digital ASIC implementation flow was executed under worst-case corner conditions (**SS / 1.08V / 125°C**) using standard cell libraries (`scmetro_tsmc_cl013g_rvt`), covering logic synthesis, DFT, formal equivalence, and the full Cadence Encounter place-and-route sign-off flow down to GDSII.
+The digital ASIC implementation flow was executed under worst-case corner conditions (**SS / 1.08V / 125°C**) using standard cell libraries (`scmetro_tsmc_cl013g_rvt`), covering logic synthesis, DFT, formal equivalence, and the full Cadence Encounter place-and-route sign-off flow down to GDSII, followed by SDF-annotated gate-level simulation and VCD-annotated PrimeTime PX power analysis.
 
 ### 6.1 Logic Synthesis (Synopsys Design Compiler)
 * **Target Clock Frequency**: **100 MHz** (10 ns period)
@@ -850,6 +854,11 @@ Full physical implementation and sign-off in Cadence First Encounter (v08.10) + 
 | :---: | :---: |
 | ![Floorplan view](docs/figures/floorplan_view.png) | ![Routed physical view](docs/figures/physical_view.png) |
 
+### 6.6 Gate-Level Simulation & Power Analysis (PrimeTime PX)
+Two final verification steps were performed directly on the signed-off post-route database — complete artifacts in [`IC/Projects/System/GLS/`](IC/Projects/System/GLS/):
+* **Gate-level simulation (QuestaSim 10.7c)**: the post-route netlist was re-simulated with **SDF back-annotation** (slow corner: **1.08 V / 125 °C**). SDF backannotation completed successfully and the complete directed regression finished with **ALL TESTS PASSED** (≈3.17 ms of simulated traffic). The only three `$setup` timing notifications occur on the asynchronous synchronizer input (`U0_DATA_SYNC`) — expected behavior for a CDC boundary, analyzed in the [final report](docs/Final_Report.pdf) §12.8.
+* **VCD-annotated power (PrimeTime PX)**: a time-based power analysis driven by the gate-level VCD reports **≈11.72 µW total** at the typical corner — net switching 0.67 µW, cell internal 3.21 µW, cell leakage 7.84 µW (leakage-dominated). Because clock definitions were not re-read in the analysis session and VCD activity coverage is partial (75.1% of nets / 39.0% of cells), the value is reported as a conservative **lower bound** (report §14.1; raw report: [`True_Power.rpt`](IC/Projects/System/GLS/pt/report/True_Power.rpt)).
+
 ---
 
 ## 7. Directory Structure
@@ -883,7 +892,8 @@ Final_System/
 │           ├── Synthesis/              # Synopsys DC scripts, constraints, reports, netlists
 │           ├── DFT/                    # Synopsys DFT scan insertion, scan netlists & reports
 │           ├── Formality/              # Formal Equivalence Verification (post-syn, post-dft, post-pnr)
-│           └── System_pnr/             # Cadence Encounter P&R: floorplan → CTS → route → sign-off → GDSII/SDF/SPF
+│           ├── System_pnr/             # Cadence Encounter P&R: floorplan → CTS → route → sign-off → GDSII/SDF/SPF
+│           └── GLS/                    # Gate-level simulation (SDF-annotated) & PrimeTime PX power analysis: testbench, netlist/SDF/SDC, waveforms (VCD/FSDB), PT reports
 │
 ├── rtl/                                # Golden synthesizable RTL source modules
 │   ├── ALU/                            # 16-bit Arithmetic Logic Unit
@@ -991,7 +1001,7 @@ A Python driver is provided in `scripts/uart_driver.py` to interact with the SoC
 
 ## 9. Final Report & Documentation
 
-The complete final project report (42 pages) is available at **[docs/Final_Report.pdf](docs/Final_Report.pdf)**, with its LaTeX source at [`docs/Final_Report.tex`](docs/Final_Report.tex) and all figures in [`docs/figures/`](docs/figures/). It documents the full flow — system architecture and microarchitecture, CDC methodology, verification, logic synthesis, DFT, formal equivalence, place-and-route sign-off, and GDSII export — with full traceability of every implementation metric to the underlying tool reports.
+The complete final project report (44 pages) is available at **[docs/Final_Report.pdf](docs/Final_Report.pdf)**, with its LaTeX source at [`docs/Final_Report.tex`](docs/Final_Report.tex) and all figures in [`docs/figures/`](docs/figures/). It documents the full flow — system architecture and microarchitecture, CDC methodology, verification, logic synthesis, DFT, formal equivalence, place-and-route sign-off, SDF-annotated gate-level simulation, PrimeTime PX power analysis, and GDSII export — with full traceability of every implementation metric to the underlying tool reports.
 
 ---
 
