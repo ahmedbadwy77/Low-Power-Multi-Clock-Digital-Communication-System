@@ -1,0 +1,238 @@
+                                 PrimeTime (R)
+
+               Version O-2018.06-SP1 for linux64 - Jul 19, 2018 
+
+                    Copyright (c) 1988 - 2018 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+set_app_var power_enable_analysis true
+Information: Checked out license 'PrimePower' (PT-019)
+true
+set_app_var power_analysis_mode time_based
+time_based
+set power_vcd_time_unit 1ns
+1ns
+set report_dir /home/ICer/IC/Projects/System/GLS/pt/report
+/home/ICer/IC/Projects/System/GLS/pt/report
+file mkdir $report_dir
+set Out_report True_Power
+True_Power
+#------------------------------------------------------------------------------
+# Libraries
+#------------------------------------------------------------------------------
+lappend search_path /home/ICer/IC/Projects/System/std_cells
+/home/ICer/IC/Projects/System/std_cells
+set TTLIB   scmetro_tsmc_cl013g_rvt_tt_1p2v_25c.db
+scmetro_tsmc_cl013g_rvt_tt_1p2v_25c.db
+set SSLIB   scmetro_tsmc_cl013g_rvt_ss_1p08v_125c.db
+scmetro_tsmc_cl013g_rvt_ss_1p08v_125c.db
+set FFLIB   scmetro_tsmc_cl013g_rvt_ff_1p32v_m40c.db
+scmetro_tsmc_cl013g_rvt_ff_1p32v_m40c.db
+set target_library [list $TTLIB $SSLIB $FFLIB]
+scmetro_tsmc_cl013g_rvt_tt_1p2v_25c.db scmetro_tsmc_cl013g_rvt_ss_1p08v_125c.db scmetro_tsmc_cl013g_rvt_ff_1p32v_m40c.db
+set link_library   [list * $TTLIB $SSLIB $FFLIB]
+* scmetro_tsmc_cl013g_rvt_tt_1p2v_25c.db scmetro_tsmc_cl013g_rvt_ss_1p08v_125c.db scmetro_tsmc_cl013g_rvt_ff_1p32v_m40c.db
+#------------------------------------------------------------------------------
+# Read Design Files
+#------------------------------------------------------------------------------
+# Read Verilog Netlist
+read_verilog /home/ICer/IC/Projects/System/GLS/sdc_sdf_netlist/SYS_TOP.v
+1
+current_design SYS_TOP
+Information: current_design won't return any data before link (DES-071)
+link_design
+Loading verilog file '/home/ICer/IC/Projects/System/GLS/sdc_sdf_netlist/SYS_TOP.v'
+Loading db file '/home/ICer/IC/Projects/System/std_cells/scmetro_tsmc_cl013g_rvt_tt_1p2v_25c.db'
+Loading db file '/home/ICer/IC/Projects/System/std_cells/scmetro_tsmc_cl013g_rvt_ss_1p08v_125c.db'
+Loading db file '/home/ICer/IC/Projects/System/std_cells/scmetro_tsmc_cl013g_rvt_ff_1p32v_m40c.db'
+Linking design SYS_TOP...
+Information: Removing 38 unneeded designs..... (LNK-034)
+Information: 502 (81.23%) library cells are unused in library scmetro_tsmc_cl013g_rvt_tt_1p2v_25c..... (LNK-045)
+Information: 618 (100.00%) library cells are unused in library scmetro_tsmc_cl013g_rvt_ss_1p08v_125c..... (LNK-045)
+Information: 618 (100.00%) library cells are unused in library scmetro_tsmc_cl013g_rvt_ff_1p32v_m40c..... (LNK-045)
+Information: total 1738 library cells are unused (LNK-046)
+Design 'SYS_TOP' was successfully linked.
+Information: There are 2218 leaf cells, ports, hiers and 3221 nets in the design (LNK-047)
+1
+# Read SDC File
+#read_sdc /home/ICer/IC/Projects/System/GLS/sdc_sdf_netlist/SYS_TOP.sdc
+# Read SDF File
+#read_sdf /home/ICer/IC/Projects/System/GLS/sdc_sdf_netlist/SYS_TOP.sdf
+#------------------------------------------------------------------------------
+# Read Switching Activity
+#------------------------------------------------------------------------------
+read_vcd -strip_path SYSTEM_TOP_tb/DUT /home/ICer/IC/Projects/System/GLS/Test_bench/VCD/SYSTEM_TOP.vcd
+
+======================================================================
+Summary:
+Total number of nets = 2321
+Number of annotated nets = 1743 (75.10%)
+Total number of leaf cells = 2153
+Number of fully annotated leaf cells = 839 (38.97%)
+======================================================================
+
+Warning: VCD coverage on the design is too small. Power may be underestimated. (PWR-007)
+1
+update_power
+Warning: Some timing arcs have been disabled for breaking timing loops or because of constant propagation. Use the 'report_disable_timing' command to get the list of these disabled timing arcs. (PTE-003)
+Information: Running time_based power analysis... (PWR-601)
+Information: The waveform options are:
+		File name:	primetime_px.fsdb
+		File format:	fsdb
+		Time interval:	0.001ns
+		Hierarchical level:	all
+
+Information: Power analysis is running, please wait ...
+
+ Last event time =  27535.4 ns 
+ Last event time =    54100 ns 
+ Last event time =    80395 ns 
+ Last event time =   106895 ns 
+ Last event time =   133555 ns 
+ Last event time =   160245 ns 
+ Last event time =   186805 ns 
+ Last event time =   213354 ns 
+ Last event time =   240072 ns 
+ Last event time =   266792 ns 
+ Last event time =   293106 ns 
+ Last event time =   319690 ns 
+ Last event time =   346275 ns 
+ Last event time =   372858 ns 
+ Last event time =   399280 ns 
+ Last event time =   425860 ns 
+ Last event time =   452610 ns 
+ Last event time =   478900 ns 
+ Last event time =   505508 ns 
+ Last event time =   531823 ns 
+ Last event time =   558136 ns 
+ Last event time =   584719 ns 
+ Last event time =   611305 ns 
+ Last event time =   637625 ns 
+ Last event time =   664330 ns 
+ Last event time =   690925 ns 
+ Last event time =   717515 ns 
+ Last event time =   751007 ns 
+ Last event time =   787295 ns 
+ Last event time =   823415 ns 
+ Last event time =   855715 ns 
+ Last event time =   882300 ns 
+ Last event time =   908885 ns 
+ Last event time =   935197 ns 
+ Last event time =   961545 ns 
+ Last event time =   988285 ns 
+ Last event time = 1.0148e+06 ns 
+ Last event time = 1.04126e+06 ns 
+ Last event time = 1.06785e+06 ns 
+ Last event time = 1.09443e+06 ns 
+ Last event time = 1.1205e+06 ns 
+ Last event time = 1.14716e+06 ns 
+ Last event time = 1.1738e+06 ns 
+ Last event time = 1.20002e+06 ns 
+ Last event time = 1.22654e+06 ns 
+ Last event time = 1.25312e+06 ns 
+ Last event time = 1.27932e+06 ns 
+ Last event time = 1.31579e+06 ns 
+ Last event time = 1.35176e+06 ns 
+ Last event time = 1.38796e+06 ns 
+ Last event time = 1.41778e+06 ns 
+ Last event time = 1.44437e+06 ns 
+ Last event time = 1.47095e+06 ns 
+ Last event time = 1.49727e+06 ns 
+ Last event time = 1.52388e+06 ns 
+ Last event time = 1.5506e+06 ns 
+ Last event time = 1.57698e+06 ns 
+ Last event time = 1.6036e+06 ns 
+ Last event time = 1.63007e+06 ns 
+ Last event time = 1.65672e+06 ns 
+ Last event time = 1.68308e+06 ns 
+ Last event time = 1.70967e+06 ns 
+ Last event time = 1.73625e+06 ns 
+ Last event time = 1.76257e+06 ns 
+ Last event time = 1.78925e+06 ns 
+ Last event time = 1.81596e+06 ns 
+ Last event time = 1.84254e+06 ns 
+ Last event time = 1.8689e+06 ns 
+ Last event time = 1.89549e+06 ns 
+ Last event time = 1.92216e+06 ns 
+ Last event time = 1.94838e+06 ns 
+ Last event time = 1.97497e+06 ns 
+ Last event time = 2.00155e+06 ns 
+ Last event time = 2.02814e+06 ns 
+ Last event time = 2.05458e+06 ns 
+ Last event time = 2.08118e+06 ns 
+ Last event time = 2.10786e+06 ns 
+ Last event time = 2.13434e+06 ns 
+ Last event time = 2.16862e+06 ns 
+ Last event time = 2.20485e+06 ns 
+ Last event time = 2.24108e+06 ns 
+ Last event time = 2.27499e+06 ns 
+ Last event time = 2.30157e+06 ns 
+ Last event time = 2.32816e+06 ns 
+ Last event time = 2.3546e+06 ns 
+ Last event time = 2.38096e+06 ns 
+ Last event time = 2.40764e+06 ns 
+ Last event time = 2.43436e+06 ns 
+ Last event time = 2.46081e+06 ns 
+ Last event time = 2.48739e+06 ns 
+ Last event time = 2.51401e+06 ns 
+ Last event time = 2.54071e+06 ns 
+ Last event time = 2.56715e+06 ns 
+ Last event time = 2.59372e+06 ns 
+ Last event time = 2.6201e+06 ns 
+ Last event time = 2.64676e+06 ns 
+ Last event time = 2.67321e+06 ns 
+ Last event time = 2.6998e+06 ns 
+ Last event time = 2.72653e+06 ns 
+ Last event time = 2.7528e+06 ns 
+ Last event time = 2.77955e+06 ns 
+ Last event time = 2.80606e+06 ns 
+ Last event time = 2.83245e+06 ns 
+ Last event time = 2.85876e+06 ns 
+ Last event time = 2.88517e+06 ns 
+ Last event time = 2.91193e+06 ns 
+ Last event time = 2.93824e+06 ns 
+ Last event time = 2.96491e+06 ns 
+ Last event time = 2.99149e+06 ns 
+ Last event time = 3.01823e+06 ns 
+ Last event time = 3.04862e+06 ns 
+ Last event time = 3.0848e+06 ns 
+ Last event time = 3.12079e+06 ns 
+ Last event time = 3.15715e+06 ns 
+Information: analysis is done for time window (0ns - 3.16677e+06ns)
+
+Warning: Switching activity for constant net U0_TX_CLK_DIV/n62 is reset by SAIF/VCD.  (PSW-208)
+Warning: Switching activity for constant net U1_RX_CLK_DIV/n10 is reset by SAIF/VCD.  (PSW-208)
+1
+#------------------------------------------------------------------------------
+# Reports
+#------------------------------------------------------------------------------
+report_power                              > $report_dir/$Out_report.rpt
+echo "----------------------------------------"
+----------------------------------------
+echo "PrimeTime PX Analysis Finished"
+PrimeTime PX Analysis Finished
+echo "Reports saved in:"
+Reports saved in:
+echo "$report_dir"
+/home/ICer/IC/Projects/System/GLS/pt/report
+echo "----------------------------------------"
+----------------------------------------
+#start_gui
+exit
+Information: Defining new variable 'report_dir'. (CMD-041)
+Information: Defining new variable 'FFLIB'. (CMD-041)
+Information: Defining new variable 'Out_report'. (CMD-041)
+Information: Defining new variable 'SSLIB'. (CMD-041)
+Information: Defining new variable 'power_vcd_time_unit'. (CMD-041)
+Information: Defining new variable 'TTLIB'. (CMD-041)
+
+Timing updates: 1 (1 implicit, 0 explicit) (0 incremental, 1 full, 0 logical)
+Noise updates: 0 (0 implicit, 0 explicit) (0 incremental, 0 full)
+Maximum memory usage for this session: 890.11 MB
+CPU usage for this session: 4 seconds 
+Elapsed time for this session: 4 seconds
+Diagnostics summary: 0 error, 4 warnings, 15 informationals
+
+Thank you for using pt_shell!
