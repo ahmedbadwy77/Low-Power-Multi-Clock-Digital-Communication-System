@@ -3,18 +3,27 @@
 module SYSTEM_TOP_tb;
 
 reg REF_CLK, UART_CLK, RST, RX_IN;
+reg scan_clk, scan_rst, test_mode, SE;
+reg [3:0] SI;
+wire [3:0] SO;
 wire TX_OUT, parity_error, framing_error;
 
 integer i, errors;
 
 reg [7:0] received_byte, received_parity;
 
-SYSTEM_TOP DUT(
+SYS_TOP DUT(
     .REF_CLK(REF_CLK),
     .UART_CLK(UART_CLK),
-    .RST(RST),
-    .RX_IN(RX_IN),
-    .TX_OUT(TX_OUT),
+    .RST_N(RST),
+    .UART_RX_IN(RX_IN),
+    .scan_clk(scan_clk),
+    .scan_rst(scan_rst),
+    .test_mode(test_mode),
+    .SE(SE),
+    .SI(SI),
+    .SO(SO),
+    .UART_TX_O(TX_OUT),
     .parity_error(parity_error),
     .framing_error(framing_error)
 );
@@ -38,6 +47,11 @@ end
 initial begin
     UART_CLK = 1'b0;
     forever #135.63368 UART_CLK = ~UART_CLK;
+end
+
+initial begin
+    scan_clk = 1'b0;
+    forever #5 scan_clk = ~scan_clk;
 end
 
 task send_bit;
@@ -214,9 +228,14 @@ initial begin
     errors = 0;
     RST = 1'b0;
     RX_IN = 1'b1;
+    scan_rst = 1'b0;
+    test_mode = 1'b0;
+    SE = 1'b0;
+    SI = 4'b0000;
 
     #1000;
     RST = 1'b1;
+    scan_rst = 1'b1;
 
     repeat(100) @(posedge REF_CLK);
 
