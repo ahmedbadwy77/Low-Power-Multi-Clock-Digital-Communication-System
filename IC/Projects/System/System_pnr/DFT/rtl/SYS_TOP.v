@@ -169,8 +169,8 @@ regfile U0_REGFILE(
 
 CLK_GATE U0_CLK_GATE(
     .clk(REF_CLK_M),
-    .clk_en(Gate_EN),
-    .gated_clk(gated_clk | test_mode)
+    .clk_en(Gate_EN | test_mode),
+    .gated_clk(gated_clk)
 );
 
 ALU U0_ALU(
